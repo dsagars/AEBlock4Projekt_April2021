@@ -6,14 +6,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { ModalComponent } from './components/modal/modal.component';
 
 // verschiedenen Module die wir benutzen wollen, importerien wir hier herein, um sie danach überall verfügbar zu haben
 // Besonders für Module die wir überall brauchen
 
 @NgModule({
-  declarations: [
-    NavbarComponent
-  ],
+  declarations: [NavbarComponent, ModalComponent],
   imports: [
     CommonModule,
     MatToolbarModule,
@@ -23,6 +22,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatSelectModule,
   ],
   exports: [
+    ModalComponent,
     NavbarComponent,
     MatToolbarModule,
     MatIconModule,
@@ -31,4 +31,4 @@ import { MatSelectModule } from '@angular/material/select';
     MatSelectModule,
   ],
 })
-export class SharedModule { }
+export class SharedModule {}
