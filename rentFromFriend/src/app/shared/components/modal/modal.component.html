@@ -1,6 +1,6 @@
 <div class="wrapper-background">
   <div class="wrapper">
-    <ng-content></ng-content>
-    <button (click)="modalService.toggleShowModal()">close</button>
+    <button class="button" (click)="modalService.toggleShowModalOffer()">X</button>
+    <ng-content class="absolute"></ng-content>
   </div>
 </div>

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { ModalService } from './shared/services/modal.service';
 
 @Component({

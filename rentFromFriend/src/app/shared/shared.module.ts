@@ -7,12 +7,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { ModalComponent } from './components/modal/modal.component';
+import { OfferFormComponent } from './components/offer-form/offer-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // verschiedenen Module die wir benutzen wollen, importerien wir hier herein, um sie danach überall verfügbar zu haben
 // Besonders für Module die wir überall brauchen
 
 @NgModule({
-  declarations: [NavbarComponent, ModalComponent],
+  declarations: [NavbarComponent, ModalComponent, OfferFormComponent],
   imports: [
     CommonModule,
     MatToolbarModule,
@@ -20,8 +22,10 @@ import { ModalComponent } from './components/modal/modal.component';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    ReactiveFormsModule,
   ],
   exports: [
+    OfferFormComponent,
     ModalComponent,
     NavbarComponent,
     MatToolbarModule,

@@ -1,0 +1,70 @@
+<p>Neuen Eintrag erstellen</p>
+
+<form class="example-form" [formGroup]="reactiveForm">
+  <mat-form-field class="example-full-width">
+    <mat-label>Titel</mat-label>
+    <input matInput formControlName="titel">
+
+  </mat-form-field>
+
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Vorname</mat-label>
+          <input matInput formControlName="vorname">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Nachname</mat-label>
+          <input matInput formControlName="nachname">
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+
+  <p>
+    <mat-form-field class="example-full-width">
+      <mat-label>Straße, Hausnummer, Plz</mat-label>
+      <textarea matInput placeholder="Beispielstraße 2, 22767" formControlName="adresse"></textarea>
+    </mat-form-field>
+  </p>
+
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Stadt</mat-label>
+          <input matInput placeholder="Hamburg" formControlName="stadt">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Stadtteil</mat-label>
+          <input matInput placeholder="St. Pauli" formControlName="stadtteil">
+        </mat-form-field>
+      </td>
+
+    </tr>
+    <tr>
+
+      <mat-label>Bild</mat-label>
+      <input type="file">
+
+    </tr>
+    <td>
+      <mat-form-field class="example-full-width">
+        <mat-label>Beschreibung</mat-label>
+        <input matInput placeholder="Controler für PS5" formControlName="beschreibung">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field class="example-full-width">
+        <mat-label>Preis</mat-label>
+        <input matInput placeholder="Controler für PS5" formControlName="preis">
+      </mat-form-field>
+    </td>
+  </table>
+  <button (click)="logval($event)">erstellen</button>
+</form>

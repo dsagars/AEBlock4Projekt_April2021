@@ -1,3 +1,5 @@
 <app-navbar></app-navbar>
 <router-outlet></router-outlet>
-<app-modal *ngIf="modalService.getShowModal()"></app-modal>
+<app-modal *ngIf="modalService.getShowModalOffer()">
+  <app-offer-form></app-offer-form>
+</app-modal>
