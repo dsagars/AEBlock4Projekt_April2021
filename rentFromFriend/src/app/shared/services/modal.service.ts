@@ -14,6 +14,5 @@ export class ModalService {
 
   public toggleShowModalOffer = () => {
     this.showModalOffer = !this.showModalOffer;
-    console.log(this.showModalOffer);
   };
 }
