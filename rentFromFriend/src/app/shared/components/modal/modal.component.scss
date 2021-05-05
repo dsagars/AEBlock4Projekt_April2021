@@ -1,0 +1,16 @@
+.wrapper-background {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(#000000, 0.3);
+}
+
+.wrapper {
+  position: fixed;
+  background-color: azure;
+  height: 80vh;
+  width: 50vw;
+  margin: 10vh 25vw;
+}

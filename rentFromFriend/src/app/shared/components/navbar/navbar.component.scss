@@ -1,0 +1,16 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+  .logo {
+      background-image: url('../../../../assets/img/rff_logo.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      height: 100%;
+      width: 200px;
+      margin: 10px;
+  }
+
+  mat-toolbar {
+      padding: 10px;
+  }
