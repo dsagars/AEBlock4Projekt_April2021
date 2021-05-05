@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { Product } from '../../modles/product.model';
 
@@ -15,6 +15,9 @@ export class OfferFormComponent implements OnInit {
   product: Product;
   reactiveForm: FormGroup;
 
+  @Input()
+  containsImage: boolean;
+
   ngOnInit(): void {
     this.reactiveForm = this.formBuilder.group({
       title: [],
@@ -25,23 +28,24 @@ export class OfferFormComponent implements OnInit {
       discrtict: [],
       description: [],
       price: [],
-      picture:[]
+      picture: [],
+      categorie: [],
     });
   }
 
-  // reactiveForm = new FormGroup({
-  //   titel: new FormControl(),
-  //   vorname: new FormControl(),
-  //   nachname: new FormControl(),
-  //   adresse: new FormControl(),
-  //   stadt: new FormControl(),
-  //   stadtteil: new FormControl(),
-  //   beschreibung: new FormControl(),
-  //   preis: new FormControl(),
-  // });
-
   handleSubmit = (e: Event) => {
     e.preventDefault();
-    console.log('Produkt Objekt:', this.reactiveForm.value);
+    console.log('eintrag:', this.reactiveForm);
   };
+
+  categories = [
+    'Garten',
+    'Haushalt',
+    'Elektonik',
+    'Spiele',
+    'Freizeit',
+    'Auto',
+    'Fahrrad',
+    'Sport',
+  ];
 }

@@ -1,31 +1,47 @@
 <mat-toolbar>
-    <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"> </button>-->
+  <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"> </button>-->
 
-    <span class="logo"></span>
+  <span class="logo"></span>
 
-    <div class="search-group">
-        <mat-form-field appearance="fill" class="search">
-            <mat-label>Input</mat-label>
-            <input matInput #input>
-          </mat-form-field>
+  <div class="search-group">
+    <mat-form-field appearance="fill" class="search">
+      <mat-label>Input</mat-label>
+      <input matInput #input />
+    </mat-form-field>
 
-          <mat-form-field appearance="fill" class="dropdown">
-            <mat-label>Select</mat-label>
-            <mat-select>
-              <mat-option value="one">First option</mat-option>
-              <mat-option value="two">Second option</mat-option>
-            </mat-select>
-          </mat-form-field>
-          {{input.value}}
-    </div>
+    <mat-form-field appearance="fill" class="dropdown">
+      <mat-label>Select</mat-label>
+      <mat-select>
+        <mat-option value="one">First option</mat-option>
+        <mat-option value="two">Second option</mat-option>
+      </mat-select>
+    </mat-form-field>
+    {{ input.value }}
+  </div>
 
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>favorite</mat-icon>
+  <span class="example-spacer"></span>
+  <button
+    mat-icon-button
+    class="example-icon favorite-icon"
+    aria-label="Example icon-button with heart icon"
+  >
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with share icon"
+  >
+    <mat-icon>share</mat-icon>
+  </button>
+
+  <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="modalService.toggleShowModalOffer()">
+      Neues Angebot erstellen
     </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" >
-      <mat-icon>share</mat-icon>
+    <button mat-menu-item (click)="modalService.toggleShowModalSearch()">
+      Neue Suche aufgeben
     </button>
-
-    <button (click)="modalService.toggleShowModalOffer()">Add</button>
-  </mat-toolbar>
+  </mat-menu>
+</mat-toolbar>

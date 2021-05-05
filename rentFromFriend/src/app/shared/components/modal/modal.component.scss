@@ -22,22 +22,25 @@
   position: absolute;
 }
 
+.close-btn {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  margin: 10px;
+}
+
 button {
   border: none;
   background: none;
   :hover {
-    transform: rotate(45deg);
+    transform: rotate(360deg);
     transition: transform 1s ease;
   }
 }
 
 .headder {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding: 10px;
   align-items: baseline;
-}
-
-h1 {
-  transform: translateX(-50%);
 }

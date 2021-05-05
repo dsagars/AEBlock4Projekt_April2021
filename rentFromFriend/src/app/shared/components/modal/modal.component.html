@@ -1,7 +1,7 @@
-<div class="background" (click)="modalService.toggleShowModalOffer()"></div>
+<div class="background" (click)="modalService.closeAll()"></div>
 <div class="wrapper">
   <div class="headder">
-    <button class="button" (click)="modalService.toggleShowModalOffer()">
+    <button class="button" (click)="modalService.closeAll()" class="close-btn">
       <mat-icon>close</mat-icon>
     </button>
     <h1>{{ titel }}</h1>
