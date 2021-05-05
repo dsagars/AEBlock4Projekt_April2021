@@ -32,8 +32,8 @@ export class OfferFormComponent implements OnInit {
     discrict: this.reactiveForm.value.stadtteil,
   };
 
-  logval = (e: Event) => {
+  handleSubmit = (e: Event) => {
     e.preventDefault();
-    console.log('boing', this.product);
+    console.log('Produkt Objekt:', this.product);
   };
 }
