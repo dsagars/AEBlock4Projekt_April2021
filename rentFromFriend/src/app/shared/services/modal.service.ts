@@ -4,15 +4,15 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ModalService {
-  public showModalOffer: boolean = false;
+  public showModalOffer = false;
 
   constructor() {}
 
-  public getShowModalOffer = () => {
+  public getShowModalOffer() {
     return this.showModalOffer;
-  };
+  }
 
-  public toggleShowModalOffer = () => {
+  public toggleShowModalOffer() {
     this.showModalOffer = !this.showModalOffer;
-  };
+  }
 }

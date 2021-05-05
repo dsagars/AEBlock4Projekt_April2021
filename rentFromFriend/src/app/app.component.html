@@ -1,5 +1,8 @@
 <app-navbar></app-navbar>
 <router-outlet></router-outlet>
-<app-modal *ngIf="modalService.getShowModalOffer()">
+<app-modal
+  *ngIf="modalService.getShowModalOffer()"
+  [titel]="'Neues Angebot erstellen'"
+>
   <app-offer-form></app-offer-form>
 </app-modal>

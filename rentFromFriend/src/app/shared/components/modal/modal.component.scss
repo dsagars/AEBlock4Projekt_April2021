@@ -15,8 +15,28 @@
   width: 50vw;
   margin: 10vh 25vw;
   top: 0;
+  padding: 20px;
 }
 
 .absolute {
   position: absolute;
+}
+
+button {
+  border: none;
+  background: none;
+  :hover {
+    transform: rotate(45deg);
+    transition: transform 1s ease;
+  }
+}
+
+.headder {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+h1 {
+  transform: translateX(-50%);
 }
