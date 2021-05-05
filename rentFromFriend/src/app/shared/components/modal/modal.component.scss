@@ -1,4 +1,4 @@
-.wrapper-background {
+.background {
   position: fixed;
   left: 0;
   top: 0;
@@ -8,9 +8,15 @@
 }
 
 .wrapper {
+  border-radius: 5px;
   position: fixed;
-  background-color: azure;
+  background-color: white;
   height: 80vh;
   width: 50vw;
   margin: 10vh 25vw;
+  top: 0;
+}
+
+.absolute {
+  position: absolute;
 }

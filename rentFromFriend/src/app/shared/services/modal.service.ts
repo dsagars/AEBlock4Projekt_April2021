@@ -1,27 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ModalService {
-  public showModal: boolean = false;
-
-  public showModalObservable: Observable<boolean> = new Observable<boolean>(
-    (obs) => {
-      obs.next(this.showModal);
-      obs.complete();
-    }
-  );
+  public showModalOffer: boolean = false;
 
   constructor() {}
 
-  public getShowModal = () => {
-    return this.showModal;
+  public getShowModalOffer = () => {
+    return this.showModalOffer;
   };
 
-  public toggleShowModal = () => {
-    this.showModal = !this.showModal;
-    console.log(this.showModal);
+  public toggleShowModalOffer = () => {
+    this.showModalOffer = !this.showModalOffer;
   };
 }

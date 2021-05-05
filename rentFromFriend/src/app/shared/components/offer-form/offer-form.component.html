@@ -1,0 +1,56 @@
+<p>Neuen Eintrag erstellen</p>
+
+<form class="example-form" [formGroup]="reactiveForm">
+  <mat-form-field class="example-full-width">
+    <mat-label>Titel</mat-label>
+    <input matInput formControlName="titel" />
+  </mat-form-field>
+  <mat-label>Bild</mat-label>
+  <input type="file" />
+  <mat-form-field class="example-full-width">
+    <mat-label>Beschreibung</mat-label>
+    <textarea
+      matInput
+      placeholder="Controler für PS5"
+      formControlName="beschreibung"
+    ></textarea>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Preis</mat-label>
+    <input
+      matInput
+      placeholder="16€ oder biete hilfe bei Gartenarbeit"
+      formControlName="preis"
+    />
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Vorname</mat-label>
+    <input matInput formControlName="vorname" />
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Nachname</mat-label>
+    <input matInput formControlName="nachname" />
+  </mat-form-field>
+
+  <p>
+    <mat-form-field class="example-full-width">
+      <mat-label>Straße, Hausnummer, Plz</mat-label>
+      <input
+        matInput
+        placeholder="Beispielstraße 2, 22767"
+        formControlName="adresse"
+      />
+    </mat-form-field>
+  </p>
+  <mat-form-field class="example-full-width">
+    <mat-label>Stadt</mat-label>
+    <input matInput placeholder="Hamburg" formControlName="stadt" />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Stadtteil</mat-label>
+    <input matInput placeholder="St. Pauli" formControlName="stadtteil" />
+  </mat-form-field>
+
+  <button (click)="handleSubmit($event)">erstellen</button>
+</form>
