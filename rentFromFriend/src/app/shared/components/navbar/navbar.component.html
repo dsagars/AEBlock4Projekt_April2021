@@ -1,31 +1,82 @@
 <mat-toolbar>
-    <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"> </button>-->
-
-    <span class="logo"></span>
-
-    <div class="search-group">
-        <mat-form-field appearance="fill" class="search">
-            <mat-label>Input</mat-label>
-            <input matInput #input>
-          </mat-form-field>
-
-          <mat-form-field appearance="fill" class="dropdown">
-            <mat-label>Select</mat-label>
-            <mat-select>
-              <mat-option value="one">First option</mat-option>
-              <mat-option value="two">Second option</mat-option>
-            </mat-select>
-          </mat-form-field>
-          {{input.value}}
-    </div>
-
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>favorite</mat-icon>
+  <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"> </button> -->
+  <span class="logo"></span>
+  <div class="search-group">
+    <mat-form-field
+      appearance="fill"
+      class="search"
+    >
+      <mat-label>Input</mat-label>
+      <input
+        matInput
+        #input
+      >
+    </mat-form-field>
+    <mat-form-field
+      appearance="fill"
+      class="dropdown"
+    >
+      <mat-label>Select</mat-label>
+      <mat-select>
+        <mat-option value="one">First option</mat-option>
+        <mat-option value="two">Second option</mat-option>
+      </mat-select>
+    </mat-form-field>
+    {{input.value}}
+  </div>
+  <span class="example-spacer"></span>
+  <button
+    mat-icon-button
+    class="example-icon favorite-icon"
+    aria-label="Example icon-button with heart icon"
+  >
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with share icon"
+  >
+    <mat-icon>share</mat-icon>
+  </button>
+  <button (click)="modalService.toggleShowModalOffer()">Add</button>
+  <div class="account-button">
+    <button
+      mat-icon-button
+      matTooltip="Account"
+      [matMenuTriggerFor]="belowMenu"
+    >
+      <mat-icon>perm_identity</mat-icon>
     </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" >
-      <mat-icon>share</mat-icon>
-    </button>
-
-    <button (click)="modalService.toggleShowModalOffer()">Add</button>
-  </mat-toolbar>
+    <mat-menu
+      #belowMenu="matMenu"
+      yPosition="below"
+    >
+      <button
+        mat-menu-item
+        (click)="navigateToProfile()"
+      >
+        Profile
+      </button>
+      <button
+        mat-menu-item
+        (click)="navigateToMessage()"
+      >
+        Meine Nachrichten
+      </button>
+      <button
+        mat-menu-item
+        (click)="navigateToManageFriend()"
+      >
+        Freunde Verwalten
+      </button>
+      <button
+        mat-menu-item
+        (click)="navigateToSetting()"
+      >
+        Einstelliungen
+      </button>
+      <button mat-menu-item>Ausloggen</button>
+    </mat-menu>
+  </div>
+</mat-toolbar>
