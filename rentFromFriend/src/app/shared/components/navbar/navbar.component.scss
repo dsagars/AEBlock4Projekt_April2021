@@ -1,16 +1,42 @@
+mat-toolbar {
+    height: 75px;
+}
+
 .example-spacer {
     flex: 1 1 auto;
-  }
+}
 
-  .logo {
-      background-image: url('../../../../assets/img/rff_logo.png');
-      background-size: contain;
-      background-repeat: no-repeat;
-      height: 100%;
-      width: 200px;
-      margin: 10px;
-  }
+.logo {
+    background-image: url('../../../../assets/img/rff_logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 200px;
+    margin: 10px;
+}
 
-  mat-toolbar {
-      padding: 10px;
-  }
+mat-toolbar {
+    padding: 10px;
+}
+
+.search-group, .location-group  {
+    font-size: 15px;
+    margin-top: auto;
+    padding: 0 15px;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    width: 35rem;
+}
+
+.mat-raised-button {
+    color: #FFF;
+    background-color: #E88000;
+}
+
+.btn_search, .btn_add {
+    margin: 0 5rem;
+}
+

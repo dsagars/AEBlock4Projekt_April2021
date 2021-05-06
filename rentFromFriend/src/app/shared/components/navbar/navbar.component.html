@@ -4,27 +4,51 @@
     <span class="logo"></span>
 
     <div class="search-group">
-        <mat-form-field appearance="fill" class="search">
-            <mat-label>Input</mat-label>
-            <input matInput #input>
+        <mat-form-field appearance="fill" class="search-input">
+            <mat-label>Suche ...</mat-label>
+            <input matInput #searchinput>
           </mat-form-field>
 
-          <mat-form-field appearance="fill" class="dropdown">
-            <mat-label>Select</mat-label>
+          <mat-form-field appearance="fill" class="search-dropdown">
+            <mat-label>Kategorie</mat-label>
             <mat-select>
               <mat-option value="one">First option</mat-option>
               <mat-option value="two">Second option</mat-option>
             </mat-select>
           </mat-form-field>
-          {{input.value}}
+          {{searchinput.value}}
     </div>
 
+    <div class="location-group">
+      <mat-form-field appearance="fill" class="location-input">
+          <mat-label>PLZ oder Ort ... </mat-label>
+          <input matInput #locationinput>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="location-dropdown">
+          <mat-label>Umkreis</mat-label>
+          <mat-select>
+            <mat-option value="one">First option</mat-option>
+            <mat-option value="two">Second option</mat-option>
+          </mat-select>
+        </mat-form-field>
+  </div>
+
+  <div class="btn-container">
+    <button mat-raised-button aria-label="Suche starten" class="btn_search">
+      <mat-icon>search</mat-icon>
+    </button>
+
+    <button mat-raised-button aria-label="Anzeige aufgeben" class="btn_add">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+
     <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>favorite</mat-icon>
+    <button mat-icon-button class="btn_profile" aria-label="Profile">
+      <mat-icon>person</mat-icon>
     </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>share</mat-icon>
-    </button>
+
   </mat-toolbar>
   
