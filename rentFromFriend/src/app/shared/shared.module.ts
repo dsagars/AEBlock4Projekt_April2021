@@ -19,6 +19,7 @@ import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [NavbarComponent, ModalComponent, OfferFormComponent],
   imports: [
+    MatMenuModule,
     CommonModule,
     MatToolbarModule,
     MatIconModule,
@@ -31,6 +32,7 @@ import { RouterModule } from '@angular/router';
     RouterModule,
   ],
   exports: [
+    MatMenuModule,
     OfferFormComponent,
     ModalComponent,
     NavbarComponent,
