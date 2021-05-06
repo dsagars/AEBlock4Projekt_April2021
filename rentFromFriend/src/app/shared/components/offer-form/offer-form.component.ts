@@ -33,8 +33,7 @@ export class OfferFormComponent implements OnInit {
     });
   }
 
-  handleSubmit(e: Event) {
-    e.preventDefault();
+  handleSubmit() {
     console.log('eintrag:', this.reactiveForm);
   }
 
