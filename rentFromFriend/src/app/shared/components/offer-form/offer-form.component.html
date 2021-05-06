@@ -1,35 +1,49 @@
-<p>Neuen Eintrag erstellen</p>
-
 <form class="example-form" [formGroup]="reactiveForm">
   <mat-form-field class="example-full-width">
     <mat-label>Titel</mat-label>
-    <input matInput formControlName="titel" />
+    <input matInput formControlName="title" />
   </mat-form-field>
-  <mat-label>Bild</mat-label>
-  <input type="file" />
-  <mat-form-field class="example-full-width">
-    <mat-label>Beschreibung</mat-label>
-    <textarea
-      matInput
-      placeholder="Controler für PS5"
-      formControlName="beschreibung"
-    ></textarea>
-  </mat-form-field>
+  <ng-container *ngIf="containsImage">
+    <mat-label>Bild</mat-label>
+    <input type="file" formControlName="picture" />
+  </ng-container>
+  <tr>
+    <td>
+      <mat-form-field class="example-full-width">
+        <mat-label>Beschreibung</mat-label>
+        <textarea
+          matInput
+          placeholder="Controler für PS5"
+          formControlName="description"
+        ></textarea>
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="fill">
+        <mat-label>Kategorie</mat-label>
+        <mat-select formControlName="categorie">
+          <mat-option *ngFor="let category of categories" [value]="category">
+            {{ category }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </td>
+  </tr>
   <mat-form-field class="example-full-width">
     <mat-label>Preis</mat-label>
     <input
       matInput
       placeholder="16€ oder biete hilfe bei Gartenarbeit"
-      formControlName="preis"
+      formControlName="price"
     />
   </mat-form-field>
   <mat-form-field class="example-full-width">
     <mat-label>Vorname</mat-label>
-    <input matInput formControlName="vorname" />
+    <input matInput formControlName="fistname" />
   </mat-form-field>
   <mat-form-field class="example-full-width">
     <mat-label>Nachname</mat-label>
-    <input matInput formControlName="nachname" />
+    <input matInput formControlName="lastname" />
   </mat-form-field>
 
   <p>
@@ -38,19 +52,19 @@
       <input
         matInput
         placeholder="Beispielstraße 2, 22767"
-        formControlName="adresse"
+        formControlName="address"
       />
     </mat-form-field>
   </p>
   <mat-form-field class="example-full-width">
     <mat-label>Stadt</mat-label>
-    <input matInput placeholder="Hamburg" formControlName="stadt" />
+    <input matInput placeholder="Hamburg" formControlName="city" />
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
     <mat-label>Stadtteil</mat-label>
-    <input matInput placeholder="St. Pauli" formControlName="stadtteil" />
+    <input matInput placeholder="St. Pauli" formControlName="discrtict" />
   </mat-form-field>
 
-  <button (click)="handleSubmit($event)">erstellen</button>
+  <button type="submit" (click)="handleSubmit()">erstellen</button>
 </form>

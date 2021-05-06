@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { product } from '../../types';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { Product } from '../../modles/product.model';
+
+//TODO: Bilder upload
 
 @Component({
   selector: 'app-offer-form',
@@ -8,32 +10,41 @@ import { product } from '../../types';
   styleUrls: ['./offer-form.component.scss'],
 })
 export class OfferFormComponent implements OnInit {
-  constructor() {}
+  constructor(private formBuilder: FormBuilder) {}
 
-  ngOnInit(): void {}
+  product: Product;
+  reactiveForm: FormGroup;
 
-  reactiveForm = new FormGroup({
-    titel: new FormControl(),
-    vorname: new FormControl(),
-    nachname: new FormControl(),
-    adresse: new FormControl(),
-    stadt: new FormControl(),
-    stadtteil: new FormControl(),
-    beschreibung: new FormControl(),
-    preis: new FormControl(),
-  });
+  @Input()
+  containsImage: boolean;
 
-  product: product = {
-    id: this.reactiveForm.value.titel + this.reactiveForm.value.vorname,
-    title: this.reactiveForm.value.titel,
-    description: this.reactiveForm.value.beschreibung,
-    price: this.reactiveForm.value.preis,
-    city: this.reactiveForm.value.stadt,
-    discrict: this.reactiveForm.value.stadtteil,
-  };
+  ngOnInit(): void {
+    this.reactiveForm = this.formBuilder.group({
+      title: [],
+      fistname: [],
+      lastname: [],
+      address: [],
+      city: [],
+      discrtict: [],
+      description: [],
+      price: [],
+      picture: [],
+      categorie: [],
+    });
+  }
 
-  handleSubmit = (e: Event) => {
-    e.preventDefault();
-    console.log('Produkt Objekt:', this.product);
-  };
+  handleSubmit() {
+    console.log('eintrag:', this.reactiveForm);
+  }
+
+  categories = [
+    'Garten',
+    'Haushalt',
+    'Elektonik',
+    'Spiele',
+    'Freizeit',
+    'Auto',
+    'Fahrrad',
+    'Sport',
+  ];
 }
