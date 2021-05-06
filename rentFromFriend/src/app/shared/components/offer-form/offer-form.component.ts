@@ -33,10 +33,10 @@ export class OfferFormComponent implements OnInit {
     });
   }
 
-  handleSubmit = (e: Event) => {
+  handleSubmit(e: Event) {
     e.preventDefault();
     console.log('eintrag:', this.reactiveForm);
-  };
+  }
 
   categories = [
     'Garten',
