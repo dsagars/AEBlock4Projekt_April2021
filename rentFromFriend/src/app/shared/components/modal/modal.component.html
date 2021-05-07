@@ -1,9 +1,10 @@
-<div class="background" (click)="modalService.toggleShowModalOffer()"></div>
+<div class="background" (click)="modalService.closeAll()"></div>
 <div class="wrapper">
-  <button class="button" (click)="modalService.toggleShowModalOffer()">
-    X
-  </button>
+  <div class="headder">
+    <button class="button" (click)="modalService.closeAll()" class="close-btn">
+      <mat-icon>close</mat-icon>
+    </button>
+    <h1>{{ titel }}</h1>
+  </div>
   <ng-content class="absolute"></ng-content>
 </div>
-
-

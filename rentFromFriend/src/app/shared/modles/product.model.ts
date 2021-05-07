@@ -1,8 +1,4 @@
-//Interfaces von Typen Objecten die wir an verscheidenen Orten benötigen
-
-
-//Type ist noch vorläufig
-export interface product {
+export interface Product {
   id: string;
   title: string;
   description: string;
@@ -11,4 +7,5 @@ export interface product {
   city: string;
   discrict: string;
   friendsOnly?: boolean;
+  picture: any;
 }

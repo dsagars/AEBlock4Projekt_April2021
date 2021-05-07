@@ -39,7 +39,6 @@
   >
     <mat-icon>share</mat-icon>
   </button>
-  <button (click)="modalService.toggleShowModalOffer()">Add</button>
   <div class="account-button">
     <button
       mat-icon-button
@@ -80,3 +79,23 @@
     </mat-menu>
   </div>
 </mat-toolbar>
+<button
+  mat-button
+  [matMenuTriggerFor]="menu"
+>
+  Menu
+</button>
+<mat-menu #menu="matMenu">
+  <button
+    mat-menu-item
+    (click)="modalService.toggleShowModalOffer()"
+  >
+    Neues Angebot erstellen
+  </button>
+  <button
+    mat-menu-item
+    (click)="modalService.toggleShowModalSearch()"
+  >
+    Neue Suche aufgeben
+  </button>
+</mat-menu>

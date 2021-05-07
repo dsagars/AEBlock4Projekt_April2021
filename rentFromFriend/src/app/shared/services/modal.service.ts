@@ -4,15 +4,32 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ModalService {
-  public showModalOffer: boolean = false;
-
   constructor() {}
 
-  public getShowModalOffer = () => {
-    return this.showModalOffer;
+  public activeModal = {
+    showModalOffer: false,
+    showModalSearch: false,
   };
 
-  public toggleShowModalOffer = () => {
-    this.showModalOffer = !this.showModalOffer;
-  };
+  public toggleShowModalOffer() {
+    this.activeModal.showModalOffer = !this.activeModal.showModalOffer;
+  }
+
+  public toggleShowModalSearch() {
+    this.activeModal.showModalSearch = !this.activeModal.showModalSearch;
+  }
+
+  public getActiveModal() {
+    for (const [key, value] of Object.entries(this.activeModal)) {
+      if (value) {
+        return key;
+      }
+    }
+  }
+
+  public closeAll() {
+    for (const key in this.activeModal) {
+      this.activeModal[key] = false;
+    }
+  }
 }

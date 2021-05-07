@@ -1,5 +1,13 @@
 <app-navbar></app-navbar>
 <router-outlet></router-outlet>
-<app-modal *ngIf="modalService.getShowModalOffer()">
-  <app-offer-form></app-offer-form>
-</app-modal>
+<ng-container [ngSwitch]="modalService.getActiveModal()">
+  <app-modal
+    *ngSwitchCase="'showModalOffer'"
+    [titel]="'Neues Angebot erstellen'"
+  >
+    <app-offer-form [containsImage]="true"></app-offer-form>
+  </app-modal>
+  <app-modal *ngSwitchCase="'showModalSearch'" [titel]="'Neue Suche erstellen'">
+    <app-offer-form></app-offer-form>
+  </app-modal>
+</ng-container>
