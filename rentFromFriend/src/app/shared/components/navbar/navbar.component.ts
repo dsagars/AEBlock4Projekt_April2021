@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalService } from '../../services/modal.service';
-import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
+import { SidenavService } from '../../services/sidenav.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,13 +9,34 @@ import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  constructor(public modalService: ModalService) {}
+  constructor(
+    public modalService: ModalService,
+    private router: Router,
+    private sidenavService: SidenavService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
-  @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
+  openSidenav() {
+    this.sidenavService.open();
+  }
 
-  someMethod() {
-    this.trigger.openMenu();
+  navigateToProfile() {
+    this.router.navigate(['account/profile']);
+    this.openSidenav();
+  }
+
+  navigateToMessage() {
+    this.router.navigate(['account/message']);
+    this.openSidenav();
+  }
+
+  navigateToManageFriend() {
+    this.router.navigate(['account/manage-friend']);
+    this.openSidenav();
+  }
+
+  navigateToSetting() {
+    this.router.navigate(['account/setting']);
+    this.openSidenav();
   }
 }

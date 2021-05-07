@@ -1,0 +1,47 @@
+<mat-drawer-container
+  class="example-container"
+  autosize
+>
+  <mat-drawer
+    #drawer
+    class="example-sidenav"
+    mode="side"
+  >
+    <ul class="router-list">
+      <a
+        routerLink="profile"
+        routerLinkActive="is-active"
+      >
+        <li>Profile</li>
+      </a>
+      <a
+        routerLink="message"
+        routerLinkActive="is-active"
+      >
+        <li>Nachrichten</li>
+      </a>
+      <a
+        routerLink="offer-search"
+        routerLinkActive="is-active"
+      >
+        <li>Meine Angebote & Suche</li>
+      </a>
+      <a
+        routerLink="manage-friend"
+        routerLinkActive="is-active"
+      >
+        <li>Freunde Verwalten</li>
+      </a>
+      <a
+        routerLink="setting"
+        routerLinkActive="is-active"
+      >
+        <li>Einstellungen</li>
+      </a>
+    </ul>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer-container>
