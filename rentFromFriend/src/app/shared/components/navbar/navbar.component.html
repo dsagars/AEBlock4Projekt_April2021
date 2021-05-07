@@ -26,19 +26,25 @@
   </div>
   <span class="example-spacer"></span>
   <button
-    mat-icon-button
-    class="example-icon favorite-icon"
-    aria-label="Example icon-button with heart icon"
+    mat-button
+    [matMenuTriggerFor]="menu"
   >
-    <mat-icon>favorite</mat-icon>
+    Menu
   </button>
-  <button
-    mat-icon-button
-    class="example-icon"
-    aria-label="Example icon-button with share icon"
-  >
-    <mat-icon>share</mat-icon>
-  </button>
+  <mat-menu #menu="matMenu">
+    <button
+      mat-menu-item
+      (click)="modalService.toggleShowModalOffer()"
+    >
+      Neues Angebot erstellen
+    </button>
+    <button
+      mat-menu-item
+      (click)="modalService.toggleShowModalSearch()"
+    >
+      Neue Suche aufgeben
+    </button>
+  </mat-menu>
   <div class="account-button">
     <button
       mat-icon-button
@@ -79,23 +85,3 @@
     </mat-menu>
   </div>
 </mat-toolbar>
-<button
-  mat-button
-  [matMenuTriggerFor]="menu"
->
-  Menu
-</button>
-<mat-menu #menu="matMenu">
-  <button
-    mat-menu-item
-    (click)="modalService.toggleShowModalOffer()"
-  >
-    Neues Angebot erstellen
-  </button>
-  <button
-    mat-menu-item
-    (click)="modalService.toggleShowModalSearch()"
-  >
-    Neue Suche aufgeben
-  </button>
-</mat-menu>
