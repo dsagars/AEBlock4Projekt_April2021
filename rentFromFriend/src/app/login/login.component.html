@@ -1,0 +1,32 @@
+
+
+    <!-- Sign up form  -->
+    <div *ngIf="!isSignedIn">
+    <h2>Sign up</h2>
+    <input type="text" #emailSignUp />
+    <input type="password" #passwordSignUp />
+    
+    <button (click)="onSignup(emailSignUp.value, passwordSignUp.value)">Sign up</button>
+    </div>
+    <br>
+    
+     <!-- Sign in form  -->
+    <div *ngIf="!isSignedIn">
+      <h2>Sign in</h2>
+      <input type="text" #email />
+      <input type="password" #password />
+    
+      <button (click)="onSignin(email.value, password.value)">Sign in</button>
+    </div>
+
+    <br>
+    
+    <!-- log in with Google  -->
+   <div *ngIf="!isSignedIn">
+     <button (click)="loginWithGoogle()">Sign in with Google</button>
+   </div>
+        
+    <!-- only send to homepage if signed in  -->
+    <app-home *ngIf="isSignedIn" (isLogout)="handleLogout()">
+        this should take to home page if signed in, if u see this it did not work just yet
+    </app-home> 
