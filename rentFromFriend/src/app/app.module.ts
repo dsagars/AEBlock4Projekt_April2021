@@ -10,21 +10,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SharedModule } from './shared/shared.module';
+import { BaseModule } from './base/base.module';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent],
   imports: [
-    BrowserModule, 
+    BrowserModule,
     AppRoutingModule,
-    AngularFireAuthModule, 
+    AngularFireAuthModule,
     BrowserAnimationsModule,
-    SharedModule, 
+    SharedModule,
     // Added forms module for login page
-    FormsModule, 
+    FormsModule,
+    BaseModule,
     // Added Firebase Module 
-    AngularFireModule.initializeApp(environment.firebase) 
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
