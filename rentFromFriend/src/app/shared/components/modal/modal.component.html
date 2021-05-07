@@ -1,0 +1,10 @@
+<div class="background" (click)="modalService.closeAll()"></div>
+<div class="wrapper">
+  <div class="headder">
+    <button class="button" (click)="modalService.closeAll()" class="close-btn">
+      <mat-icon>close</mat-icon>
+    </button>
+    <h1>{{ titel }}</h1>
+  </div>
+  <ng-content class="absolute"></ng-content>
+</div>
