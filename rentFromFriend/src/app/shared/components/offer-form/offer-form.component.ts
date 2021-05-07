@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { Product } from '../../modles/product.model';
+import { Item } from '../../modles/product.model';
+import { LocalStorageService } from '../../services/local-storage.service';
+import { OfferService } from '../../services/offer.service';
 
 //TODO: Bilder upload
 
@@ -10,9 +12,13 @@ import { Product } from '../../modles/product.model';
   styleUrls: ['./offer-form.component.scss'],
 })
 export class OfferFormComponent implements OnInit {
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private offerService: OfferService,
+    private localStorageService: LocalStorageService
+  ) {}
 
-  product: Product;
+  item: Item;
   reactiveForm: FormGroup;
 
   @Input()
@@ -34,7 +40,12 @@ export class OfferFormComponent implements OnInit {
   }
 
   handleSubmit() {
-    console.log('eintrag:', this.reactiveForm);
+    this.item = {
+      ...this.reactiveForm.value,
+      uid: this.localStorageService.getUserUID(),
+    };
+
+    this.offerService.create(this.item);
   }
 
   categories = [
