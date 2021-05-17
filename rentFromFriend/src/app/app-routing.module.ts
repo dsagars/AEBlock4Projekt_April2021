@@ -5,6 +5,7 @@ import { EmailNotVerifiedComponent } from './login/email-not-verified/email-not-
 import { LoginComponent } from './login/login.component';
 import { UserDetailsMissingComponent } from './login/user-details-missing/user-details-missing.component';
 import { LoginGuard } from './shared/guards/login.guard';
+import { RouteGuard } from './shared/guards/route.guard';
 
 const routes: Routes = [
   {
@@ -14,7 +15,8 @@ const routes: Routes = [
   },
   {
     path: 'account',
-    loadChildren: () => import('./account/account.module').then(m => m.AccountModule)
+    loadChildren: () => import('./account/account.module').then(m => m.AccountModule),
+    canActivateChild: [RouteGuard]
   },
   {
     path: 'login',
@@ -24,6 +26,7 @@ const routes: Routes = [
   {
     path: 'base',
     component: BaseComponent,
+    canActivate: [RouteGuard]
   },
   {
     path: 'email-verification',

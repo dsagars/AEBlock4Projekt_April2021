@@ -12,7 +12,7 @@ export class LoginGuard implements CanActivate {
   canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (this.firebaseService.isLoggedIn()) {
       console.log(this.firebaseService.isLoggedIn());
-      this.router.navigate(['/base']);
+      this.router.navigate(['']);
       return false;
     }
     return true;

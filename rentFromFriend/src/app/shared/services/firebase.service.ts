@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class FirebaseService {
-  isLoggedIn = false;
   constructor(
     public firebaseAuth: AngularFireAuth,
     private db: AngularFirestore,
@@ -20,7 +19,6 @@ export class FirebaseService {
       .then((res) => {
         var isUserVerified = res.user.emailVerified;
         if (isUserVerified) {
-          this.isLoggedIn = true;
           localStorage.setItem('user', JSON.stringify(res.user));
         } else {
           this.router.navigate(['/email-verification']);
@@ -36,7 +34,6 @@ export class FirebaseService {
         email: res.user.email,
       });
       // toDo check if user has firstName, lastName etc else send to user details missing...
-      this.isLoggedIn = true;
       localStorage.setItem('user', JSON.stringify(res.user));
     });
   }
@@ -63,7 +60,6 @@ export class FirebaseService {
         });
         // log in only if user has verified email else notify user
         if (res.user.emailVerified) {
-          this.isLoggedIn = true;
           localStorage.setItem('user', JSON.stringify(res.user));
         } else {
           this.router.navigate(['/email-verification']);
@@ -78,12 +74,16 @@ export class FirebaseService {
       lastName: lastName,
       phone: phone,
     });
-    this.isLoggedIn = true;
     localStorage.setItem('user', JSON.stringify(firebase.auth().currentUser));
   }
 
   logout() {
     this.firebaseAuth.signOut();
     localStorage.removeItem('user');
+  }
+
+  public isLoggedIn(): boolean {
+    console.log('hoho')
+    return !!localStorage.getItem('user');
   }
 }
