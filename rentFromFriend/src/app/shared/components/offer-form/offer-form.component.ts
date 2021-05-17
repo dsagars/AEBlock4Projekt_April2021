@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { Item } from '../../modles/product.model';
+import { Item } from '../../modles/item.model';
 import { OfferService } from '../../services/offer.service';
 import { UserService } from '../../services/user.service';
 
@@ -16,7 +16,7 @@ export class OfferFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private offerService: OfferService,
     private userService: UserService
-  ) {}
+  ) { }
 
   item: Item;
   reactiveForm: FormGroup;
@@ -42,7 +42,7 @@ export class OfferFormComponent implements OnInit {
   handleSubmit() {
     this.item = {
       ...this.reactiveForm.value,
-      uid: this.userService.getUserUID(),
+      uid: this.userService.getCurrrentUserUID(),
     };
 
     this.offerService.create(this.item);
