@@ -11,11 +11,11 @@
     <mat-card-content>
       <mat-tab-group mat-stretch-tabs>
         <div *ngIf="!isSignedIn">
-          <mat-tab label="Login">
+          <mat-tab label="Einloggen">
             <!-- Put content forLogin Tab -->
             <form [formGroup]="myFormLogin">
               <mat-form-field class="example-full-width">
-                <mat-label>Email</mat-label>
+                <mat-label>E-Mail</mat-label>
                 <input
                   type="email"
                   matInput
@@ -25,10 +25,10 @@
                   formControlName="loginEmailControl"
                 >
                 <mat-icon matSuffix>email</mat-icon>
-                <mat-error>Please enter a correct email</mat-error>
+                <mat-error>Bitte geben Sie eine korrekte E-Mail-Adresse ein</mat-error>
               </mat-form-field>
               <mat-form-field class="example-full-width">
-                <mat-label>Password</mat-label>
+                <mat-label>Passwort</mat-label>
                 <input
                   type="password"
                   matInput
@@ -39,7 +39,7 @@
                 >
                 <mat-icon matSuffix>vpn_key</mat-icon>
                 <mat-error>
-                  Wrong password! (Please use: A, a, 0-9, minimum 6, maximum 50)
+                  Falsches Passwort! (Bitte verwenden Sie: A, a, 0-9, Minimum 6, Maximum 50)
                 </mat-error>
               </mat-form-field>
             </form>
@@ -49,7 +49,7 @@
               [disabled]="myFormLogin.invalid"
               color="primary"
             >
-              Login
+              Einloggen
             </button>
             <button
               class="googleButton"
@@ -57,16 +57,16 @@
               mat-button
               color="primary"
             >
-              Login with Google
+              Mit Google Einloggen
             </button>
           </mat-tab>
         </div>
         <div *ngIf="!isSignedIn">
-          <mat-tab label="Sign Up">
+          <mat-tab label="Registrieren">
             <!-- Put content for Sign up Tab -->
             <form [formGroup]="myFormSingUp">
               <mat-form-field class="example-full-width">
-                <mat-label>Email</mat-label>
+                <mat-label>E-Mail</mat-label>
                 <input
                   type="email"
                   matInput
@@ -78,10 +78,10 @@
                   formControlName="signupEmailControl"
                 >
                 <mat-icon matSuffix>email</mat-icon>
-                <mat-error>Please enter a correct email</mat-error>
+                <mat-error>Bitte geben Sie eine korrekte E-Mail-Adresse ein</mat-error>
               </mat-form-field>
               <mat-form-field class="example-full-width">
-                <mat-label>Password</mat-label>
+                <mat-label>Passwort</mat-label>
                 <input
                   type="password"
                   matInput
@@ -93,11 +93,11 @@
                 >
                 <mat-icon matSuffix>vpn_key</mat-icon>
                 <mat-error>
-                  Wrong password! (Please use: A, a, 0-9, minimum 6, maximum 50)
+                  Falsches Passwort! (Bitte verwenden Sie: A, a, 0-9, Minimum 6, Maximum 50)
                 </mat-error>
               </mat-form-field>
               <mat-form-field class="example-full-width">
-                <mat-label>Confirm Password</mat-label>
+                <mat-label>Passwort bestätigen</mat-label>
                 <input
                   type="password"
                   matInput
@@ -108,10 +108,10 @@
                   formControlName="signupPasswordAgainControl"
                 >
                 <mat-icon matSuffix>vpn_key</mat-icon>
-                <mat-error>Your passwords do not match!</mat-error>
+                <mat-error>Ihre Passwörter stimmen nicht überein!</mat-error>
               </mat-form-field>
               <mat-form-field class="example-full-width">
-                <mat-label>First Name</mat-label>
+                <mat-label>Vorname</mat-label>
                 <input
                   type="text"
                   matInput
@@ -123,10 +123,10 @@
                   formControlName="signupFirstNameControl"
                 >
                 <mat-icon matSuffix>person</mat-icon>
-                <mat-error>Please enter a correct first name</mat-error>
+                <mat-error>Bitte geben Sie einen korrekten Vornamen ein</mat-error>
               </mat-form-field>
               <mat-form-field class="example-full-width">
-                <mat-label>Last Name</mat-label>
+                <mat-label>Nachname</mat-label>
                 <input
                   type="text"
                   matInput
@@ -138,10 +138,10 @@
                   formControlName="signupLastNameControl"
                 >
                 <mat-icon matSuffix>person</mat-icon>
-                <mat-error>Please enter a correct first name</mat-error>
+                <mat-error>Bitte geben Sie einen korrekten Nachnamen ein</mat-error>
               </mat-form-field>
               <mat-form-field class="example-full-width">
-                <mat-label>Phone #</mat-label>
+                <mat-label>Telefon #</mat-label>
                 <!-- oninput is there to allow only 12 digits to be entered by user -->
                 <input
                   oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
@@ -157,7 +157,7 @@
                 >
                 <mat-icon matSuffix>phone</mat-icon>
                 <mat-error>
-                  Please enter a correct phone # (Format: XXXXXXXXXXX)
+                  Bitte geben Sie eine korrekte Telefonnummer ein (Format: XXXXXXXXXXX)
                 </mat-error>
               </mat-form-field>
             </form>
@@ -167,7 +167,7 @@
               [disabled]="myFormSingUp.invalid"
               color="primary"
             >
-              Sign Up
+             Registrieren
             </button>
           </mat-tab>
         </div>
