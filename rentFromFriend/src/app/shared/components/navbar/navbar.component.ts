@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ModalService } from '../../services/modal.service';
 import { SidenavService } from '../../services/sidenav.service';
 
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
