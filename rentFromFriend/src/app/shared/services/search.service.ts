@@ -9,11 +9,11 @@ import { UserService } from './user.service';
 @Injectable({
   providedIn: 'root',
 })
-export class ItemOfferService {
+export class ItemSearchService {
   itemRef: AngularFirestoreCollection<Item>;
 
   constructor(private db: AngularFirestore, private userService: UserService) {
-    this.itemRef = db.collection('/itemsOffer');
+    this.itemRef = db.collection('/itemsSearch');
   }
 
   getAll(): AngularFirestoreCollection<Item> {
@@ -27,8 +27,7 @@ export class ItemOfferService {
     this.itemRef
       .add({ ...item })
       .then((res) => {
-        console.log(uid, res.id);
-        this.userService.updateOfferItemsInUser(uid, res.id);
+        this.userService.updateSearchItemsInUser(uid, res.id);
       })
       .catch((e) => console.error(e));
   }

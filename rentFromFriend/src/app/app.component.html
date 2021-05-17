@@ -1,12 +1,12 @@
 <router-outlet></router-outlet>
 <ng-container [ngSwitch]="modalService.getActiveModal()">
   <app-modal
-  *ngSwitchCase="'showModalOffer'"
-  [titel]="'Neues Angebot erstellen'"
+    *ngSwitchCase="'showModalOffer'"
+    [titel]="'Neues Angebot erstellen'"
   >
-  <app-offer-form [containsImage]="true"></app-offer-form>
-</app-modal>
-<app-modal *ngSwitchCase="'showModalSearch'" [titel]="'Neue Suche erstellen'">
-  <app-offer-form></app-offer-form>
-</app-modal>
+    <app-offer-form [containsImage]="true" type="offer"></app-offer-form>
+  </app-modal>
+  <app-modal *ngSwitchCase="'showModalSearch'" [titel]="'Neue Suche erstellen'">
+    <app-offer-form type="search"></app-offer-form>
+  </app-modal>
 </ng-container>
