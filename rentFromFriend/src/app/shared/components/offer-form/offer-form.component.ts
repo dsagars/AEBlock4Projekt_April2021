@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { Item } from '../../modles/product.model';
-import { OfferService } from '../../services/offer.service';
+import { ItemOfferService } from '../../services/offer.service';
+import { ItemSearchService } from '../../services/search.service';
 import { UserService } from '../../services/user.service';
 
 //TODO: Bilder upload
@@ -14,8 +15,9 @@ import { UserService } from '../../services/user.service';
 export class OfferFormComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
-    private offerService: OfferService,
-    private userService: UserService
+    private offerService: ItemOfferService,
+    private userService: UserService,
+    private searchService: ItemSearchService
   ) {}
 
   item: Item;
@@ -23,6 +25,8 @@ export class OfferFormComponent implements OnInit {
 
   @Input()
   containsImage: boolean;
+  @Input()
+  type: 'offer' | 'form';
 
   ngOnInit(): void {
     this.reactiveForm = this.formBuilder.group({
@@ -44,8 +48,11 @@ export class OfferFormComponent implements OnInit {
       ...this.reactiveForm.value,
       uid: this.userService.getUserUID(),
     };
-
-    this.offerService.create(this.item);
+    if (this.type == 'offer') {
+      this.offerService.create(this.item);
+    } else {
+      this.searchService.create(this.item);
+    }
   }
 
   categories = [
