@@ -1,53 +1,89 @@
 import { Injectable } from '@angular/core';
+import firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FirebaseService {
-
+  isLoggedIn = false;
   constructor(
     public firebaseAuth: AngularFireAuth,
     private db: AngularFirestore,
-    private router: Router) { }
+    private router: Router
+  ) { }
 
   async signin(email: string, password: string) {
-    await this.firebaseAuth.signInWithEmailAndPassword(email, password)
-      .then(res => {
-        localStorage.setItem('user', JSON.stringify(res.user));
-        // navigate to base after logged in
-        this.router.navigate(['/base']);
+    await this.firebaseAuth
+      .signInWithEmailAndPassword(email, password)
+      .then((res) => {
+        var isUserVerified = res.user.emailVerified;
+        if (isUserVerified) {
+          this.isLoggedIn = true;
+          localStorage.setItem('user', JSON.stringify(res.user));
+        } else {
+          this.router.navigate(['/email-verification']);
+        }
       });
   }
 
-  async signup(email: string, password: string) {
-    await this.firebaseAuth.createUserWithEmailAndPassword(email, password)
-      .then(res => {
-        console.log(res);
+  async loginWithGoogle() {
+    var provider = new firebase.auth.GoogleAuthProvider();
+    await this.firebaseAuth.signInWithPopup(provider).then((res) => {
+      // toDO important maybe check if user already on db?
+      this.db.collection('users').doc(res.user.uid).set({
+        email: res.user.email,
+      });
+      // toDo check if user has firstName, lastName etc else send to user details missing...
+      this.isLoggedIn = true;
+      localStorage.setItem('user', JSON.stringify(res.user));
+    });
+  }
+
+  async signup(
+    email: string,
+    password: string,
+    firstName: string,
+    lastName: string,
+    phone: string
+  ) {
+    await this.firebaseAuth
+      .createUserWithEmailAndPassword(email, password)
+      .then((res) => {
+        res.user.sendEmailVerification();
         // this is to get the user id from auth and to set for users inside database
         this.db.collection('users').doc(res.user.uid).set({
-          email: res.user.email
+          user_id: res.user.uid,
+          email: res.user.email,
+          firstName: firstName,
+          lastName: lastName,
+          address_id: '',
+          phone: phone,
         });
+        // log in only if user has verified email else notify user
+        if (res.user.emailVerified) {
+          this.isLoggedIn = true;
+          localStorage.setItem('user', JSON.stringify(res.user));
+        } else {
+          this.router.navigate(['/email-verification']);
+        }
       });
   }
 
-  public isLoggedIn(): boolean {
-    return !!localStorage.getItem('user');
+  async signupUserAddon(firstName: string, lastName: string, phone: string) {
+    // Here we should get the user and update fields
+    this.db.collection('users').doc(firebase.auth().currentUser.uid).set({
+      firstName: firstName,
+      lastName: lastName,
+      phone: phone,
+    });
+    this.isLoggedIn = true;
+    localStorage.setItem('user', JSON.stringify(firebase.auth().currentUser));
   }
 
   logout() {
     this.firebaseAuth.signOut();
     localStorage.removeItem('user');
-    this.router.navigate(['']);
-  }
-
-  // new crud testing
-  add() {
-    this.db.collection('testItems').add({
-      timestamp: new Date(),
-    });
   }
 }

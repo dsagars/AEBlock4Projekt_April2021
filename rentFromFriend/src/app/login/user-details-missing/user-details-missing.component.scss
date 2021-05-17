@@ -1,9 +1,10 @@
+
 :host{
-  display: flex;
-  height: 100%;
-  width: 100%;
-  background-color: #286474;
-}
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background-color: #286474;
+  }
 
 .example-card {
     max-width: 400px;
@@ -22,7 +23,7 @@
     margin: 0;
     width:115px; 
     height:115px; 
-    background-image: url("../../assets/img/rff_logo.png");
+    background-image: url("../../../assets/img/rff_logo.png");
     background-repeat: no-repeat;
     background-size: contain;
   }
@@ -42,11 +43,4 @@
   button[disabled]{
     background-color: #fdc377;
     color: #666666;
-  }
-  .googleButton {
-    margin-top: 7px;
-    width: 100%;
-    color: white;
-    height: 45px;
-    background-color: #286474  ;
   }

@@ -8,10 +8,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { ModalComponent } from './components/modal/modal.component';
 import { OfferFormComponent } from './components/offer-form/offer-form.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
+import { MatTabsModule } from '@angular/material/tabs';
 
 // verschiedenen Module die wir benutzen wollen, importerien wir hier herein, um sie danach überall verfügbar zu haben
 // Besonders für Module die wir überall brauchen
@@ -30,6 +32,8 @@ import { RouterModule } from '@angular/router';
     MatMenuModule,
     MatButtonModule,
     RouterModule,
+    MatCardModule,
+    MatTabsModule,
     FormsModule,
   ],
   exports: [
@@ -44,8 +48,11 @@ import { RouterModule } from '@angular/router';
     MatSelectModule,
     MatMenuModule,
     MatButtonModule,
+    ReactiveFormsModule,
     RouterModule,
-    FormsModule,
+    MatCardModule,
+    MatTabsModule,
+    FormsModule
   ],
 })
 export class SharedModule { }
