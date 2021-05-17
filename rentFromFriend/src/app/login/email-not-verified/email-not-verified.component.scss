@@ -1,0 +1,36 @@
+:host{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background-color: #286474;
+  }
+  
+  .center-content{
+    margin: 0px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+  }
+
+ .example-header-image {
+    margin: 0;
+    width:150px; 
+    height:150px; 
+    background-image: url("../../../assets/img/rff_logo.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .mat-button {
+    margin-top: 7px;
+    width: 100%;
+    color: white;
+    height: 45px;
+    background-color: #e78200 ;
+  }
+
+h2 {
+    color: white;
+}
