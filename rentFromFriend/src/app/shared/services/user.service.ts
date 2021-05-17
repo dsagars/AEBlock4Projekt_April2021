@@ -37,11 +37,17 @@ export class UserService {
     return this.userRef.doc(this.getUserUID()).update(data);
   }
 
-  //add a new itemId to the array of ItemIds in user doc
-  updateItemsInUser(uid, itemId) {
+  //add a new itemId from new offers to the array of ItemIds in user doc
+  updateOfferItemsInUser(uid, itemId) {
     this.userRef
       .doc(uid)
-      .update({ items: firebase.firestore.FieldValue.arrayUnion(itemId) });
+      .update({ itemOffers: firebase.firestore.FieldValue.arrayUnion(itemId) });
+  }
+  //add a new itemId of search to the array of ItemIds in user doc
+  updateSearchItemsInUser(uid, itemId) {
+    this.userRef.doc(uid).update({
+      itemSearches: firebase.firestore.FieldValue.arrayUnion(itemId),
+    });
   }
 
   delete(id: string): Promise<void> {
