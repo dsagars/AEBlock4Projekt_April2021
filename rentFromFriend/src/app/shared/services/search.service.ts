@@ -9,26 +9,25 @@ import { UserService } from './user.service';
 @Injectable({
   providedIn: 'root',
 })
-export class ItemOfferService {
+export class ItemSearchService {
   itemRef: AngularFirestoreCollection<Item>;
 
   constructor(private db: AngularFirestore, private userService: UserService) {
-    this.itemRef = db.collection('/itemsOffer');
+    this.itemRef = db.collection('/itemsSearch');
   }
 
   getAll(): AngularFirestoreCollection<Item> {
     return this.itemRef;
   }
 
-  // use this function to create a new offer and add the id to the current user
+  //use this function to create a new offer and add the id to the current user
   create(item: Item) {
     const uid = this.userService.getCurrrentUserUID();
 
     this.itemRef
       .add({ ...item })
       .then((res) => {
-        console.log(uid, res.id);
-        this.userService.updateOfferItemsInUser(uid, res.id);
+        this.userService.updateSearchItemsInUser(uid, res.id);
       })
       .catch((e) => console.error(e));
   }
