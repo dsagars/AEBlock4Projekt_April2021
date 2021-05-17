@@ -4,11 +4,12 @@ import { BaseComponent } from './base/base.component';
 import { EmailNotVerifiedComponent } from './login/email-not-verified/email-not-verified.component';
 import { LoginComponent } from './login/login.component';
 import { UserDetailsMissingComponent } from './login/user-details-missing/user-details-missing.component';
+import { LoginGuard } from './shared/guards/login.guard';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'base',
     pathMatch: 'full'
   },
   {
@@ -17,11 +18,12 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [LoginGuard]
   },
   {
     path: 'base',
-    component: BaseComponent
+    component: BaseComponent,
   },
   {
     path: 'email-verification',

@@ -13,7 +13,7 @@ export class FirebaseService {
     public firebaseAuth: AngularFireAuth,
     private db: AngularFirestore,
     private router: Router
-  ) {}
+  ) { }
 
   async signin(email: string, password: string) {
     await this.firebaseAuth

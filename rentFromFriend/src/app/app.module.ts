@@ -14,18 +14,18 @@ import { EmailNotVerifiedComponent } from './login/email-not-verified/email-not-
 import { UserDetailsMissingComponent } from './login/user-details-missing/user-details-missing.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, EmailNotVerifiedComponent,UserDetailsMissingComponent],
+  declarations: [AppComponent, LoginComponent, EmailNotVerifiedComponent, UserDetailsMissingComponent],
   imports: [
-    BrowserModule, 
+    BrowserModule,
     AppRoutingModule,
-    AngularFireAuthModule, 
+    AngularFireAuthModule,
     BrowserAnimationsModule,
     SharedModule,
-    BaseModule, 
+    BaseModule,
     // Added Firebase Module 
-    AngularFireModule.initializeApp(environment.firebase) 
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
