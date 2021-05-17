@@ -5,31 +5,30 @@ import {
 } from '@angular/fire/firestore';
 import { Item } from '../modles/product.model';
 import { UserService } from './user.service';
-import * as admin from 'firebase-admin';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OfferService {
-  private dbPath = '/items';
   itemRef: AngularFirestoreCollection<Item>;
 
   constructor(private db: AngularFirestore, private userService: UserService) {
-    this.itemRef = db.collection(this.dbPath);
+    this.itemRef = db.collection('/items');
   }
 
   getAll(): AngularFirestoreCollection<Item> {
     return this.itemRef;
   }
 
+  //use this function to create a new offer and add the id to the current user
   create(item: Item) {
+    const uid = this.userService.getUserUID();
+
     this.itemRef
       .add({ ...item })
       .then((res) => {
-        console.log('aaaaaaaa', res, res.id);
-        this.userService.update({
-          offers: admin.firestore.FieldValue.arrayUnion('res.id'),
-        });
+        console.log(uid, res.id);
+        this.userService.updateItemsInUser(uid, res.id);
       })
       .catch((e) => console.error(e));
   }

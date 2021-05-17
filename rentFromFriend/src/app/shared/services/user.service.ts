@@ -3,23 +3,26 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from '@angular/fire/firestore';
-import { LocalStorageService } from './local-storage.service';
+import firebase from 'firebase/app';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  private dbPath = '/user';
+  private dbPath = 'users';
   userRef: AngularFirestoreCollection<any>;
 
-  constructor(
-    private db: AngularFirestore,
-    private localStorageService: LocalStorageService
-  ) {
+  constructor(private db: AngularFirestore) {
     this.userRef = db.collection(this.dbPath);
   }
 
-  private uid = this.localStorageService.getUserUID();
+  getUser(): any {
+    return JSON.parse(localStorage.getItem('user'));
+  }
+
+  getUserUID(): any {
+    return this.getUser().uid;
+  }
 
   getAll(): AngularFirestoreCollection<any> {
     return this.userRef;
@@ -29,10 +32,16 @@ export class UserService {
     return this.userRef.add({ ...item });
   }
 
-  update(data: any, uid?: string): Promise<void> {
-    if (!uid) uid = this.uid;
-    console.log('user - uid', uid);
-    return this.userRef.doc(uid).update(data);
+  //update the the doc of the current user
+  update(data: any): Promise<void> {
+    return this.userRef.doc(this.getUserUID()).update(data);
+  }
+
+  //add a new itemId to the array of ItemIds in user doc
+  updateItemsInUser(uid, itemId) {
+    this.userRef
+      .doc(uid)
+      .update({ items: firebase.firestore.FieldValue.arrayUnion(itemId) });
   }
 
   delete(id: string): Promise<void> {
