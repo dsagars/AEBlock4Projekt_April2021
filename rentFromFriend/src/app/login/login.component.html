@@ -13,7 +13,7 @@
         <div *ngIf="!isSignedIn">
           <mat-tab label="Einloggen">
             <!-- Put content forLogin Tab -->
-            <form [formGroup]="myFormLogin">
+            <form [formGroup]="loginForm">
               <mat-form-field class="example-full-width">
                 <mat-label>E-Mail</mat-label>
                 <input
@@ -46,7 +46,7 @@
             <button
               (click)="onSignin(email.value, password.value)"
               mat-button
-              [disabled]="myFormLogin.invalid"
+              [disabled]="loginForm.invalid"
               color="primary"
             >
               Einloggen
@@ -64,7 +64,7 @@
         <div *ngIf="!isSignedIn">
           <mat-tab label="Registrieren">
             <!-- Put content for Sign up Tab -->
-            <form [formGroup]="myFormSingUp">
+            <form [formGroup]="signUpForm">
               <mat-form-field class="example-full-width">
                 <mat-label>E-Mail</mat-label>
                 <input
@@ -164,7 +164,7 @@
             <button
               (click)="onSignup(emailSignUp.value, passwordSignUp.value, firstNameSignUp.value, lastNameSignUp.value, phoneSignUp.value)"
               mat-button
-              [disabled]="myFormSingUp.invalid"
+              [disabled]="signUpForm.invalid"
               color="primary"
             >
              Registrieren
