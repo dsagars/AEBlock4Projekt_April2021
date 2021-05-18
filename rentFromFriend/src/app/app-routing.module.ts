@@ -1,7 +1,42 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BaseComponent } from './base/base.component';
+import { EmailNotVerifiedComponent } from './login/email-not-verified/email-not-verified.component';
+import { LoginComponent } from './login/login.component';
+import { UserDetailsMissingComponent } from './login/user-details-missing/user-details-missing.component';
+import { LoginGuard } from './shared/guards/login.guard';
+import { RouteGuard } from './shared/guards/route.guard';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'base',
+    pathMatch: 'full'
+  },
+  {
+    path: 'account',
+    loadChildren: () => import('./account/account.module').then(m => m.AccountModule),
+    canActivateChild: [RouteGuard]
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [LoginGuard]
+  },
+  {
+    path: 'base',
+    component: BaseComponent,
+    canActivate: [RouteGuard]
+  },
+  {
+    path: 'email-verification',
+    component: EmailNotVerifiedComponent
+  },
+  {
+    path: 'user-details-addon',
+    component: UserDetailsMissingComponent
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

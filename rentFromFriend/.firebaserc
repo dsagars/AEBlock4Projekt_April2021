@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "rentfromfriend-5d84d": {
+      "hosting": {
+        "rentFromFriend": [
+          "rentfromfriend-5d84d"
+        ]
+      }
+    }
+  }
+}

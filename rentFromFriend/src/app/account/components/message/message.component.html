@@ -1,0 +1,61 @@
+<mat-drawer-container
+  class="example-container"
+  autosize
+  *ngIf="contacts$ | async"
+>
+  <mat-drawer
+    #drawer
+    class="example-sidenav"
+    mode="side"
+    [opened]="true"
+  >
+    <div
+      class="contact"
+      [class.selected]="contact.id === (selectedContact$ | async)?.id"
+      *ngFor=" let contact of contacts$ | async"
+      (click)="setSelectedContact(contact)"
+    >
+      <img
+        [src]="contact.photoUrl ? contact.photoUrl : '../../../../assets/img/avatar.png'"
+        class="user-image"
+      >
+      <p class="user-name">{{contact.name}}</p>
+    </div>
+  </mat-drawer>
+  <div
+    class="example-sidenav-content"
+    *ngIf="selectedContact$ | async"
+  >
+    <div class="messages-container">
+      <div
+        class="message"
+        [class.my-message]="message.senderId === userId"
+        *ngFor="let message of filteredMessages$ | async"
+      >
+        {{ message.text }}
+        <div class="icon-time">
+          <mat-icon class="time-icon">schedule</mat-icon>
+          <span class="date-time">{{message.date | date: 'shortTime'}}</span>
+        </div>
+      </div>
+    </div>
+    <mat-form-field>
+      <mat-label>Send message</mat-label>
+      <ng-container *ngIf="(selectedContact$ | async)?.id as recieverid">
+      <input
+        [(ngModel)]="text"
+        (keyup.enter)="send(recieverid)"
+        matInput
+      >
+      <button
+        class="btn btn-primary"
+        [disabled]="!text"
+        (click)="send(recieverid)"
+        matSuffix
+      >
+        <mat-icon>send</mat-icon>
+      </button>
+    </ng-container>
+    </mat-form-field>
+  </div>
+</mat-drawer-container>

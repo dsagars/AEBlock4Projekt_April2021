@@ -1,0 +1,46 @@
+.background {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(#000000, 0.3);
+}
+
+.wrapper {
+  border-radius: 5px;
+  position: fixed;
+  background-color: white;
+  height: 80vh;
+  width: 50vw;
+  margin: 10vh 25vw;
+  top: 0;
+  padding: 20px;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  margin: 10px;
+}
+
+button {
+  border: none;
+  background: none;
+  :hover {
+    transform: rotate(360deg);
+    transition: transform 1s ease;
+  }
+}
+
+.headder {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  align-items: baseline;
+}

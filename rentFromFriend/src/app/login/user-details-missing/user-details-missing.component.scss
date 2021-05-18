@@ -1,0 +1,46 @@
+
+:host{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background-color: #286474;
+  }
+
+.example-card {
+    max-width: 400px;
+  }
+ 
+  .center-content{
+    margin: 0px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+  }
+
+ .example-header-image {
+    margin: 0;
+    width:115px; 
+    height:115px; 
+    background-image: url("../../../assets/img/rff_logo.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .example-full-width {
+    margin-top: 7px;
+    width: 100%;
+  }
+  .mat-button {
+    margin-top: 7px;
+    width: 100%;
+    color: white;
+    height: 45px;
+    background-color: #e78200 ;
+  }
+
+  button[disabled]{
+    background-color: #fdc377;
+    color: #666666;
+  }

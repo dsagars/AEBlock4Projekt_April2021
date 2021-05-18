@@ -1,0 +1,177 @@
+<div class="center-content">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div
+        mat-card-avatar
+        class="example-header-image"
+      ></div>
+      <!-- <mat-card-title>Rent From Friend</mat-card-title>
+    <mat-card-subtitle>Sharing is Caring</mat-card-subtitle> -->
+    </mat-card-header>
+    <mat-card-content>
+      <mat-tab-group mat-stretch-tabs>
+        <div *ngIf="!isSignedIn">
+          <mat-tab label="Einloggen">
+            <!-- Put content forLogin Tab -->
+            <form [formGroup]="loginForm">
+              <mat-form-field class="example-full-width">
+                <mat-label>E-Mail</mat-label>
+                <input
+                  type="email"
+                  matInput
+                  placeholder="Email"
+                  #email
+                  [(ngModel)]="log_email"
+                  formControlName="loginEmailControl"
+                >
+                <mat-icon matSuffix>email</mat-icon>
+                <mat-error>Bitte geben Sie eine korrekte E-Mail-Adresse ein</mat-error>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Passwort</mat-label>
+                <input
+                  type="password"
+                  matInput
+                  placeholder="Password"
+                  #password
+                  [(ngModel)]="log_password"
+                  formControlName="loginPasswordControl"
+                >
+                <mat-icon matSuffix>vpn_key</mat-icon>
+                <mat-error>
+                  Falsches Passwort! (Bitte verwenden Sie: A, a, 0-9, Minimum 6, Maximum 50)
+                </mat-error>
+              </mat-form-field>
+            </form>
+            <button
+              (click)="onSignin(email.value, password.value)"
+              mat-button
+              [disabled]="loginForm.invalid"
+              color="primary"
+            >
+              Einloggen
+            </button>
+            <button
+              class="googleButton"
+              (click)="onSigninWithGoogle()"
+              mat-button
+              color="primary"
+            >
+              Mit Google Einloggen
+            </button>
+          </mat-tab>
+        </div>
+        <div *ngIf="!isSignedIn">
+          <mat-tab label="Registrieren">
+            <!-- Put content for Sign up Tab -->
+            <form [formGroup]="signUpForm">
+              <mat-form-field class="example-full-width">
+                <mat-label>E-Mail</mat-label>
+                <input
+                  type="email"
+                  matInput
+                  placeholder="Email"
+                  value
+                  required
+                  #emailSignUp
+                  [(ngModel)]="signup_email"
+                  formControlName="signupEmailControl"
+                >
+                <mat-icon matSuffix>email</mat-icon>
+                <mat-error>Bitte geben Sie eine korrekte E-Mail-Adresse ein</mat-error>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Passwort</mat-label>
+                <input
+                  type="password"
+                  matInput
+                  placeholder="Password"
+                  required
+                  #passwordSignUp
+                  [(ngModel)]="signup_password"
+                  formControlName="signupPasswordControl"
+                >
+                <mat-icon matSuffix>vpn_key</mat-icon>
+                <mat-error>
+                  Falsches Passwort! (Bitte verwenden Sie: A, a, 0-9, Minimum 6, Maximum 50)
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Passwort bestätigen</mat-label>
+                <input
+                  type="password"
+                  matInput
+                  placeholder="Confirm Password"
+                  required
+                  #confirm_passwordSignUp
+                  [(ngModel)]="signup_confirm_password"
+                  formControlName="signupPasswordAgainControl"
+                >
+                <mat-icon matSuffix>vpn_key</mat-icon>
+                <mat-error>Ihre Passwörter stimmen nicht überein!</mat-error>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Vorname</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  placeholder="First Name"
+                  value
+                  required
+                  #firstNameSignUp
+                  [(ngModel)]="signup_firstName"
+                  formControlName="signupFirstNameControl"
+                >
+                <mat-icon matSuffix>person</mat-icon>
+                <mat-error>Bitte geben Sie einen korrekten Vornamen ein</mat-error>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Nachname</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  placeholder="Last Name"
+                  value
+                  required
+                  #lastNameSignUp
+                  [(ngModel)]="signup_lastName"
+                  formControlName="signupLastNameControl"
+                >
+                <mat-icon matSuffix>person</mat-icon>
+                <mat-error>Bitte geben Sie einen korrekten Nachnamen ein</mat-error>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Telefon #</mat-label>
+                <!-- oninput is there to allow only 12 digits to be entered by user -->
+                <input
+                  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                  type="number"
+                  maxlength="12"
+                  matInput
+                  placeholder="Phone #"
+                  value
+                  required
+                  #phoneSignUp
+                  [(ngModel)]="signup_phone"
+                  formControlName="signupPhoneControl"
+                >
+                <mat-icon matSuffix>phone</mat-icon>
+                <mat-error>
+                  Bitte geben Sie eine korrekte Telefonnummer ein (Format: XXXXXXXXXXX)
+                </mat-error>
+              </mat-form-field>
+            </form>
+            <button
+              (click)="onSignup(emailSignUp.value, passwordSignUp.value, firstNameSignUp.value, lastNameSignUp.value, phoneSignUp.value)"
+              mat-button
+              [disabled]="signUpForm.invalid"
+              color="primary"
+            >
+             Registrieren
+            </button>
+          </mat-tab>
+        </div>
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
+</div>
