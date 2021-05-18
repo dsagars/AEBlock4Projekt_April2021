@@ -114,7 +114,7 @@ export class UserService {
   }
 
   getCurrrentUserUID(): any {
-    return this.getCurrentUser().uid;
+    return this.getCurrentUser()?.uid;
   }
 
   getAll(): AngularFirestoreCollection<any> {
