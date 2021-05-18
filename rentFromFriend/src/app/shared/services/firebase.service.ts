@@ -31,11 +31,11 @@ export class FirebaseService {
         let errorMessage = authError.message;
         let errorCode = authError.code;
           if (errorCode === 'auth/wrong-password') {
-            this.notifier.showAndRefreshAfterDismissal('Passwort ist falsch! Bitte versuchen Sie es erneut.', 'Ok')
+            this.notifier.showAndRefreshPageAfterDismissal('Passwort ist falsch! Bitte versuchen Sie es erneut.', 'Ok')
           } else if (errorCode === 'auth/user-not-found') {
-            this.notifier.showAndRefreshAfterDismissal('Wir haben Sie nicht gefunden! Bitte prüfen Sie Ihre E-Mail und versuchen Sie es erneut.','Ok');
+            this.notifier.showAndRefreshPageAfterDismissal('Wir haben Sie nicht gefunden! Bitte prüfen Sie Ihre E-Mail und versuchen Sie es erneut.','Ok');
           } else {
-            this.notifier.showAndRefreshAfterDismissal(errorMessage, 'Ok')
+            this.notifier.showAndRefreshPageAfterDismissal(errorMessage, 'Ok')
           }
         console.log(error);
       });;
