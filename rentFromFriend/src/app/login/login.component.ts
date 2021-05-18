@@ -11,8 +11,8 @@ import { CustomValidationService } from '../shared/services/custom-validation.se
 })
 export class LoginComponent implements OnInit {
   isSignedIn = false;
-  myFormLogin : FormGroup;
-  myFormSingUp : FormGroup;
+  loginForm : FormGroup;
+  signUpForm : FormGroup;
 
   constructor(
     public firebaseService: FirebaseService,
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.myFormLogin = this.fb.group(
+    this.loginForm = this.fb.group(
       {
         loginEmailControl : ['',[
           Validators.required,
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
       }
     );
     
-    this.myFormSingUp = this.fb.group(
+    this.signUpForm = this.fb.group(
       {
         signupEmailControl : ['',[
           Validators.required,
