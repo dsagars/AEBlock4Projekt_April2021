@@ -4,6 +4,7 @@ import { filter, map } from 'rxjs/operators';
 import { Message } from 'src/app/shared/modles/message.model';
 import { User } from 'src/app/shared/modles/user.model';
 import { MessageService } from 'src/app/shared/services/message.service';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-message',
@@ -17,9 +18,13 @@ export class MessageComponent implements OnInit {
   public contacts$: Observable<User[]>;
   filteredMessages$: Observable<Message[]>;
   selectedContact$: Observable<User>;
-  constructor(private messageService: MessageService) { }
+  userId: string;
+  constructor(
+    private messageService: MessageService,
+    private userService: UserService) { }
 
   ngOnInit(): void {
+    this.userId = this.userService.getCurrrentUserUID();
     this.selectedContact$ = this.messageService.selectedContact$;
     this.messages$ = this.messageService.messages$;
     this.contacts$ = this.messageService.contacts$;
@@ -35,11 +40,11 @@ export class MessageComponent implements OnInit {
       ));
   }
 
-  send(): void {
+  send(recieverId: string): void {
     if (!this.text) {
       return;
     }
-    this.messageService.sendMessage(this.text, '7kw4jZTmGrTF39ISRt52paSiSpL2', 'DUJS3t8y9Za48D2Qd1bwqGIDtWK2');
+    this.messageService.sendMessage(this.text, this.userId, recieverId);
     this.text = '';
   }
 

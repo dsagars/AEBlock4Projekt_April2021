@@ -45,7 +45,7 @@ export class FirebaseService {
           ) {
             this.router.navigate(['/user-details-addon']);
           } else {
-            localStorage.setItem('user', JSON.stringify(res.user.uid));
+            localStorage.setItem('user', JSON.stringify(res.user));
             this.router.navigate(['/base']);   
           }
         } else {
