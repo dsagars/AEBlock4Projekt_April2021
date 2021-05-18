@@ -51,11 +51,11 @@ export class FirebaseService {
         res.user.sendEmailVerification();
         // this is to get the user id from auth and to set for users inside database
         this.db.collection('users').doc(res.user.uid).set({
-          user_id: res.user.uid,
+          id: res.user.uid,
           email: res.user.email,
           firstName: firstName,
           lastName: lastName,
-          address_id: '',
+          addressId: '',
           phone: phone,
         });
         // log in only if user has verified email else notify user
@@ -80,6 +80,7 @@ export class FirebaseService {
   logout() {
     this.firebaseAuth.signOut();
     localStorage.removeItem('user');
+    this.router.navigate(['/login']);
   }
 
   public isLoggedIn(): boolean {
