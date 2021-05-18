@@ -1,9 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatCarousel, MatCarouselComponent, MatCarouselSlideComponent } from '@ngbmodule/material-carousel';
-import { MatCardModule } from '@angular/material/card';
-import { ItemService } from '../../services/item.service';
-import { Item } from '../../models/item';
-
+import { Item } from '../../modles/item.model';
+import { ItemOfferService } from '../../services/offer.service';
 
 @Component({
   selector: 'app-carousel',
@@ -13,10 +10,10 @@ import { Item } from '../../models/item';
 export class CarouselComponent implements OnInit {
   items: Item[];
 
-  constructor(public itemService: ItemService) { }
+  constructor(public itemOfferService: ItemOfferService) { }
 
   ngOnInit() {
-   this.itemService.getItems().subscribe(items => {  
+   this.itemOfferService.getAll().valueChanges().subscribe(items => {  
      this.items = this.slideChunk(items, 4);  
      console.log(this.items);   
    })
