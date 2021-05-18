@@ -3,6 +3,7 @@ import firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -29,12 +30,34 @@ export class FirebaseService {
   async loginWithGoogle() {
     var provider = new firebase.auth.GoogleAuthProvider();
     await this.firebaseAuth.signInWithPopup(provider).then((res) => {
-      // toDO important maybe check if user already on db?
-      this.db.collection('users').doc(res.user.uid).set({
-        email: res.user.email,
+      
+      // Check if user already in db
+      const usersRef = this.db.collection('users').doc(res.user.uid);
+      usersRef.get().subscribe((docSnapshot) => {
+
+        // Does user exist already?
+        if (docSnapshot.exists) {
+          // check if user has firstName, lastName etc else send to user details missing page...
+          if (
+            docSnapshot.data()['firstName'] === undefined ||
+            docSnapshot.data()['lastName'] === undefined ||
+            docSnapshot.data()['phone'] === undefined
+          ) {
+            this.router.navigate(['/user-details-addon']);
+          } else {
+            localStorage.setItem('user', JSON.stringify(res.user.uid));
+            this.router.navigate(['/base']);   
+          }
+        } else {
+          // create the user document
+          usersRef.set({
+            email: res.user.email,
+            addressId: '',
+            id: res.user.uid,
+          });
+          this.router.navigate(['/user-details-addon']);
+        }
       });
-      // toDo check if user has firstName, lastName etc else send to user details missing...
-      localStorage.setItem('user', JSON.stringify(res.user));
     });
   }
 
@@ -68,8 +91,8 @@ export class FirebaseService {
   }
 
   async signupUserAddon(firstName: string, lastName: string, phone: string) {
-    // Here we should get the user and update fields
-    this.db.collection('users').doc(firebase.auth().currentUser.uid).set({
+    // Here we get the user and update fields
+    this.db.collection('users').doc(firebase.auth().currentUser.uid).update({
       firstName: firstName,
       lastName: lastName,
       phone: phone,
@@ -84,7 +107,7 @@ export class FirebaseService {
   }
 
   public isLoggedIn(): boolean {
-    console.log('hoho')
+    console.log('hoho');
     return !!localStorage.getItem('user');
   }
 }
