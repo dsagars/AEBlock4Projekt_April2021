@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { BehaviorSubject, combineLatest, forkJoin, Observable, of } from 'rxjs';
 import { map, take, tap } from 'rxjs/operators';
-import { Message } from '../modles/message.model';
-import { User } from '../modles/user.model';
+import { Message } from '../models/message.model';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'

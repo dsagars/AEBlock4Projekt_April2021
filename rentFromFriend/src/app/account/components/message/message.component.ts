@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { combineLatest, Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
-import { Message } from 'src/app/shared/modles/message.model';
-import { User } from 'src/app/shared/modles/user.model';
+import { Message } from 'src/app/shared/models/message.model';
+import { User } from 'src/app/shared/models/user.model';
 import { MessageService } from 'src/app/shared/services/message.service';
 
 @Component({
