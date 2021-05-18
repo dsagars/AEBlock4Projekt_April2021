@@ -4,6 +4,7 @@ import { BehaviorSubject, combineLatest, forkJoin, Observable, of } from 'rxjs';
 import { map, take, tap } from 'rxjs/operators';
 import { Message } from '../modles/message.model';
 import { User } from '../modles/user.model';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +57,7 @@ export class MessageService {
 
   constructor(
     private db: AngularFirestore,
+    private userService: UserService
   ) {
     // fetch all messages of user for the first time and fetch sender and reciever information only once
     this.getMessagesOfUser().pipe(tap(messages => this.getUserInformationOfMessages(messages))).subscribe();
@@ -63,7 +65,7 @@ export class MessageService {
   // this function will return an Observable<Message[]> with all messages of user
   getMessagesOfUser(): Observable<any> {
     return this.db.collection('users')
-      .doc('7kw4jZTmGrTF39ISRt52paSiSpL2')
+      .doc(this.userService.getCurrrentUserUID())
       .collection('messages').valueChanges().pipe(tap(messages => this.messages = messages));
   }
 
