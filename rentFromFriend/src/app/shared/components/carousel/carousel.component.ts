@@ -1,29 +1,27 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { Item } from '../../modles/item.model';
-import { ItemOfferService } from '../../services/offer.service';
+import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Item } from '../../models/item.model';
+
+
+
+export interface Slide {
+  slideId: number;
+  products: Item[];
+}
 
 @Component({
   selector: 'app-carousel',
   templateUrl: './carousel.component.html',
-  styleUrls: ['./carousel.component.scss']
+  styleUrls: ['./carousel.component.scss'],
 })
+
 export class CarouselComponent implements OnInit {
-  items: Item[];
+ 
+  @Input() slides: Slide[];
 
-  constructor(public itemOfferService: ItemOfferService) { }
+  constructor() {}
 
-  ngOnInit() {
-   this.itemOfferService.getAll().valueChanges().subscribe(items => {  
-     this.items = this.slideChunk(items, 4);  
-     console.log(this.items);   
-   })
+  ngOnInit() {       
   }
 
-  slideChunk(array: Item[], chunkSize: number){
-    let R = [];
-    for (let i = 0, len = array.length; i < len; i += chunkSize) {
-      R.push(array.slice(i, i + chunkSize));
-    }
-    return R;  
-  }
 }
+
