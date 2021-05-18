@@ -1,0 +1,29 @@
+<mat-carousel
+  timings="250ms ease-in"
+  [autoplay]="false"
+  interval="5000"
+  color="accent"
+  maxWidth="auto"
+  proportion="10"
+  [loop]="false"
+  [hideArrows]="false"
+  [hideIndicators]="true"
+  [useKeyboard]="true"
+  [useMouseWheel]="true"
+  orientation="ltr"
+>
+  <mat-carousel-slide
+    #matCarouselSlide
+    *ngFor="let slide of items; index as i"
+    overlayColor="#91959c"
+    [hideOverlay]="false"
+  >
+    <mat-card class="mat-card">
+      <img class="image-container" [src]="slide.image"/>
+      <mat-card-content>
+        <span class="text-container">{{slide.name }}</span>
+        <span class="text-container">{{ slide.price }}</span>
+      </mat-card-content>
+    </mat-card>       
+  </mat-carousel-slide>
+</mat-carousel>

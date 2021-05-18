@@ -9,12 +9,15 @@ import { MatSelectModule } from '@angular/material/select';
 import { ModalComponent } from './components/modal/modal.component';
 import { OfferFormComponent } from './components/offer-form/offer-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CarouselComponent } from './components/carousel/carousel.component';
+import { MatCarouselModule } from '@ngbmodule/material-carousel';
+import { MatCardModule } from '@angular/material/card';
 
 // verschiedenen Module die wir benutzen wollen, importerien wir hier herein, um sie danach überall verfügbar zu haben
 // Besonders für Module die wir überall brauchen
 
 @NgModule({
-  declarations: [NavbarComponent, ModalComponent, OfferFormComponent],
+  declarations: [NavbarComponent, ModalComponent, OfferFormComponent, CarouselComponent],
   imports: [
     CommonModule,
     MatToolbarModule,
@@ -23,6 +26,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatInputModule,
     MatSelectModule,
     ReactiveFormsModule,
+    MatCarouselModule.forRoot(),
+    MatCardModule,
   ],
   exports: [
     OfferFormComponent,
@@ -33,6 +38,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    CarouselComponent, 
+    MatCardModule,  
   ],
 })
 export class SharedModule {}
