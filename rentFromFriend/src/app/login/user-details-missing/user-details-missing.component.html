@@ -1,0 +1,75 @@
+<div class="center-content">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Fast geschafft...</mat-card-title>
+      <mat-card-subtitle>Bitte fügen Sie Ihre ersten Profilinformationen hinzu</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <!-- Put content for Sign up Tab -->
+      <form [formGroup]="myFormUserDetailsAddOn">
+        <mat-form-field class="example-full-width">
+          <mat-label>Vorname</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="First Name"
+            value=""
+            required
+            #firstNameSignUp
+            formControlName="userAddonFirstNameControl"
+          />
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-error>Bitte geben Sie einen korrekten Vornamen ein</mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Nachname</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Last Name"
+            value=""
+            required
+            #lastNameSignUp
+            formControlName="signupLastNameControl"
+          />
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-error>Bitte geben Sie einen korrekten Nachnamen ein</mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Telefon #</mat-label>
+          <!-- oninput is there to allow only 12 digits to be entered by user -->
+          <input
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            type="number"
+            maxlength="12"
+            matInput
+            placeholder="Phone #"
+            value=""
+            required
+            #phoneSignUp
+            formControlName="signupPhoneControl"
+          />
+          <mat-icon matSuffix>phone</mat-icon>
+          <mat-error>
+            Bitte geben Sie eine korrekte Telefonnummer ein (Format: XXXXXXXXXXX)
+          </mat-error>
+        </mat-form-field>
+      </form>
+      <button
+        (click)="
+          addUserDetailsAddOn(
+            firstNameSignUp.value,
+            lastNameSignUp.value,
+            phoneSignUp.value
+          )
+        "
+        mat-button
+        [disabled]="myFormUserDetailsAddOn.invalid"
+        color="primary"
+      >
+        Fertig
+      </button>
+    </mat-card-content>
+  </mat-card>
+</div>

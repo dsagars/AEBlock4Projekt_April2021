@@ -1,0 +1,94 @@
+<h1>Profile Informationen Ändern</h1>
+<span
+  style="color:red;"
+  *ngIf="userService.message | async"
+>
+  {{userService.message | async}}
+</span>
+<input
+  style="display: none"
+  type="file"
+  (change)="preview(fileInput.files)"
+  #fileInput
+  accept='image/*'
+>
+<img
+  [src]="userService.userImage | async"
+  class="profile-avatar"
+>
+<button
+  mat-icon-button
+  class="edit-icon"
+  (click)="fileInput.click()"
+>
+  <mat-icon>edit</mat-icon>
+</button>
+<button
+  mat-icon-button
+  *ngIf="userService.imageToPreview"
+  (click)="userService.uploadImage()"
+>
+  <mat-icon>file_upload</mat-icon>
+</button>
+<div [formGroup]="userInfoForm">
+  <div class="name-form">
+    <mat-form-field
+      appearance="outline"
+      class="margin-between-field"
+    >
+      <mat-label>Vorname</mat-label>
+      <input matInput formControlName="firstName">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Nachname</mat-label>
+      <input matInput formControlName="lastName">
+    </mat-form-field>
+  </div>
+  <div class="contact">
+    <mat-form-field
+      appearance="outline"
+      class="same-width-field"
+    >
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email">
+    </mat-form-field>
+    <mat-form-field
+      appearance="outline"
+      class="same-width-field"
+    >
+      <mat-label >Telefon Nummer</mat-label>
+      <input matInput formControlName="phone">
+    </mat-form-field>
+  </div>
+</div>
+<div class="location" [formGroup]="userAddressForm">
+  <mat-form-field
+    appearance="outline"
+    class="margin-between-field"
+  >
+    <mat-label>Straße</mat-label>
+    <input matInput formControlName="street">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Hausnummer</mat-label>
+    <input matInput formControlName="houseNumber">
+  </mat-form-field>
+  <mat-form-field
+    appearance="outline"
+    class="margin-between-field"
+  >
+    <mat-label>Stadt</mat-label>
+    <input matInput formControlName="city">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>PLZ</mat-label>
+    <input matInput formControlName="zip" type="number"> 
+  </mat-form-field>
+</div>
+<button
+  mat-button
+  color="primary"
+  (click)="saveUserData()"
+>
+  Save
+</button>
