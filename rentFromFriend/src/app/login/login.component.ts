@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
         ]],
         signupPasswordControl: ['', [
           Validators.required,
-          Validators.pattern('^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).{6,12}$'),
+          Validators.pattern('^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).{6,50}$'),
           Validators.minLength(6),
           Validators.maxLength(50)
         ]],        
