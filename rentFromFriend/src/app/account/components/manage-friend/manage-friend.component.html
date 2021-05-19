@@ -1,1 +1,30 @@
-<p>manage-friend works!</p>
+<h1>Freunde Verwalten</h1>
+<div class="container">
+  <div
+    class="card"
+    *ngFor="let friend of friends$ | async"
+  >
+    <img
+      [src]="friend.photoUrl"
+      class="image"
+    >
+    <div class="info">
+      <h3>
+        {{friend.firstName}} {{friend.lastName}}
+      </h3>
+      <p>{{friend.email}}</p>
+      <button
+        mat-icon-button
+        (click)="sendMessage(friend)"
+      >
+        <mat-icon>message</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        (click)="deleteFriend(friend.id)"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

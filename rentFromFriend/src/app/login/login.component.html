@@ -1,7 +1,10 @@
 <div class="center-content">
   <mat-card class="example-card">
     <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
+      <div
+        mat-card-avatar
+        class="example-header-image"
+      ></div>
       <!-- <mat-card-title>Rent From Friend</mat-card-title>
     <mat-card-subtitle>Sharing is Caring</mat-card-subtitle> -->
     </mat-card-header>
@@ -18,11 +21,11 @@
                 placeholder="Email"
                 #email
                 formControlName="loginEmailControl"
-              />
-              <mat-icon matSuffix>email</mat-icon>
-              <mat-error
-                >Bitte geben Sie eine korrekte E-Mail-Adresse ein</mat-error
               >
+              <mat-icon matSuffix>email</mat-icon>
+              <mat-error>
+                Bitte geben Sie eine korrekte E-Mail-Adresse ein
+              </mat-error>
             </mat-form-field>
             <mat-form-field class="example-full-width">
               <mat-label>Passwort</mat-label>
@@ -32,7 +35,7 @@
                 placeholder="Password"
                 #password
                 formControlName="loginPasswordControl"
-              />
+              >
               <mat-icon matSuffix>vpn_key</mat-icon>
               <mat-error>
                 Falsches Passwort! (Bitte verwenden Sie: A, a, 0-9, Minimum 6,
@@ -50,7 +53,7 @@
           </button>
           <button
             class="googleButton"
-            (click)="onSigninWithGoogle(email.value, password.value)"
+            (click)="onSigninWithGoogle()"
             mat-button
             color="primary"
           >
@@ -70,11 +73,11 @@
                 required
                 #emailSignUp
                 formControlName="signupEmailControl"
-              />
-              <mat-icon matSuffix>email</mat-icon>
-              <mat-error
-                >Bitte geben Sie eine korrekte E-Mail-Adresse ein</mat-error
               >
+              <mat-icon matSuffix>email</mat-icon>
+              <mat-error>
+                Bitte geben Sie eine korrekte E-Mail-Adresse ein
+              </mat-error>
             </mat-form-field>
             <mat-form-field class="example-full-width">
               <mat-label>Passwort</mat-label>
@@ -85,7 +88,7 @@
                 required
                 #passwordSignUp
                 formControlName="signupPasswordControl"
-              />
+              >
               <mat-icon matSuffix>vpn_key</mat-icon>
               <mat-error>
                 Falsches Passwort! (Bitte verwenden Sie: A, a, 0-9, Minimum 6,
@@ -101,7 +104,7 @@
                 required
                 #confirm_passwordSignUp
                 formControlName="signupPasswordAgainControl"
-              />
+              >
               <mat-icon matSuffix>vpn_key</mat-icon>
               <mat-error>Ihre Passwörter stimmen nicht überein!</mat-error>
             </mat-form-field>
@@ -115,11 +118,11 @@
                 required
                 #firstNameSignUp
                 formControlName="signupFirstNameControl"
-              />
-              <mat-icon matSuffix>person</mat-icon>
-              <mat-error
-                >Bitte geben Sie einen korrekten Vornamen ein</mat-error
               >
+              <mat-icon matSuffix>person</mat-icon>
+              <mat-error>
+                Bitte geben Sie einen korrekten Vornamen ein
+              </mat-error>
             </mat-form-field>
             <mat-form-field class="example-full-width">
               <mat-label>Nachname</mat-label>
@@ -131,11 +134,11 @@
                 required
                 #lastNameSignUp
                 formControlName="signupLastNameControl"
-              />
-              <mat-icon matSuffix>person</mat-icon>
-              <mat-error
-                >Bitte geben Sie einen korrekten Nachnamen ein</mat-error
               >
+              <mat-icon matSuffix>person</mat-icon>
+              <mat-error>
+                Bitte geben Sie einen korrekten Nachnamen ein
+              </mat-error>
             </mat-form-field>
             <mat-form-field class="example-full-width">
               <mat-label>Telefon #</mat-label>
@@ -150,7 +153,7 @@
                 required
                 #phoneSignUp
                 formControlName="signupPhoneControl"
-              />
+              >
               <mat-icon matSuffix>phone</mat-icon>
               <mat-error>
                 Bitte geben Sie eine korrekte Telefonnummer ein (Format:
