@@ -72,7 +72,6 @@ export class LoginComponent implements OnInit {
 
   async onSignup(email: string, password: string, firstName: string, lastName:string, phone: string) {
     await this.firebaseService.signup(email, password, firstName, lastName, phone);
-    this.loginIfSuccesful();
   }
 
   async onSignin(email: string, password: string) {
