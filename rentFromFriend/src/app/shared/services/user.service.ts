@@ -4,8 +4,8 @@ import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask 
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
 import firebase from 'firebase/app';
-import { User } from '../modles/user.model';
-import { UserAddress } from '../modles/user-address.model';
+import { User } from '../models/user.model';
+import { UserAddress } from '../models/user-address.model';
 
 @Injectable({
   providedIn: 'root'
