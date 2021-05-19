@@ -10,4 +10,4 @@ import { BaseComponent } from './base.component';
   imports: [CommonModule, SharedModule],
   exports: [BaseComponent],
 })
-export class BaseModule {}
+export class BaseModule { }

@@ -1,0 +1,35 @@
+<!-- <div style.height="300px"> -->
+<mat-carousel
+  timings="250ms ease-in"
+  [autoplay]="false"
+  interval="5000"
+  color=""
+  maxWidth="auto"
+  [loop]="false"
+  [hideArrows]="false"
+  [hideIndicators]="true"
+  [useKeyboard]="true"
+  [useMouseWheel]="true"
+  orientation="ltr"
+  [maintainAspectRatio]="false"
+>
+  <mat-carousel-slide
+    #matCarouselSlide
+    *ngFor="let slide of slides; index as i"
+    overlayColor="#272f33"
+    [hideOverlay]="false"
+  >
+    <mat-card class="mat-card" *ngFor="let product of slide.products">
+      <div>
+        <img class="image-container" [src]="product.picture" [title]="product.description"/>
+        <mat-card-content class="mat-card-content">
+          <div class="text-container">
+            <span class="text-container" [title]="product.title">{{ product.title }}</span>
+            <span class="text-container" [title]="product.price">{{ product.price}} €</span>
+          </div>
+        </mat-card-content>
+      </div>
+    </mat-card>
+  </mat-carousel-slide>
+</mat-carousel>
+<!-- </div> -->
