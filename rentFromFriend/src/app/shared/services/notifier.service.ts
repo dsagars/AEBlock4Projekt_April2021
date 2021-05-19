@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DOCUMENT } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -8,6 +9,7 @@ import { DOCUMENT } from '@angular/common';
 export class NotifierService {
   constructor(
     private snackBar: MatSnackBar,
+    private router: Router,
     @Inject(DOCUMENT) private _document: Document
   ) {}
 
@@ -17,6 +19,18 @@ export class NotifierService {
     this.snackBar.open(displayMessage, displayButtonText, {
       horizontalPosition: 'center',
       verticalPosition: 'top',
+      panelClass: ["custom-snackbar-style"]
+    });
+  }
+
+  showBasicAndNavigateToLogin(displayMessage: string, displayButtonText: string) {
+    let snackBar = this.snackBar.open(displayMessage, displayButtonText, {
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      panelClass: ["custom-snackbar-style"]
+    });
+    snackBar.afterDismissed().subscribe(() => {
+      this.router.navigate(['/login']);
     });
   }
 
@@ -25,6 +39,7 @@ export class NotifierService {
       duration: 5000,
       horizontalPosition: 'center',
       verticalPosition: 'top',
+      panelClass: ["custom-snackbar-style"]
     });
   }
 
@@ -35,6 +50,7 @@ export class NotifierService {
     let snackBarRef = this.snackBar.open(displayMessage, displayButtonText, {
       horizontalPosition: 'center',
       verticalPosition: 'top',
+      panelClass: ["custom-snackbar-style"]
     });
 
     snackBarRef.afterDismissed().subscribe(() => {

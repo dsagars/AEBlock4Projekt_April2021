@@ -10,7 +10,6 @@ import { CustomValidationService } from '../shared/services/custom-validation.se
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
- // isSignedIn = false;
   loginForm : FormGroup;
   signUpForm : FormGroup;
 
@@ -73,7 +72,6 @@ export class LoginComponent implements OnInit {
 
   async onSignup(email: string, password: string, firstName: string, lastName:string, phone: string) {
     await this.firebaseService.signup(email, password, firstName, lastName, phone);
-    this.loginIfSuccesful();
   }
 
   async onSignin(email: string, password: string) {
@@ -86,9 +84,12 @@ export class LoginComponent implements OnInit {
     this.loginIfSuccesful();
   }
 
+  async onPasswordReset(){
+    this.router.navigate(['/password-reset']);
+  }
+
   loginIfSuccesful() {
     if (this.firebaseService.isLoggedIn) {
-    //  this.isSignedIn = true;
       this.router.navigate(['/base']);
     }
   }
