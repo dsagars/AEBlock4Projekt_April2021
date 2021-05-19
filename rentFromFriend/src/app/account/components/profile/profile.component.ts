@@ -24,11 +24,12 @@ export class ProfileComponent implements OnInit {
       this.user = user;
       console.log(this.user);
       this.initUserInfoForm();
+      this.inituserAddressForm();
       this.userService.getUserImage();
       this.userService.getCurrentUserAddress(this.user?.addressId).subscribe(userAddress => {
         this.userAddress = userAddress;
+        this.inituserAddressForm();
       });
-      this.inituserAddressForm();
     });
   }
 
