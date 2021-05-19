@@ -5,16 +5,33 @@ import {
 } from '@angular/fire/firestore';
 import { Item } from '../modles/product.model';
 import { UserService } from './user.service';
+import {
+  AngularFireStorage,
+  AngularFireStorageReference,
+  AngularFireUploadTask,
+} from '@angular/fire/storage';
+import { finalize } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ItemOfferService {
   itemRef: AngularFirestoreCollection<Item>;
+  userRef: AngularFirestoreCollection<any>;
+  ref: AngularFireStorageReference;
+  itemImageUrl;
+  task: AngularFireUploadTask;
 
-  constructor(private db: AngularFirestore, private userService: UserService) {
+  constructor(
+    private db: AngularFirestore,
+    private dbStorage: AngularFireStorage,
+    private userService: UserService
+  ) {
     this.itemRef = db.collection('/itemsOffer');
+    this.userRef = db.collection('/users');
   }
+
+  uid = this.userService.getUserUID();
 
   getAll(): AngularFirestoreCollection<Item> {
     return this.itemRef;
@@ -22,13 +39,12 @@ export class ItemOfferService {
 
   //use this function to create a new offer and add the id to the current user
   create(item: Item) {
-    const uid = this.userService.getUserUID();
-
+    var itemId;
     this.itemRef
-      .add({ ...item })
+      .add({ ...item, picture: this.itemImageUrl })
       .then((res) => {
-        console.log(uid, res.id);
-        this.userService.updateOfferItemsInUser(uid, res.id);
+        itemId = res.id;
+        this.userService.updateOfferItemsInUser(this.uid, res.id);
       })
       .catch((e) => console.error(e));
   }
@@ -39,5 +55,19 @@ export class ItemOfferService {
 
   delete(id: string): Promise<void> {
     return this.itemRef.doc(id).delete();
+  }
+
+  uploadImage(file) {
+    const randomId = Math.random().toString(36).substring(2);
+    this.ref = this.dbStorage.ref('offerImages/' + this.uid + randomId);
+    this.ref.put(file).then(() => {
+      this.ref.getDownloadURL().subscribe((url) => {
+        this.itemImageUrl = url;
+      });
+    });
+  }
+
+  getItemImageUrl() {
+    return this.itemImageUrl;
   }
 }

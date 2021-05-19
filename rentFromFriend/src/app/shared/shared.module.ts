@@ -14,6 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatDividerModule } from '@angular/material/divider';
 
 // verschiedenen Module die wir benutzen wollen, importerien wir hier herein, um sie danach überall verfügbar zu haben
 // Besonders für Module die wir überall brauchen
@@ -21,6 +22,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 @NgModule({
   declarations: [NavbarComponent, ModalComponent, OfferFormComponent],
   imports: [
+    MatDividerModule,
     MatMenuModule,
     CommonModule,
     MatToolbarModule,
@@ -37,6 +39,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     FormsModule,
   ],
   exports: [
+    MatDividerModule,
     MatMenuModule,
     OfferFormComponent,
     ModalComponent,
@@ -52,7 +55,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     RouterModule,
     MatCardModule,
     MatTabsModule,
-    FormsModule
+    FormsModule,
   ],
 })
-export class SharedModule { }
+export class SharedModule {}

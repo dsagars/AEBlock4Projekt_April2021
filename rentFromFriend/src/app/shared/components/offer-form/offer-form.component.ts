@@ -1,11 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { of } from 'rxjs';
 import { Item } from '../../modles/product.model';
+import { ModalService } from '../../services/modal.service';
 import { ItemOfferService } from '../../services/offer.service';
 import { ItemSearchService } from '../../services/search.service';
 import { UserService } from '../../services/user.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
-//TODO: Bilder upload
 
 @Component({
   selector: 'app-offer-form',
@@ -17,11 +19,15 @@ export class OfferFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private offerService: ItemOfferService,
     private userService: UserService,
-    private searchService: ItemSearchService
+    private searchService: ItemSearchService,
+    private modalServeice: ModalService,
+    private sanitizer: DomSanitizer
   ) {}
 
   item: Item;
+  imagePreview;
   reactiveForm: FormGroup;
+  imgUrl;
 
   @Input()
   containsImage: boolean;
@@ -38,9 +44,11 @@ export class OfferFormComponent implements OnInit {
       discrtict: [],
       description: [],
       price: [],
-      picture: [],
       categorie: [],
     });
+
+    const currentUser = this.userService.getUser();
+    console.log(currentUser);
   }
 
   handleSubmit() {
@@ -53,6 +61,22 @@ export class OfferFormComponent implements OnInit {
     } else {
       this.searchService.create(this.item);
     }
+  }
+
+  imageUpload(file) {
+    this.offerService.uploadImage(file);
+
+    const blobUrl = URL.createObjectURL(file);
+
+    this.imgUrl = this.sanitizer.bypassSecurityTrustUrl(blobUrl);
+  }
+
+  close() {
+    this.modalServeice.closeAll();
+  }
+
+  clearImg() {
+    this.imgUrl = undefined;
   }
 
   categories = [
