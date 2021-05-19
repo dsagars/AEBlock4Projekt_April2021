@@ -13,7 +13,6 @@ import { ConfirmNewPasswordComponent } from './forgot-password/confirm-new-passw
     EmailNotVerifiedComponent,
     UserDetailsMissingComponent,
     ForgotPasswordComponent,
-    ForgotPasswordComponent,
     ConfirmNewPasswordComponent
   ],
   imports: [
