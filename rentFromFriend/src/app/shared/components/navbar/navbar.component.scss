@@ -1,9 +1,11 @@
 mat-toolbar {
     height: 75px;
+    padding: 10px;
 }
 
-.example-spacer {
-    flex: 1 1 auto;
+.mat-raised-button {
+    color: #FFF;
+    background-color: #E88000;
 }
 
 .logo {
@@ -15,28 +17,39 @@ mat-toolbar {
     margin: 10px;
 }
 
-mat-toolbar {
-    padding: 10px;
-}
-
+// both the search-input & dropwdown and location-input & dropdown
 .search-group, .location-group  {
     font-size: 15px;
     margin-top: auto;
     padding: 0 15px;
 }
 
-.btn-container {
-    display: flex;
-    justify-content: center;
-    width: 35rem;
+// search btn with lens
+.btn_search {
+    margin: 0 3rem;
 }
 
-.mat-raised-button {
-    color: #FFF;
-    background-color: #E88000;
+// add btn with cross
+.btn_add {
+    position: absolute;
+    right: 10rem;
 }
 
-.btn_search, .btn_add {
-    margin: 0 5rem;
+// vertical line on the left of account btn
+.account_border {
+    position: absolute;
+    right: 6rem;
+    border-left: solid black 2px;
+    height: 75px;
 }
 
+// account btn container
+.account_div {
+    position: absolute;
+    right: 2.5rem;
+}
+
+// account-icon size
+.account_btn {
+    font-size: 40px !important;
+}
