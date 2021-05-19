@@ -8,6 +8,8 @@ import { UserService } from '../../services/user.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { User } from '../../models/user.model';
 import { UserAddress } from '../../models/user-address.model';
+import { pipe } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-offer-form',
@@ -30,6 +32,7 @@ export class OfferFormComponent implements OnInit {
   imgUrl;
   currentUser: User;
   currentUserAdress: UserAddress;
+  file: File;
 
   @Input()
   containsImage: boolean;
@@ -37,17 +40,6 @@ export class OfferFormComponent implements OnInit {
   type: 'offer' | 'search';
 
   ngOnInit(): void {
-    this.reactiveForm = this.formBuilder.group({
-      title: [],
-      fistname: [],
-      lastname: [],
-      address: [],
-      city: [],
-      discrtict: [],
-      description: [],
-      price: [],
-      categorie: [],
-    });
     this.userService.getUserFromDB().subscribe((usr) => {
       this.currentUser = { ...usr };
       if (!usr.addressId) return;
@@ -55,7 +47,18 @@ export class OfferFormComponent implements OnInit {
         .getCurrentUserAddress(usr.addressId)
         .subscribe((addr) => {
           this.currentUserAdress = { ...addr };
-          console.log(this.currentUserAdress);
+
+          this.reactiveForm = this.formBuilder.group({
+            title: [],
+            fistname: [this.currentUser?.firstName],
+            lastname: [this.currentUser?.lastName],
+            address: [this.currentUserAdress?.street],
+            city: [this.currentUserAdress?.city],
+            discrtict: [],
+            description: [],
+            price: [],
+            categorie: [],
+          });
         });
     });
   }
@@ -65,21 +68,20 @@ export class OfferFormComponent implements OnInit {
       ...this.reactiveForm.value,
       uid: this.userService.getCurrrentUserUID(),
     };
-    if (this.type == 'offer') {
+
+    if (this.type === 'offer') {
       this.offerService.create(this.item);
     } else {
       this.searchService.create(this.item);
     }
+    this.close();
   }
 
-  imageUpload(file) {
-    this.offerService.uploadImage(file);
-
+  imagePre(file) {
     const blobUrl = URL.createObjectURL(file);
-
     this.imgUrl = this.sanitizer.bypassSecurityTrustUrl(blobUrl);
-
-    this.close();
+    this.offerService.file = file;
+    console.log('imagePre', this.offerService.file);
   }
 
   close() {

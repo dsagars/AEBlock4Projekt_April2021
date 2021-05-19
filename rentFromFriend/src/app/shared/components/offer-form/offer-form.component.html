@@ -1,4 +1,4 @@
-<form class="form-wrapper" [formGroup]="reactiveForm">
+<form class="form-wrapper" *ngIf="reactiveForm" [formGroup]="reactiveForm">
   <div class="row">
     <mat-form-field class="example-full-width">
       <mat-label>Titel</mat-label>
@@ -39,7 +39,7 @@
           <mat-label>Wähle ein Bild</mat-label>
           <input
             type="file"
-            (change)="imageUpload(fileInputImage.files[0])"
+            (change)="imagePre(fileInputImage.files[0])"
             #fileInputImage
             accept="image/*"
           />
@@ -63,39 +63,21 @@
   <div class="row space">
     <mat-form-field class="example-full-width">
       <mat-label>Vorname</mat-label>
-      <input
-        matInput
-        formControlName="fistname"
-        [(ngModel)]="currentUser.firstName"
-      />
+      <input matInput formControlName="fistname" />
     </mat-form-field>
     <mat-form-field class="example-full-width">
       <mat-label>Nachname</mat-label>
-      <input
-        matInput
-        formControlName="lastname"
-        [(ngModel)]="currentUser.lastName"
-      />
+      <input matInput formControlName="lastname" />
     </mat-form-field>
   </div>
   <div class="row space">
     <mat-form-field class="example-full-width">
       <mat-label>Stadt</mat-label>
-      <input
-        matInput
-        placeholder="Hamburg"
-        formControlName="city"
-        [(ngModel)]="currentUserAdress.city"
-      />
+      <input matInput placeholder="Hamburg" formControlName="city" />
     </mat-form-field>
     <mat-form-field class="example-full-width">
       <mat-label>Stadtteil</mat-label>
-      <input
-        matInput
-        placeholder="St. Pauli"
-        formControlName="discrtict"
-        [(ngModel)]="currentUserAdress.city"
-      />
+      <input matInput placeholder="St. Pauli" formControlName="discrtict" />
     </mat-form-field>
     <mat-form-field class="example-full-width">
       <mat-label>Straße, Hausnummer, Plz</mat-label>
@@ -103,7 +85,6 @@
         matInput
         placeholder="Beispielstraße 2, 22767"
         formControlName="address"
-        [(ngModel)]="currentUserAdress.street"
       />
     </mat-form-field>
   </div>

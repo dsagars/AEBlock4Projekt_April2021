@@ -11,6 +11,7 @@ import {
   AngularFireUploadTask,
 } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +22,8 @@ export class ItemOfferService {
   ref: AngularFireStorageReference;
   itemImageUrl;
   task: AngularFireUploadTask;
+  file: File;
+  uid;
 
   constructor(
     private db: AngularFirestore,
@@ -29,11 +32,8 @@ export class ItemOfferService {
   ) {
     this.itemRef = db.collection('/itemsOffer');
     this.userRef = db.collection('/users');
+    this.uid = this.userService.getCurrrentUserUID();
   }
-
-  
-
-  uid = this.userService.getCurrrentUserUID;
 
   getAll(): AngularFirestoreCollection<Item> {
     return this.itemRef;
@@ -41,16 +41,7 @@ export class ItemOfferService {
 
   // use this function to create a new offer and add the id to the current user
   create(item: Item) {
-    var itemId;
-    const uid = this.userService.getCurrrentUserUID();
-
-    this.itemRef
-      .add({ ...item, picture: this.itemImageUrl })
-      .then((res) => {
-        itemId = res.id;
-        this.userService.updateOfferItemsInUser(this.uid, res.id);
-      })
-      .catch((e) => console.error(e));
+    this.uploadImage(item);
   }
 
   update(id: string, data: any): Promise<void> {
@@ -61,14 +52,27 @@ export class ItemOfferService {
     return this.itemRef.doc(id).delete();
   }
 
-  uploadImage(file) {
+  uploadImage(item: Item) {
     const randomId = Math.random().toString(36).substring(2);
     this.ref = this.dbStorage.ref('offerImages/' + this.uid + randomId);
-    this.ref.put(file).then(() => {
-      this.ref.getDownloadURL().subscribe((url) => {
-        this.itemImageUrl = url;
-      });
-    });
+    if (!this.file) console.error('File not set');
+    this.task = this.ref.put(this.file);
+    return this.task
+      .snapshotChanges()
+      .pipe(
+        finalize(() => {
+          this.ref.getDownloadURL().subscribe((res) => {
+            this.itemImageUrl = res;
+            this.itemRef
+              .add({ ...item, picture: this.itemImageUrl })
+              .then((res) => {
+                this.userService.updateOfferItemsInUser(item?.uid, res.id);
+              })
+              .catch((e) => console.error(e));
+          });
+        })
+      )
+      .subscribe();
   }
 
   getItemImageUrl() {
