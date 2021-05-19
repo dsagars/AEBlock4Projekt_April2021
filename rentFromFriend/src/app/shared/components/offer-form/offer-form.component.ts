@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { of, pipe } from 'rxjs';
 import { ModalService } from '../../services/modal.service';
-import { Item } from '../../modles/item.model';
+import { Item } from '../../models/item.model';
 import { ItemOfferService } from '../../services/offer.service';
 import { ItemSearchService } from '../../services/search.service';
 import { UserService } from '../../services/user.service';

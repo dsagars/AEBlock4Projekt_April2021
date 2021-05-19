@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserAddress } from 'src/app/shared/modles/user-address.model';
-import { User } from 'src/app/shared/modles/user.model';
+import { UserAddress } from 'src/app/shared/models/user-address.model';
+import { User } from 'src/app/shared/models/user.model';
 import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({

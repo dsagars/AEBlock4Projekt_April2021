@@ -8,6 +8,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { ModalComponent } from './components/modal/modal.component';
 import { OfferFormComponent } from './components/offer-form/offer-form.component';
+
+import { CarouselComponent } from './components/carousel/carousel.component';
+import { MatCarouselModule } from '@ngbmodule/material-carousel';
+
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
@@ -21,7 +25,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 // Besonders für Module die wir überall brauchen
 
 @NgModule({
-  declarations: [NavbarComponent, ModalComponent, OfferFormComponent],
+  declarations: [NavbarComponent, ModalComponent, OfferFormComponent, CarouselComponent],
   imports: [
     MatDividerModule,
     MatMenuModule,
@@ -32,6 +36,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatInputModule,
     MatSelectModule,
     ReactiveFormsModule,
+    MatCarouselModule.forRoot(),
+    MatCardModule,
     MatMenuModule,
     MatButtonModule,
     RouterModule,
@@ -51,6 +57,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    CarouselComponent, 
+    MatCardModule,  
     MatMenuModule,
     MatButtonModule,
     ReactiveFormsModule,

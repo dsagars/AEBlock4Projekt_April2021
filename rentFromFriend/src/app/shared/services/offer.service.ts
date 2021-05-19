@@ -3,7 +3,7 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from '@angular/fire/firestore';
-import { Item } from '../modles/item.model';
+import { Item } from '../models/item.model';
 import { UserService } from './user.service';
 import {
   AngularFireStorage,
@@ -34,7 +34,7 @@ export class ItemOfferService {
   uid = this.userService.getCurrrentUserUID;
 
   getAll(): AngularFirestoreCollection<Item> {
-    return this.itemRef;
+    return this.itemRef; 
   }
 
   // use this function to create a new offer and add the id to the current user
