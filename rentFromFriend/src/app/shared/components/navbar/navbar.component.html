@@ -1,13 +1,13 @@
 <mat-toolbar>
-
   <span class="logo"></span>
-
   <div class="search-group">
     <mat-form-field class="search-input">
       <mat-label>Suche ...</mat-label>
-      <input matInput #searchinput>
+      <input
+        matInput
+        #searchinput
+      >
     </mat-form-field>
-
     <mat-form-field class="search-dropdown">
       <mat-label>Kategorie</mat-label>
       <mat-select>
@@ -18,105 +18,89 @@
         <mat-option value="category_5">Kategorie 5</mat-option>
       </mat-select>
     </mat-form-field>
-    <!--{{searchinput.value}}-->
   </div>
-
   <div class="location-group">
     <mat-form-field class="location-input">
-      <mat-label>PLZ oder Ort ... </mat-label>
-      <input matInput #locationinput>
-    </mat-form-field>
-
-    <mat-form-field class="location-dropdown">
-      <mat-label>Umkreis</mat-label>
-      <mat-select>
-        <mat-option value="range_10">10 km</mat-option>
-        <mat-option value="range_20">20 km</mat-option>
-        <mat-option value="range_50">50 km</mat-option>
-        <mat-option value="range_100">100 km</mat-option>
-      </mat-select>
+      <mat-label>PLZ oder Ort ...</mat-label>
+      <input
+        matInput
+        #locationinput
+      >
     </mat-form-field>
   </div>
-
-  <button 
-  mat-raised-button 
-  aria-label="Suche starten" 
-  class="btn_search"
+  <button
+    mat-raised-button
+    aria-label="Suche starten"
+    class="btn_search"
   >
     <mat-icon>search</mat-icon>
   </button>
-
-  <button 
-  mat-raised-button 
-  aria-label="Anzeige aufgeben" 
-  class="btn_add" 
-  [matMenuTriggerFor]="menu"
+  <button
+    mat-raised-button
+    aria-label="Anzeige aufgeben"
+    class="btn_add"
+    [matMenuTriggerFor]="menu"
   >
     <mat-icon>add</mat-icon>
     Hinzufügen
   </button>
-
-
   <mat-menu #menu="matMenu">
-    <button 
-    mat-menu-item 
-    (click)="modalService.toggleShowModalOffer()"
+    <button
+      mat-menu-item
+      (click)="modalService.toggleShowModalOffer()"
     >
       Neues Angebot erstellen
     </button>
-
-    <button 
-    mat-menu-item 
-    (click)="modalService.toggleShowModalSearch()"
+    <button
+      mat-menu-item
+      (click)="modalService.toggleShowModalSearch()"
     >
       Neue Suche aufgeben
     </button>
   </mat-menu>
-
-
   <div class="account_border"></div>
   <div class="account_div">
-    <button 
-    mat-icon-button 
-    matTooltip="Account" 
-    [matMenuTriggerFor]="belowMenu"
+    <button
+      mat-icon-button
+      matTooltip="Account"
+      [matMenuTriggerFor]="belowMenu"
     >
       <mat-icon class="account_btn">perm_identity</mat-icon>
     </button>
-
-    <mat-menu #belowMenu="matMenu" yPosition="below">
-      <button 
-      mat-menu-item 
-      [routerLink]="'/account/profile'"
+    <mat-menu
+      #belowMenu="matMenu"
+      yPosition="below"
+    >
+      <button
+        mat-menu-item
+        [routerLink]="'/account/profile'"
       >
         Profile
       </button>
-
-      <button 
-      mat-menu-item 
-      [routerLink]="'/account/message'"
+      <button
+        mat-menu-item
+        [routerLink]="'/account/message'"
       >
         Meine Nachrichten
       </button>
-      <button 
-      mat-menu-item 
-      [routerLink]="'/account/manage-friend'"
+      <button
+        mat-menu-item
+        [routerLink]="'/account/manage-friend'"
       >
         Freunde Verwalten
       </button>
-      <button 
-      mat-menu-item 
-      [routerLink]="'/account/setting'"
+      <button
+        mat-menu-item
+        [routerLink]="'/account/setting'"
       >
         Einstellungen
       </button>
-      <button 
-      mat-menu-item 
-      (click)="logout()"
+      <button
+        mat-menu-item
+        (click)="logout()"
       >
         Ausloggen
       </button>
     </mat-menu>
   </div>
-
 </mat-toolbar>
