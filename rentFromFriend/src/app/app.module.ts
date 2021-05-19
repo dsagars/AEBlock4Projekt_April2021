@@ -20,7 +20,6 @@ import { LoginModule } from './login/login.module';
     BrowserAnimationsModule,
     AngularFireStorageModule,
     SharedModule,
-    BaseModule,
     LoginModule,
     // Added Firebase Module 
     AngularFireModule.initializeApp(environment.firebase)

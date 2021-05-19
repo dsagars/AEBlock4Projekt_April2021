@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { combineLatest, Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { combineLatest, Observable, Subject } from 'rxjs';
+import { filter, map, takeUntil, tap } from 'rxjs/operators';
 import { Message } from 'src/app/shared/models/message.model';
 import { User } from 'src/app/shared/models/user.model';
 import { MessageService } from 'src/app/shared/services/message.service';
@@ -11,8 +11,8 @@ import { UserService } from 'src/app/shared/services/user.service';
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.scss']
 })
-export class MessageComponent implements OnInit {
-
+export class MessageComponent implements OnInit, OnDestroy {
+  destroyed$ = new Subject();
   public messages$: Observable<Message[]>;
   text = '';
   public contacts$: Observable<User[]>;
@@ -21,7 +21,11 @@ export class MessageComponent implements OnInit {
   userId: string;
   constructor(
     private messageService: MessageService,
-    private userService: UserService) { }
+    private userService: UserService) {
+    // fetch all messages of user for the first time and fetch sender and reciever information only once
+    this.messageService.getMessagesOfUser().pipe(tap(messages => this.messageService.getUserInformationOfMessages(messages)),
+      takeUntil(this.destroyed$)).subscribe();
+  }
 
   ngOnInit(): void {
     this.userId = this.userService.getCurrrentUserUID();
@@ -38,6 +42,11 @@ export class MessageComponent implements OnInit {
           .filter(message => (message.recieverId === selectedContact.id || message.senderId === selectedContact.id));
       }
       ));
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
   }
 
   send(recieverId: string): void {

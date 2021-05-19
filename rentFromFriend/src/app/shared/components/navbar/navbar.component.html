@@ -1,5 +1,8 @@
 <mat-toolbar>
-  <span class="logo"></span>
+  <span
+    class="logo"
+    [routerLink]="'/base'"
+  ></span>
   <div class="search-group">
     <mat-form-field class="search-input">
       <mat-label>Suche ...</mat-label>
@@ -73,25 +76,31 @@
     >
       <button
         mat-menu-item
-        [routerLink]="'/account/profile'"
+        [routerLink]="'account/profile'"
       >
         Profile
       </button>
       <button
         mat-menu-item
-        [routerLink]="'/account/message'"
+        [routerLink]="'account/message'"
       >
         Meine Nachrichten
       </button>
       <button
         mat-menu-item
-        [routerLink]="'/account/manage-friend'"
+        [routerLink]="'account/offer-search'"
+      >
+        Angebote und Suche Verwalten
+      </button>
+      <button
+        mat-menu-item
+        [routerLink]="'account/manage-friend'"
       >
         Freunde Verwalten
       </button>
       <button
         mat-menu-item
-        [routerLink]="'/account/setting'"
+        [routerLink]="'account/setting'"
       >
         Einstellungen
       </button>

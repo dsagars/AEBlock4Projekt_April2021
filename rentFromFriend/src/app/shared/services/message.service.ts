@@ -59,10 +59,7 @@ export class MessageService {
   constructor(
     private db: AngularFirestore,
     private userService: UserService
-  ) {
-    // fetch all messages of user for the first time and fetch sender and reciever information only once
-    this.getMessagesOfUser().pipe(tap(messages => this.getUserInformationOfMessages(messages))).subscribe();
-  }
+  ) {}
   // this function will return an Observable<Message[]> with all messages of user
   getMessagesOfUser(): Observable<any> {
     return this.db.collection('users')
