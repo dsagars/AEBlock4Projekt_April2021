@@ -29,7 +29,7 @@ export class MessageService {
   // related contacts of messages
   private contactsSubject$ = new BehaviorSubject<User[]>([]);
   public contacts$ = this.contactsSubject$.asObservable().pipe(map(contacts => contacts
-    .filter(contact => contact.id !== '7kw4jZTmGrTF39ISRt52paSiSpL2'))
+    .filter(contact => contact.id !== this.userService.getCurrrentUserUID()))
   );
   // get the current value of contacts
   get contacts(): User[] {
@@ -116,5 +116,28 @@ export class MessageService {
   // set the selected contact
   setSelectedContact(contact: User): void {
     this.selectedContact = contact;
+  }
+
+  createContact(reciever: User): Promise<any> {
+    if (this.contacts.find(contact => contact.id === reciever.id)) {
+      this.setSelectedContact(reciever);
+      return of(true).toPromise();
+    }
+    return Promise.all([
+      this.db.collection<User>('users').doc(this.userService.getCurrrentUserUID()).collection<Message>('messages').doc().set({
+        recieverId: reciever.id,
+        senderId: this.userService.getCurrrentUserUID(),
+        date: new Date().toISOString(),
+        text: 'Hello'
+      }),
+      this.db.collection<User>('users').doc(reciever.id).collection<Message>('messages').doc().set({
+        recieverId: reciever.id,
+        senderId: this.userService.getCurrrentUserUID(),
+        date: new Date().toISOString(),
+        text: 'Hello'
+      })
+    ]).then(() => this.setSelectedContact(reciever))
+
+
   }
 }
