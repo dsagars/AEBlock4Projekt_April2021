@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FirebaseService } from '../../services/firebase.service';
 import { ModalService } from '../../services/modal.service';
-import { SidenavService } from '../../services/sidenav.service';
 
 
 @Component({
@@ -12,32 +12,11 @@ import { SidenavService } from '../../services/sidenav.service';
 export class NavbarComponent implements OnInit {
   constructor(
     public modalService: ModalService,
-    private router: Router,
-    private sidenavService: SidenavService) { }
+    private firebaseService: FirebaseService) { }
 
   ngOnInit(): void { }
 
-  openSidenav() {
-    this.sidenavService.open();
-  }
-
-  navigateToProfile() {
-    this.router.navigate(['account/profile']);
-    this.openSidenav();
-  }
-
-  navigateToMessage() {
-    this.router.navigate(['account/message']);
-    this.openSidenav();
-  }
-
-  navigateToManageFriend() {
-    this.router.navigate(['account/manage-friend']);
-    this.openSidenav();
-  }
-
-  navigateToSetting() {
-    this.router.navigate(['account/setting']);
-    this.openSidenav();
+  logout(): void {
+    this.firebaseService.logout();
   }
 }

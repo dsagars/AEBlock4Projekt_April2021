@@ -3,7 +3,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { BrowserModule } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +21,7 @@ import { UserDetailsMissingComponent } from './login/user-details-missing/user-d
     AppRoutingModule,
     AngularFireAuthModule,
     BrowserAnimationsModule,
+    AngularFireStorageModule,
     SharedModule,
     BaseModule,
     // Added Firebase Module 

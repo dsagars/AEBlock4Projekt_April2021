@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 // verschiedenen Module die wir benutzen wollen, importerien wir hier herein, um sie danach überall verfügbar zu haben
 // Besonders für Module die wir überall brauchen
@@ -37,6 +38,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatCardModule,
     MatTabsModule,
     FormsModule,
+    MatSnackBarModule,
   ],
   exports: [
     MatDividerModule,
@@ -56,6 +58,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatCardModule,
     MatTabsModule,
     FormsModule,
+    MatSnackBarModule
   ],
 })
 export class SharedModule {}

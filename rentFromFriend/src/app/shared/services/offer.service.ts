@@ -3,7 +3,7 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from '@angular/fire/firestore';
-import { Item } from '../modles/product.model';
+import { Item } from '../modles/item.model';
 import { UserService } from './user.service';
 import {
   AngularFireStorage,
@@ -31,15 +31,17 @@ export class ItemOfferService {
     this.userRef = db.collection('/users');
   }
 
-  uid = this.userService.getUserUID();
+  uid = this.userService.getCurrrentUserUID;
 
   getAll(): AngularFirestoreCollection<Item> {
     return this.itemRef;
   }
 
-  //use this function to create a new offer and add the id to the current user
+  // use this function to create a new offer and add the id to the current user
   create(item: Item) {
     var itemId;
+    const uid = this.userService.getCurrrentUserUID();
+
     this.itemRef
       .add({ ...item, picture: this.itemImageUrl })
       .then((res) => {
