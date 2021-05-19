@@ -1,13 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { ModalService } from '../../services/modal.service';
 import { Item } from '../../models/item.model';
 import { ItemOfferService } from '../../services/offer.service';
 import { ItemSearchService } from '../../services/search.service';
 import { UserService } from '../../services/user.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { User } from '../../modles/user.model';
-import { UserAddress } from '../../modles/user-address.model';
+import { User } from '../../models/user.model';
+import { UserAddress } from '../../models/user-address.model';
 
 @Component({
   selector: 'app-offer-form',

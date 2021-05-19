@@ -31,10 +31,12 @@ export class ItemOfferService {
     this.userRef = db.collection('/users');
   }
 
+  
+
   uid = this.userService.getCurrrentUserUID;
 
   getAll(): AngularFirestoreCollection<Item> {
-    return this.itemRef; 
+    return this.itemRef;
   }
 
   // use this function to create a new offer and add the id to the current user

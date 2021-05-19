@@ -1,5 +1,9 @@
+:host {
+  z-index: 10000;
+}
+
 .background {
-  position: fixed;
+  position: absolute;
   left: 0;
   top: 0;
   height: 100%;
