@@ -18,7 +18,7 @@ export class OfferFormComponent implements OnInit {
     private offerService: ItemOfferService,
     private userService: UserService,
     private searchService: ItemSearchService
-  ) {}
+  ) { }
 
   item: Item;
   reactiveForm: FormGroup;
@@ -26,7 +26,7 @@ export class OfferFormComponent implements OnInit {
   @Input()
   containsImage: boolean;
   @Input()
-  type: 'offer' | 'form';
+  type: 'offer' | 'search';
 
   ngOnInit(): void {
     this.reactiveForm = this.formBuilder.group({
