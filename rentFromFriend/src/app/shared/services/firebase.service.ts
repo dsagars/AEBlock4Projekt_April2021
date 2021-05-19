@@ -14,8 +14,9 @@ export class FirebaseService {
     public firebaseAuth: AngularFireAuth,
     private db: AngularFirestore,
     private router: Router,
-    private notifier: NotifierService
-  ) {}
+    private notifier: NotifierService,
+    private userService: UserService
+  ) { }
 
   async signin(email: string, password: string) {
     await this.firebaseAuth
@@ -26,7 +27,7 @@ export class FirebaseService {
           localStorage.setItem('user', JSON.stringify(res.user));
         } else {
           this.notifier.showForFiveSeconds('Bitte bestätigen Sie Ihre E-Mail-Adresse, um fortzufahren! Vergessen Sie nicht' +
-          ' Ihren Spam-Ordner zu überprüfen.', 'Ok');
+            ' Ihren Spam-Ordner zu überprüfen.', 'Ok');
           this.router.navigate(['/email-verification']);
         }
       })
@@ -133,12 +134,13 @@ export class FirebaseService {
   async resetPassword(email: string) {
     return this.firebaseAuth
       .sendPasswordResetEmail(email)
-      .then(() => {
+      .then((value) => {
+        console.log(value);
         // Email for password reset sent.
         this.notifier.showBasicAndNavigateToLogin(
           'Wir haben Ihnen ein E-Mail mit dem Link für das neue Passwort an: ' +
-            email +
-            ' geschickt. Bitte im Spam folder auch schauen',
+          email +
+          ' geschickt. Bitte im Spam folder auch schauen',
           'Ok'
         );
       })
@@ -147,9 +149,9 @@ export class FirebaseService {
 
         this.notifier.showBasicAndNavigateToLogin(
           'Wir haben versucht Ihnen ein E-Mail mit dem Link für das neue Passwort an: ' +
-            email +
-            ' zu senden. ' +
-            'Ein Fehler ist aufgetreten.Bitte versuchen Sie es später nochmal',
+          email +
+          ' zu senden. ' +
+          'Ein Fehler ist aufgetreten.Bitte versuchen Sie es später nochmal',
           'Ok'
         );
       });
@@ -172,11 +174,11 @@ export class FirebaseService {
   logout() {
     this.firebaseAuth.signOut();
     localStorage.removeItem('user');
-    this.router.navigate(['/login']);
+    window.location.reload();
+
   }
 
   public isLoggedIn(): boolean {
-    console.log('hoho');
     return !!localStorage.getItem('user');
   }
 }
