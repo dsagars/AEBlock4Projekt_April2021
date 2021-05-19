@@ -1,12 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { of } from 'rxjs';
+import { of, pipe } from 'rxjs';
 import { ModalService } from '../../services/modal.service';
 import { Item } from '../../modles/item.model';
 import { ItemOfferService } from '../../services/offer.service';
 import { ItemSearchService } from '../../services/search.service';
 import { UserService } from '../../services/user.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { User } from '../../modles/user.model';
+import { UserAddress } from '../../modles/user-address.model';
 
 @Component({
   selector: 'app-offer-form',
@@ -27,6 +29,8 @@ export class OfferFormComponent implements OnInit {
   imagePreview;
   reactiveForm: FormGroup;
   imgUrl;
+  currentUser: User;
+  currentUserAdress: UserAddress;
 
   @Input()
   containsImage: boolean;
@@ -45,9 +49,16 @@ export class OfferFormComponent implements OnInit {
       price: [],
       categorie: [],
     });
-
-    // const currentUser = this.userService.getUser();
-    //console.log(currentUser);
+    this.userService.getUserFromDB().subscribe((usr) => {
+      this.currentUser = { ...usr };
+      if (!usr.addressId) return;
+      this.userService
+        .getCurrentUserAddress(usr.addressId)
+        .subscribe((addr) => {
+          this.currentUserAdress = { ...addr };
+          console.log(this.currentUserAdress);
+        });
+    });
   }
 
   handleSubmit() {

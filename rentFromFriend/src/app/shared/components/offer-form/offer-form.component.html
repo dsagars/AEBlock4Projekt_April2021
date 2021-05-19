@@ -63,21 +63,39 @@
   <div class="row space">
     <mat-form-field class="example-full-width">
       <mat-label>Vorname</mat-label>
-      <input matInput formControlName="fistname" />
+      <input
+        matInput
+        formControlName="fistname"
+        [(ngModel)]="currentUser.firstName"
+      />
     </mat-form-field>
     <mat-form-field class="example-full-width">
       <mat-label>Nachname</mat-label>
-      <input matInput formControlName="lastname" />
+      <input
+        matInput
+        formControlName="lastname"
+        [(ngModel)]="currentUser.lastName"
+      />
     </mat-form-field>
   </div>
   <div class="row space">
     <mat-form-field class="example-full-width">
       <mat-label>Stadt</mat-label>
-      <input matInput placeholder="Hamburg" formControlName="city" />
+      <input
+        matInput
+        placeholder="Hamburg"
+        formControlName="city"
+        [(ngModel)]="currentUserAdress.city"
+      />
     </mat-form-field>
     <mat-form-field class="example-full-width">
       <mat-label>Stadtteil</mat-label>
-      <input matInput placeholder="St. Pauli" formControlName="discrtict" />
+      <input
+        matInput
+        placeholder="St. Pauli"
+        formControlName="discrtict"
+        [(ngModel)]="currentUserAdress.city"
+      />
     </mat-form-field>
     <mat-form-field class="example-full-width">
       <mat-label>Straße, Hausnummer, Plz</mat-label>
@@ -85,6 +103,7 @@
         matInput
         placeholder="Beispielstraße 2, 22767"
         formControlName="address"
+        [(ngModel)]="currentUserAdress.street"
       />
     </mat-form-field>
   </div>
