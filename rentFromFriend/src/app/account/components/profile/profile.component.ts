@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { take, takeUntil } from 'rxjs/operators';
 import { UserAddress } from 'src/app/shared/models/user-address.model';
 import { User } from 'src/app/shared/models/user.model';
 import { UserService } from 'src/app/shared/services/user.service';
@@ -9,7 +11,8 @@ import { UserService } from 'src/app/shared/services/user.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
+  destroyed$ = new Subject();
   user: User;
   userAddress: UserAddress;
   userInfoForm: FormGroup;
@@ -17,20 +20,28 @@ export class ProfileComponent implements OnInit {
   constructor(
     public userService: UserService,
     private formBuilder: FormBuilder
-  ) {}
+  ) {
+    this.userService.getUserFromDB().pipe(takeUntil(this.destroyed$)).subscribe();
+  }
 
   ngOnInit(): void {
-    this.userService.userFromDB$.subscribe(user => {
+    this.userService.userFromDB$.pipe(takeUntil(this.destroyed$)).subscribe(user => {
       this.user = user;
-      console.log(this.user);
       this.initUserInfoForm();
       this.inituserAddressForm();
-      this.userService.getUserImage();
-      this.userService.getCurrentUserAddress(this.user?.addressId).subscribe(userAddress => {
-        this.userAddress = userAddress;
-        this.inituserAddressForm();
-      });
+      if (this.user?.addressId) {
+        this.userService.getCurrentUserAddress(this.user?.addressId).pipe(take(1), takeUntil(this.destroyed$)).subscribe(userAddress => {
+          this.userAddress = userAddress;
+          this.inituserAddressForm();
+        });
+      }
     });
+    this.userService.getUserImage();
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
   }
 
   initUserInfoForm(): void {
@@ -38,7 +49,7 @@ export class ProfileComponent implements OnInit {
       id: [this.user?.id],
       firstName: [this.user?.firstName,],
       lastName: [this.user?.lastName,],
-      email: [this.user?.email, [Validators.email]],
+      email: [{ value: this.user?.email, disabled: true }, [Validators.email]],
       addressId: [this.user?.addressId],
       phone: [this.user?.phone, [Validators.pattern('[0-9 ]{11}')]],
     });

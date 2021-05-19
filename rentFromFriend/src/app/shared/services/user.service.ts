@@ -12,7 +12,6 @@ import { UserAddress } from '../models/user-address.model';
 })
 export class UserService {
   userImage: Observable<string>;
-  user = this.getCurrentUser();
   ref: AngularFireStorageReference;
   task: AngularFireUploadTask;
   file: File;
@@ -38,22 +37,22 @@ export class UserService {
   set userAddress(userAddress: UserAddress) {
     this.userAddressSubject$.next(userAddress);
   }
-
+  defaultImage;
   constructor(private afStorage: AngularFireStorage, private db: AngularFirestore) {
     this.userRef = db.collection(this.userDBPath);
-    this.getUserFromDB().subscribe();
+    this.defaultImage = this.afStorage.ref('avatar.png');
   }
 
   getUserImage() {
-    const ref = this.afStorage.ref('useresImages/' + this.user.uid);
+    const ref = this.afStorage.ref('useresImages/' + this.getCurrrentUserUID());
     ref.getDownloadURL().subscribe(result => {
       if (result) {
         this.userImage = ref.getDownloadURL();
       }
     }, error => {
-      const defaultImage = this.afStorage.ref('avatar.png');
-      this.userImage = defaultImage.getDownloadURL();
-    });
+      this.userImage = this.defaultImage.getDownloadURL()
+    }
+    );
   }
 
   preview(files) {
@@ -75,7 +74,7 @@ export class UserService {
   }
 
   uploadImage() {
-    const id = this.user.uid;
+    const id = this.getCurrrentUserUID();
     this.ref = this.afStorage.ref('useresImages/' + id);
     this.task = this.ref.put(this.file);
     this.task.snapshotChanges().pipe(
@@ -98,8 +97,10 @@ export class UserService {
   }
 
   getCurrentUserAddress(addressId: string): Observable<UserAddress> {
-    return this.db.collection<UserAddress>('addresses').doc(addressId)
-      .valueChanges().pipe(tap(userAddress => this.userAddress = userAddress));
+    if (addressId) {
+      return this.db.collection<UserAddress>('addresses').doc(addressId)
+        .valueChanges().pipe(tap(userAddress => this.userAddress = userAddress));
+    }
   }
 
   updateUserData(userData: User, addressData: UserAddress) {
