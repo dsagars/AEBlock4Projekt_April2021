@@ -40,6 +40,8 @@
               </mat-error>
             </mat-form-field>
           </form>
+
+          <button mat-flat-button  (click)="onPasswordReset()">Passwort vergessen?</button>
           <button
             (click)="onSignin(email.value, password.value)"
             mat-button
@@ -97,7 +99,7 @@
               <input
                 type="password"
                 matInput
-                placeholder="Confirm Password"
+                placeholder="Passwort bestätigen"
                 required
                 #confirm_passwordSignUp
                 formControlName="signupPasswordAgainControl"
