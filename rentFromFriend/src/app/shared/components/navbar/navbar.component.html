@@ -1,35 +1,50 @@
 <mat-toolbar>
-  <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"> </button> -->
-  <span class="logo"></span>
+  <span
+    class="logo"
+    [routerLink]="'/base'"
+  ></span>
   <div class="search-group">
-    <mat-form-field
-      appearance="fill"
-      class="search"
-    >
-      <mat-label>Input</mat-label>
+    <mat-form-field class="search-input">
+      <mat-label>Suche ...</mat-label>
       <input
         matInput
-        #input
+        #searchinput
       >
     </mat-form-field>
-    <mat-form-field
-      appearance="fill"
-      class="dropdown"
-    >
-      <mat-label>Select</mat-label>
+    <mat-form-field class="search-dropdown">
+      <mat-label>Kategorie</mat-label>
       <mat-select>
-        <mat-option value="one">First option</mat-option>
-        <mat-option value="two">Second option</mat-option>
+        <mat-option value="category_1">Kategorie 1</mat-option>
+        <mat-option value="category_2">Kategorie 2</mat-option>
+        <mat-option value="category_3">Kategorie 3</mat-option>
+        <mat-option value="category_4">Kategorie 4</mat-option>
+        <mat-option value="category_5">Kategorie 5</mat-option>
       </mat-select>
     </mat-form-field>
-    {{ input.value }}
   </div>
-  <span class="example-spacer"></span>
+  <div class="location-group">
+    <mat-form-field class="location-input">
+      <mat-label>PLZ oder Ort ...</mat-label>
+      <input
+        matInput
+        #locationinput
+      >
+    </mat-form-field>
+  </div>
   <button
-    mat-button
+    mat-raised-button
+    aria-label="Suche starten"
+    class="btn_search"
+  >
+    <mat-icon>search</mat-icon>
+  </button>
+  <button
+    mat-raised-button
+    aria-label="Anzeige aufgeben"
+    class="btn_add"
     [matMenuTriggerFor]="menu"
   >
-    <mat-icon>add_box</mat-icon>
+    <mat-icon>add</mat-icon>
     Hinzufügen
   </button>
   <mat-menu #menu="matMenu">
@@ -46,13 +61,14 @@
       Neue Suche aufgeben
     </button>
   </mat-menu>
-  <div class="account-button">
+  <div class="account_border"></div>
+  <div class="account_div">
     <button
       mat-icon-button
       matTooltip="Account"
       [matMenuTriggerFor]="belowMenu"
     >
-      <mat-icon>perm_identity</mat-icon>
+      <mat-icon class="account_btn">perm_identity</mat-icon>
     </button>
     <mat-menu
       #belowMenu="matMenu"
@@ -60,27 +76,33 @@
     >
       <button
         mat-menu-item
-        [routerLink]="'/account/profile'"
+        [routerLink]="'account/profile'"
       >
         Profile
       </button>
       <button
         mat-menu-item
-        [routerLink]="'/account/message'"
+        [routerLink]="'account/message'"
       >
         Meine Nachrichten
       </button>
       <button
         mat-menu-item
-        [routerLink]="'/account/manage-friend'"
+        [routerLink]="'account/offer-search'"
+      >
+        Angebote und Suche Verwalten
+      </button>
+      <button
+        mat-menu-item
+        [routerLink]="'account/manage-friend'"
       >
         Freunde Verwalten
       </button>
       <button
         mat-menu-item
-        [routerLink]="'/account/setting'"
+        [routerLink]="'account/setting'"
       >
-        Einstelliungen
+        Einstellungen
       </button>
       <button
         mat-menu-item

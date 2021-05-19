@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/shared/models/user.model';
+import { FriendService } from 'src/app/shared/services/friend.service';
+import { MessageService } from 'src/app/shared/services/message.service';
 
 @Component({
   selector: 'app-manage-friend',
@@ -6,10 +11,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./manage-friend.component.scss']
 })
 export class ManageFriendComponent implements OnInit {
+  friends$: Observable<User[]>;
 
-  constructor() { }
+  constructor(
+    private messageService: MessageService,
+    private router: Router,
+    private friendService: FriendService
+  ) {
 
-  ngOnInit(): void {
   }
 
+  ngOnInit(): void {
+    this.friends$ = this.friendService.friends$;
+  }
+
+  sendMessage(reciever: User): void {
+    this.messageService.createContact(reciever).then(value => {
+      this.router.navigate(['account/message']);
+    });
+  }
+
+  deleteFriend(friendId: string) {
+    this.friendService.deleteFriend(friendId);
+  }
 }

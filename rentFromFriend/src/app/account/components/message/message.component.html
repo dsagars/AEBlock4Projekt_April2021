@@ -1,7 +1,7 @@
 <mat-drawer-container
   class="example-container"
   autosize
-  *ngIf="contacts$ | async"
+  *ngIf="(contacts$ | async).length > 0"
 >
   <mat-drawer
     #drawer
@@ -19,7 +19,7 @@
         [src]="contact.photoUrl ? contact.photoUrl : '../../../../assets/img/avatar.png'"
         class="user-image"
       >
-      <p class="user-name">{{contact.name}}</p>
+      <p class="user-name">{{contact.firstName}}</p>
     </div>
   </mat-drawer>
   <div

@@ -4,6 +4,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { NotifierService } from './notifier.service';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,8 @@ export class FirebaseService {
     private db: AngularFirestore,
     private router: Router,
     private notifier: NotifierService,
-  ) {}
+    private userService: UserService
+  ) { }
 
   async signin(email: string, password: string) {
     await this.firebaseAuth
@@ -24,21 +26,30 @@ export class FirebaseService {
         if (isUserVerified) {
           localStorage.setItem('user', JSON.stringify(res.user));
         } else {
+          this.notifier.showForFiveSeconds('Bitte bestätigen Sie Ihre E-Mail-Adresse, um fortzufahren! Vergessen Sie nicht' +
+            ' Ihren Spam-Ordner zu überprüfen.', 'Ok');
           this.router.navigate(['/email-verification']);
         }
-      }).catch((error: firebase.auth.Error) => {
+      })
+      .catch((error: firebase.auth.Error) => {
         let authError = error;
         let errorMessage = authError.message;
         let errorCode = authError.code;
-          if (errorCode === 'auth/wrong-password') {
-            this.notifier.showBasic('Passwort ist falsch! Bitte versuchen Sie es erneut.', 'Ok')
-          } else if (errorCode === 'auth/user-not-found') {
-            this.notifier.showAndRefreshPageAfterDismissal('Wir haben Sie nicht gefunden! Bitte prüfen Sie Ihre E-Mail und versuchen Sie es erneut.','Ok');
-          } else {
-            this.notifier.showAndRefreshPageAfterDismissal(errorMessage, 'Ok')
-          }
+        if (errorCode === 'auth/wrong-password') {
+          this.notifier.showBasic(
+            'Passwort ist falsch! Bitte versuchen Sie es erneut.',
+            'Ok'
+          );
+        } else if (errorCode === 'auth/user-not-found') {
+          this.notifier.showAndRefreshPageAfterDismissal(
+            'Wir haben Sie nicht gefunden! Bitte prüfen Sie Ihre E-Mail und versuchen Sie es erneut.',
+            'Ok'
+          );
+        } else {
+          this.notifier.showAndRefreshPageAfterDismissal(errorMessage, 'Ok');
+        }
         console.log(error);
-      });;
+      });
   }
 
   async loginWithGoogle() {
@@ -105,11 +116,49 @@ export class FirebaseService {
         let errorMessage = authError.message;
         if (errorMessage === 'auth/weak-password') {
           this.notifier.showBasic('Das Passwort ist zu schwach.', 'Ok');
+        } else if (
+          errorMessage ===
+          'The email address is already in use by another account.'
+        ) {
+          this.notifier.showAndRefreshPageAfterDismissal(
+            'Die E-Mail-Adresse wird bereits von einem anderen Konto verwendet.',
+            'Ok'
+          );
         } else {
           this.notifier.showBasic(errorMessage, 'Ok');
         }
         console.log(error);
       });
+  }
+
+  async resetPassword(email: string) {
+    return this.firebaseAuth
+      .sendPasswordResetEmail(email)
+      .then((value) => {
+        console.log(value);
+        // Email for password reset sent.
+        this.notifier.showBasicAndNavigateToLogin(
+          'Wir haben Ihnen ein E-Mail mit dem Link für das neue Passwort an: ' +
+          email +
+          ' geschickt. Bitte im Spam folder auch schauen',
+          'Ok'
+        );
+      })
+      .catch((error) => {
+        console.log('error while sending reset password: ' + error.message);
+
+        this.notifier.showBasicAndNavigateToLogin(
+          'Wir haben versucht Ihnen ein E-Mail mit dem Link für das neue Passwort an: ' +
+          email +
+          ' zu senden. ' +
+          'Ein Fehler ist aufgetreten.Bitte versuchen Sie es später nochmal',
+          'Ok'
+        );
+      });
+  }
+
+  getAuth() {
+    return this.firebaseAuth;
   }
 
   async signupUserAddon(firstName: string, lastName: string, phone: string) {
@@ -125,11 +174,11 @@ export class FirebaseService {
   logout() {
     this.firebaseAuth.signOut();
     localStorage.removeItem('user');
-    this.router.navigate(['/login']);
+    window.location.reload();
+
   }
 
   public isLoggedIn(): boolean {
-    console.log('hoho');
     return !!localStorage.getItem('user');
   }
 }
