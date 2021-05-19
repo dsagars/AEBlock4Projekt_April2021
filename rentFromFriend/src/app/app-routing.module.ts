@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BaseComponent } from './base/base.component';
 import { EmailNotVerifiedComponent } from './login/email-not-verified/email-not-verified.component';
 import { ConfirmNewPasswordComponent } from './login/forgot-password/confirm-new-password/confirm-new-password.component';
 import { ForgotPasswordComponent } from './login/forgot-password/forgot-password.component';
@@ -16,19 +15,14 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'account',
-    loadChildren: () => import('./account/account.module').then(m => m.AccountModule),
-    canActivateChild: [RouteGuard]
-  },
-  {
     path: 'login',
     component: LoginComponent,
     canActivate: [LoginGuard]
   },
   {
     path: 'base',
-    component: BaseComponent,
-    canActivate: [RouteGuard]
+    loadChildren: () => import('./base/base.module').then(m => m.BaseModule),
+    canActivateChild: [RouteGuard]
   },
   {
     path: 'email-verification',
@@ -36,16 +30,21 @@ const routes: Routes = [
   },
   {
     path: 'user-details-addon',
-    component: UserDetailsMissingComponent    
+    component: UserDetailsMissingComponent
   },
   {
     path: 'password-reset',
-    component: ForgotPasswordComponent    
-  },  
+    component: ForgotPasswordComponent
+  },
   {
     path: 'confirm-new-password',
-    component: ConfirmNewPasswordComponent    
-  },  
+    component: ConfirmNewPasswordComponent
+  },
+  {
+    path: '**',
+    redirectTo: 'base',
+    pathMatch: 'full'
+  },
 ];
 
 @NgModule({
