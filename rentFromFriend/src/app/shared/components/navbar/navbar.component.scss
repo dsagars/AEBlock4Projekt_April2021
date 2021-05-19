@@ -1,16 +1,55 @@
-.example-spacer {
-    flex: 1 1 auto;
-  }
+mat-toolbar {
+    height: 75px;
+    padding: 10px;
+}
 
-  .logo {
-      background-image: url('../../../../assets/img/rff_logo.png');
-      background-size: contain;
-      background-repeat: no-repeat;
-      height: 100%;
-      width: 200px;
-      margin: 10px;
-  }
+.mat-raised-button {
+    color: #FFF;
+    background-color: #E88000;
+}
 
-  mat-toolbar {
-      padding: 10px;
-  }
+.logo {
+    background-image: url('../../../../assets/img/rff_logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 200px;
+    margin: 10px;
+}
+
+// both the search-input & dropwdown and location-input & dropdown
+.search-group, .location-group  {
+    font-size: 15px;
+    margin-top: auto;
+    padding: 0 15px;
+}
+
+// search btn with lens
+.btn_search {
+    margin: 0 3rem;
+}
+
+// add btn with cross
+.btn_add {
+    position: absolute;
+    right: 10rem;
+}
+
+// vertical line on the left of account btn
+.account_border {
+    position: absolute;
+    right: 6rem;
+    border-left: solid black 2px;
+    height: 75px;
+}
+
+// account btn container
+.account_div {
+    position: absolute;
+    right: 2.5rem;
+}
+
+// account-icon size
+.account_btn {
+    font-size: 40px !important;
+}

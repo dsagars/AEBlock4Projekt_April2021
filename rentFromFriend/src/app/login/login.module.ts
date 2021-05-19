@@ -18,6 +18,11 @@ import { ConfirmNewPasswordComponent } from './forgot-password/confirm-new-passw
   imports: [
     CommonModule,
     SharedModule
+  ],
+  exports: [
+    LoginComponent,
+    EmailNotVerifiedComponent,
+    UserDetailsMissingComponent
   ]
 })
 export class LoginModule { }

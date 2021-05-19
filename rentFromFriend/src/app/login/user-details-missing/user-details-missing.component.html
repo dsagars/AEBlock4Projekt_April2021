@@ -1,9 +1,14 @@
 <div class="center-content">
   <mat-card class="example-card">
     <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
+      <div
+        mat-card-avatar
+        class="example-header-image"
+      ></div>
       <mat-card-title>Fast geschafft...</mat-card-title>
-      <mat-card-subtitle>Bitte fügen Sie Ihre ersten Profilinformationen hinzu</mat-card-subtitle>
+      <mat-card-subtitle>
+        Bitte fügen Sie Ihre ersten Profilinformationen hinzu
+      </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <!-- Put content for Sign up Tab -->
@@ -14,13 +19,14 @@
             type="text"
             matInput
             placeholder="First Name"
-            value=""
             required
             #firstNameSignUp
             formControlName="userAddonFirstNameControl"
-          />
+          >
           <mat-icon matSuffix>person</mat-icon>
-          <mat-error>Bitte geben Sie einen korrekten Vornamen ein</mat-error>
+          <mat-error>
+            Bitte geben Sie einen korrekten Vornamen ein
+          </mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width">
           <mat-label>Nachname</mat-label>
@@ -28,13 +34,14 @@
             type="text"
             matInput
             placeholder="Last Name"
-            value=""
             required
             #lastNameSignUp
             formControlName="signupLastNameControl"
-          />
+          >
           <mat-icon matSuffix>person</mat-icon>
-          <mat-error>Bitte geben Sie einen korrekten Nachnamen ein</mat-error>
+          <mat-error>
+            Bitte geben Sie einen korrekten Nachnamen ein
+          </mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width">
           <mat-label>Telefon #</mat-label>
@@ -45,11 +52,10 @@
             maxlength="12"
             matInput
             placeholder="Phone #"
-            value=""
             required
             #phoneSignUp
             formControlName="signupPhoneControl"
-          />
+          >
           <mat-icon matSuffix>phone</mat-icon>
           <mat-error>
             Bitte geben Sie eine korrekte Telefonnummer ein (Format:  017611111111)

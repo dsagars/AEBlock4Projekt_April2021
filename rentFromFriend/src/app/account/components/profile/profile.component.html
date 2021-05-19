@@ -61,7 +61,7 @@
     </mat-form-field>
   </div>
 </div>
-<div class="location" [formGroup]="userAddressForm">
+<div class="location" *ngIf="userAddressForm" [formGroup]="userAddressForm">
   <mat-form-field
     appearance="outline"
     class="margin-between-field"
