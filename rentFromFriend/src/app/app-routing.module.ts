@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EmailNotVerifiedComponent } from './login/email-not-verified/email-not-verified.component';
-import { ConfirmNewPasswordComponent } from './login/forgot-password/confirm-new-password/confirm-new-password.component';
+import { UserAuthManagementComponent } from './login/forgot-password/user-auth-management/user-auth-management.component';
 import { ForgotPasswordComponent } from './login/forgot-password/forgot-password.component';
 import { LoginComponent } from './login/login.component';
 import { UserDetailsMissingComponent } from './login/user-details-missing/user-details-missing.component';
@@ -12,43 +12,43 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'base',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'login',
     component: LoginComponent,
-    canActivate: [LoginGuard]
+    canActivate: [LoginGuard],
   },
   {
     path: 'base',
-    loadChildren: () => import('./base/base.module').then(m => m.BaseModule),
-    canActivateChild: [RouteGuard]
+    loadChildren: () => import('./base/base.module').then((m) => m.BaseModule),
+    canActivateChild: [RouteGuard],
   },
   {
     path: 'email-verification',
-    component: EmailNotVerifiedComponent
+    component: EmailNotVerifiedComponent,
   },
   {
     path: 'user-details-addon',
-    component: UserDetailsMissingComponent
+    component: UserDetailsMissingComponent,
   },
   {
     path: 'password-reset',
-    component: ForgotPasswordComponent
+    component: ForgotPasswordComponent,
   },
   {
-    path: 'confirm-new-password',
-    component: ConfirmNewPasswordComponent
+    path: 'user-auth-management',
+    component: UserAuthManagementComponent,
   },
   {
     path: '**',
     redirectTo: 'base',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

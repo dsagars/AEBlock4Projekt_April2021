@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ConfirmNewPasswordComponent } from './confirm-new-password.component';
+import { UserAuthManagementComponent } from './user-auth-management.component';
 
-describe('ConfirmNewPasswordComponent', () => {
-  let component: ConfirmNewPasswordComponent;
-  let fixture: ComponentFixture<ConfirmNewPasswordComponent>;
+describe('UserAuthManagementComponent', () => {
+  let component: UserAuthManagementComponent;
+  let fixture: ComponentFixture<UserAuthManagementComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ConfirmNewPasswordComponent ]
+      declarations: [ UserAuthManagementComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ConfirmNewPasswordComponent);
+    fixture = TestBed.createComponent(UserAuthManagementComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
