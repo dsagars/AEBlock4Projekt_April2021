@@ -81,7 +81,7 @@ export class LoginComponent implements OnInit {
     this.loginIfSuccesful();
   }
 
-  async onSigninWithGoogle(email: string, password: string) {
+  async onSigninWithGoogle() {
     await this.firebaseService.loginWithGoogle();
     this.loginIfSuccesful();
   }
