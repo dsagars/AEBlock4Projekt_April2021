@@ -25,6 +25,8 @@ export class FirebaseService {
         if (isUserVerified) {
           localStorage.setItem('user', JSON.stringify(res.user));
         } else {
+          this.notifier.showForFiveSeconds('Bitte bestätigen Sie Ihre E-Mail-Adresse, um fortzufahren! Vergessen Sie nicht' +
+          ' Ihren Spam-Ordner zu überprüfen.', 'Ok');
           this.router.navigate(['/email-verification']);
         }
       })
