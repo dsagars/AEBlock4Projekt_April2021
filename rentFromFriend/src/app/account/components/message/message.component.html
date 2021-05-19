@@ -29,7 +29,7 @@
     <div class="messages-container">
       <div
         class="message"
-        [class.my-message]="message.senderId === '7kw4jZTmGrTF39ISRt52paSiSpL2'"
+        [class.my-message]="message.senderId === userId"
         *ngFor="let message of filteredMessages$ | async"
       >
         {{ message.text }}
@@ -41,19 +41,21 @@
     </div>
     <mat-form-field>
       <mat-label>Send message</mat-label>
+      <ng-container *ngIf="(selectedContact$ | async)?.id as recieverid">
       <input
         [(ngModel)]="text"
-        (keyup.enter)="send()"
+        (keyup.enter)="send(recieverid)"
         matInput
       >
       <button
         class="btn btn-primary"
         [disabled]="!text"
-        (click)="send()"
+        (click)="send(recieverid)"
         matSuffix
       >
         <mat-icon>send</mat-icon>
       </button>
+    </ng-container>
     </mat-form-field>
   </div>
 </mat-drawer-container>
