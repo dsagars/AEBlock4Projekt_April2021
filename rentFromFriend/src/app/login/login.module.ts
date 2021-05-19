@@ -5,7 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 import { EmailNotVerifiedComponent } from './email-not-verified/email-not-verified.component';
 import { UserDetailsMissingComponent } from './user-details-missing/user-details-missing.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { ConfirmNewPasswordComponent } from './forgot-password/confirm-new-password/confirm-new-password.component';
+import { UserAuthManagementComponent } from './forgot-password/user-auth-management/user-auth-management.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +13,7 @@ import { ConfirmNewPasswordComponent } from './forgot-password/confirm-new-passw
     EmailNotVerifiedComponent,
     UserDetailsMissingComponent,
     ForgotPasswordComponent,
-    ConfirmNewPasswordComponent
+    UserAuthManagementComponent,
   ],
   imports: [
     CommonModule,
