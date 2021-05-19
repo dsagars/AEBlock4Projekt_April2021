@@ -34,7 +34,7 @@ export class OfferFormComponent implements OnInit {
   @Input()
   containsImage: boolean;
   @Input()
-  type: 'offer' | 'form';
+  type: 'offer' | 'search';
 
   ngOnInit(): void {
     this.reactiveForm = this.formBuilder.group({

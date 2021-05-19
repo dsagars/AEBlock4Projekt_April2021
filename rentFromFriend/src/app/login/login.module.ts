@@ -6,14 +6,15 @@ import { EmailNotVerifiedComponent } from './email-not-verified/email-not-verifi
 import { UserDetailsMissingComponent } from './user-details-missing/user-details-missing.component';
 
 @NgModule({
-  declarations: [
-    LoginComponent,
-    EmailNotVerifiedComponent,
-    UserDetailsMissingComponent
-  ],
+  declarations: [LoginComponent, EmailNotVerifiedComponent, UserDetailsMissingComponent],
   imports: [
     CommonModule,
     SharedModule
+  ],
+  exports: [
+    LoginComponent,
+    EmailNotVerifiedComponent,
+    UserDetailsMissingComponent
   ]
 })
 export class LoginModule { }
