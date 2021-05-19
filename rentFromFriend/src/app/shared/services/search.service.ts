@@ -3,7 +3,7 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from '@angular/fire/firestore';
-import { Item } from '../modles/item.model';
+import { Item } from '../models/item.model';
 import { UserService } from './user.service';
 
 @Injectable({

@@ -10,9 +10,9 @@ import { CustomValidationService } from '../shared/services/custom-validation.se
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  isSignedIn = false;
-  myFormLogin : FormGroup;
-  myFormSingUp : FormGroup;
+ // isSignedIn = false;
+  loginForm : FormGroup;
+  signUpForm : FormGroup;
 
   constructor(
     public firebaseService: FirebaseService,
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.myFormLogin = this.fb.group(
+    this.loginForm = this.fb.group(
       {
         loginEmailControl : ['',[
           Validators.required,
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
       }
     );
     
-    this.myFormSingUp = this.fb.group(
+    this.signUpForm = this.fb.group(
       {
         signupEmailControl : ['',[
           Validators.required,
@@ -69,14 +69,6 @@ export class LoginComponent implements OnInit {
         validator: this.customValidator.passwordMatchValidator("signupPasswordControl", "signupPasswordAgainControl")
       }
     );
-
-    if (localStorage.getItem('user') !== null) {
-      // set true if you want to save in browser. The user will be logged in automatically
-      // (if you do not see the signup/login form, set to false!)
-      this.isSignedIn = false;
-    } else {
-      this.isSignedIn = false;
-    }
   }
 
   async onSignup(email: string, password: string, firstName: string, lastName:string, phone: string) {
@@ -96,7 +88,7 @@ export class LoginComponent implements OnInit {
 
   loginIfSuccesful() {
     if (this.firebaseService.isLoggedIn) {
-      this.isSignedIn = true;
+    //  this.isSignedIn = true;
       this.router.navigate(['/base']);
     }
   }
