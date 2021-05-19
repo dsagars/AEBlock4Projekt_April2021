@@ -8,8 +8,6 @@ import { UserService } from '../../services/user.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { User } from '../../models/user.model';
 import { UserAddress } from '../../models/user-address.model';
-import { pipe } from 'rxjs';
-import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-offer-form',
@@ -40,6 +38,18 @@ export class OfferFormComponent implements OnInit {
   type: 'offer' | 'search';
 
   ngOnInit(): void {
+    this.reactiveForm = this.formBuilder.group({
+      title: [],
+      fistname: [],
+      lastname: [],
+      address: [],
+      city: [],
+      discrtict: [],
+      description: [],
+      price: [],
+      categorie: [],
+    });
+
     this.userService.getUserFromDB().subscribe((usr) => {
       this.currentUser = { ...usr };
       if (!usr.addressId) return;
@@ -47,8 +57,7 @@ export class OfferFormComponent implements OnInit {
         .getCurrentUserAddress(usr.addressId)
         .subscribe((addr) => {
           this.currentUserAdress = { ...addr };
-
-          this.reactiveForm = this.formBuilder.group({
+          this.reactiveForm.setValue({
             title: [],
             fistname: [this.currentUser?.firstName],
             lastname: [this.currentUser?.lastName],
@@ -59,6 +68,7 @@ export class OfferFormComponent implements OnInit {
             price: [],
             categorie: [],
           });
+          console.log('rdy');
         });
     });
   }
