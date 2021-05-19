@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { User } from 'src/app/shared/modles/user.model';
+import { User } from 'src/app/shared/models/user.model';
 import { FriendService } from 'src/app/shared/services/friend.service';
 import { MessageService } from 'src/app/shared/services/message.service';
 

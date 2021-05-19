@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { take, tap } from 'rxjs/operators';
-import { User } from '../modles/user.model';
+import { User } from '../models/user.model';
 import { UserService } from './user.service';
 
 @Injectable({
