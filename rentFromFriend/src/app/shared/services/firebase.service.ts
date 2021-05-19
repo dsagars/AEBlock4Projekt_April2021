@@ -4,6 +4,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { NotifierService } from './notifier.service';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -105,12 +106,42 @@ export class FirebaseService {
         let errorMessage = authError.message;
         if (errorMessage === 'auth/weak-password') {
           this.notifier.showBasic('Das Passwort ist zu schwach.', 'Ok');
+        } else if (errorMessage === 'The email address is already in use by another account.') {
+          this.notifier.showAndRefreshPageAfterDismissal('Die E-Mail-Adresse wird bereits von einem anderen Konto verwendet.', 'Ok');
         } else {
           this.notifier.showBasic(errorMessage, 'Ok');
         }
         console.log(error);
       });
   }
+
+  async resetPassword(email: string) {
+        return this.firebaseAuth.sendPasswordResetEmail(
+        email)
+        .then(function() {
+          // Email for password reset sent.
+          // this.notifier.showBasicAndNavigateToLogin(
+          //   'Wir haben Ihnen ein E-Mail mit dem Link für das neue Passwort an: ' + email + ' geschickt. Bitte im Spam folder auch schauen', 'Ok');
+
+          alert( 'Wir haben Ihnen ein E-Mail mit dem Link für das neue Passwort an: ' + email + ' geschickt. Bitte im Spam folder auch schauen');
+          this.router.navigate(['/login']);
+        })
+        .catch(function(error) {
+          console.log('error while sending reset password: ' + error.message);
+          
+          // this.notifier.showBasicAndNavigateToLogin(
+          //   'Wir haben versucht Ihnen ein E-Mail mit dem Link für das neue Passwort an: ' + email + ' zu senden. ' +
+          //   'Ein Fehler ist aufgetreten.Bitte versuchen Sie es später nochmal', 'Ok')
+
+          alert('Wir haben versucht Ihnen ein E-Mail mit dem Link für das neue Passwort an: ' + email + ' zu senden. ' +
+            'Ein Fehler ist aufgetreten.Bitte versuchen Sie es später nochmal');
+          this.router.navigate(['/login']);
+        });
+  }
+
+  getAuth() { 
+    return this.firebaseAuth; 
+  } 
 
   async signupUserAddon(firstName: string, lastName: string, phone: string) {
     // Here we get the user and update fields
