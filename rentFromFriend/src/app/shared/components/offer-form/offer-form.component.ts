@@ -68,6 +68,8 @@ export class OfferFormComponent implements OnInit {
     const blobUrl = URL.createObjectURL(file);
 
     this.imgUrl = this.sanitizer.bypassSecurityTrustUrl(blobUrl);
+
+    this.close();
   }
 
   close() {
