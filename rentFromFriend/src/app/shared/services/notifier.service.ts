@@ -19,6 +19,7 @@ export class NotifierService {
     this.snackBar.open(displayMessage, displayButtonText, {
       horizontalPosition: 'center',
       verticalPosition: 'top',
+      panelClass: ["custom-snackbar-style"]
     });
   }
 
@@ -26,6 +27,7 @@ export class NotifierService {
     let snackBar = this.snackBar.open(displayMessage, displayButtonText, {
       horizontalPosition: 'center',
       verticalPosition: 'top',
+      panelClass: ["custom-snackbar-style"]
     });
     snackBar.afterDismissed().subscribe(() => {
       this.router.navigate(['/login']);
@@ -37,6 +39,7 @@ export class NotifierService {
       duration: 5000,
       horizontalPosition: 'center',
       verticalPosition: 'top',
+      panelClass: ["custom-snackbar-style"]
     });
   }
 
@@ -47,6 +50,7 @@ export class NotifierService {
     let snackBarRef = this.snackBar.open(displayMessage, displayButtonText, {
       horizontalPosition: 'center',
       verticalPosition: 'top',
+      panelClass: ["custom-snackbar-style"]
     });
 
     snackBarRef.afterDismissed().subscribe(() => {
