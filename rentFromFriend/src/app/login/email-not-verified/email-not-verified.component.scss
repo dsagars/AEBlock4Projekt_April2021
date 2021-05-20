@@ -1,36 +1,84 @@
-:host{
-    display: flex;
-    height: 100%;
-    width: 100%;
-    background-color: #286474;
-  }
-  
-  .center-content{
-    margin: 0px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%)
-  }
+:host {
+  display: flex;
+  flex-flow: row wrap;
+  height: 100%;
+  width: 100%;
+  background-color: #286474;
+}
 
- .example-header-image {
-    margin: 0;
-    width:150px; 
-    height:150px; 
-    background-image: url("../../../assets/img/rff_logo.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-  }
+.example-card {
+  max-width: 400px;
+}
 
-  .mat-button {
-    margin-top: 7px;
-    width: 100%;
-    color: white;
-    height: 45px;
-    background-color: #e78200 ;
-  }
+.center-content {
+  margin: 0px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.example-header-image {
+  margin: 0;
+  width: 150px;
+  height: 150px;
+  background-image: url("../../../assets/img/rff_logo.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.mat-button {
+  margin-top: 7px;
+  width: 100%;
+  color: white;
+  height: 45px;
+  background-color: #e78200;
+}
 
 h2 {
-    color: white;
+  color: white;
+}
+
+// phone 
+@media screen and (max-width: 500px) {
+  .center-content {
+    width: 90%;
+  }
+
+  .mat-card > :first-child,
+  .mat-card-content > :first-child {
+    margin-top: 30px;
+  }
+
+  .mat-card-subtitle {
+    font-size: larger;
+  }
+
+  .mat-card-header .mat-card-subtitle:not(:first-child) {
+    margin-top: 30px;
+  }
+
+  .mat-card-title {
+    font-size: x-large;
+    text-align: center;
+  }
+
+  .mat-card-header {
+    flex-direction: column;
+  }
+
+  .mat-card-avatar {
+    border-radius: 0%;
+  }
+
+  .mat-card-header .mat-card-title {
+    margin: 12px;
+}
+
+  .example-header-image {
+    align-self: center;
+    width: 185px;
+    height: 115px;
+  }
 }

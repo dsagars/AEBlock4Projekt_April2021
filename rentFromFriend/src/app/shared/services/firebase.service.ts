@@ -140,7 +140,7 @@ export class FirebaseService {
         this.notifier.showBasicAndNavigateToLogin(
           'Wir haben Ihnen ein E-Mail mit dem Link für das neue Passwort an: ' +
           email +
-          ' geschickt. Bitte im Spam folder auch schauen',
+          ' geschickt. Vergessen Sie nicht Ihren Spam-Ordner zu überprüfen',
           'Ok'
         );
       })
