@@ -6,11 +6,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccountComponent implements OnInit {
   showFiller = false;
+  breakpoint = 500;
+  showSidebar = true;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
-
+    if (window.innerWidth <= this.breakpoint) {
+      this.showSidebar = false;
+    }
+    // if(window.innerWidth <= '500px')
   }
-
 }
