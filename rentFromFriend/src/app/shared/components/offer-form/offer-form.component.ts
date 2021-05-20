@@ -54,6 +54,7 @@ export class OfferFormComponent implements OnInit {
       price: ['', Validators.required],
       category: ['', Validators.required],
       dueDate: ['', Validators.required],
+      friendsOnly: [''],
     });
 
     this.userService.getUserFromDB().subscribe((usr) => {
@@ -72,8 +73,9 @@ export class OfferFormComponent implements OnInit {
             discrtict: null,
             description: null,
             price: null,
+            dueDate: null,
             category: null,
-            dueDate: null
+            friendsOnly: null,
           });
         });
     });
