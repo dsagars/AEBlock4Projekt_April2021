@@ -1,0 +1,31 @@
+:host {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.container {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  width: 100%;
+
+  h1 {
+    padding: 10px;
+    width: 100%;
+  }
+}
+
+.itemContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.panel {
+  width: 100%;
+}
+
+.space {
+  margin-bottom: 20px;
+}

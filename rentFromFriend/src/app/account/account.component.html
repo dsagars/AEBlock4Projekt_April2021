@@ -1,43 +1,25 @@
 <!-- <app-navbar></app-navbar> -->
-<mat-drawer-container
-  class="example-container"
-  autosize
->
+<mat-drawer-container class="example-container" autosize>
   <mat-drawer
     #drawer
     class="example-sidenav"
     mode="side"
-    [opened]="true"
+    [opened]="showSidebar"
   >
     <ul class="router-list">
-      <a
-        routerLink="profile"
-        routerLinkActive="is-active"
-      >
+      <a routerLink="profile" routerLinkActive="is-active">
         <li>Profile</li>
       </a>
-      <a
-        routerLink="message"
-        routerLinkActive="is-active"
-      >
+      <a routerLink="message" routerLinkActive="is-active">
         <li>Nachrichten</li>
       </a>
-      <a
-        routerLink="offer-search"
-        routerLinkActive="is-active"
-      >
+      <a routerLink="offer-search" routerLinkActive="is-active">
         <li>Meine Angebote & Suche</li>
       </a>
-      <a
-        routerLink="manage-friend"
-        routerLinkActive="is-active"
-      >
+      <a routerLink="manage-friend" routerLinkActive="is-active">
         <li>Freunde Verwalten</li>
       </a>
-      <a
-        routerLink="setting"
-        routerLinkActive="is-active"
-      >
+      <a routerLink="setting" routerLinkActive="is-active">
         <li>Einstellungen</li>
       </a>
     </ul>
