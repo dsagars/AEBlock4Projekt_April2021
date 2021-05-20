@@ -1,7 +1,7 @@
 <mat-drawer-container
   class="example-container"
   autosize
-  *ngIf="(contacts$ | async).length > 0"
+  *ngIf="(contacts$ | async)"
 >
   <mat-drawer
     #drawer
@@ -16,10 +16,10 @@
       (click)="setSelectedContact(contact)"
     >
       <img
-        [src]="contact.photoUrl ? contact.photoUrl : '../../../../assets/img/avatar.png'"
+        [src]="contact.photoUrl ? contact?.photoUrl : '../../../../assets/img/avatar.png'"
         class="user-image"
       >
-      <p class="user-name">{{contact.firstName}}</p>
+      <p class="user-name">{{contact?.firstName}}</p>
     </div>
   </mat-drawer>
   <div

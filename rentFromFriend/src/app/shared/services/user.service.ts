@@ -9,7 +9,7 @@ import {
   AngularFireUploadTask,
 } from '@angular/fire/storage';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { finalize, tap } from 'rxjs/operators';
+import { finalize, tap , map} from 'rxjs/operators';
 import firebase from 'firebase/app';
 import { User } from '../models/user.model';
 import { UserAddress } from '../models/user-address.model';
@@ -156,6 +156,14 @@ export class UserService {
 
   getCurrrentUserUID(): any {
     return this.getCurrentUser()?.uid;
+  }
+
+  getUserById(userId: string): Observable<User> {
+    return this.db.collection<User>('users').doc(userId).valueChanges();
+  }
+
+  getUserAddressByUserId(userId: string): Observable<Observable<UserAddress>> {
+    return this.getUserById(userId).pipe(map(user => this.db.collection<UserAddress>('addresses').doc(user?.addressId).valueChanges()))
   }
 
   getAll(): AngularFirestoreCollection<any> {

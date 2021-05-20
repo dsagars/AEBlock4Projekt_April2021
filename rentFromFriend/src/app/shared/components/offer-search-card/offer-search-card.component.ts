@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Item } from '../../models/item.model';
 
 @Component({
@@ -9,9 +10,13 @@ import { Item } from '../../models/item.model';
 export class OfferSearchCardComponent implements OnInit {
   @Input() item: Item;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  showItem(item: Item) {
+    console.log(item);
+    this.router.navigate([`/base/product-details/${item.id}`], { state: { data: this.item } });
+  }
 }

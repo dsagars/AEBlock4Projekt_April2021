@@ -13,7 +13,6 @@ import {
 } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
-import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -38,6 +37,8 @@ export class ItemOfferService {
     this.itemRef = db.collection<Item>('/itemsOffer');
     this.userRef = db.collection('/users');
     this.uid = this.userService.getCurrrentUserUID();
+
+
   }
 
   getAll(): AngularFirestoreCollection<Item> {
@@ -60,6 +61,18 @@ export class ItemOfferService {
 
   update(id: string, data: any): Promise<void> {
     return this.itemRef.doc(id).update(data);
+  }
+
+  getItemByQueries(params: { searchText: string, category: string, zip: string }): Observable<Item[]> {
+    return this.db.collection<Item>('/itemsOffer', ref => ref
+      .where('title', '==', params.searchText)
+      .where('category', '==', params.category)
+      .where('city', '==', params.zip))
+      .valueChanges();
+  }
+
+  getItemById(itemId: string) {
+    return this.db.collection<Item>('/itemsOffer').doc(itemId).valueChanges();
   }
 
   delete(id: string): Promise<void> {

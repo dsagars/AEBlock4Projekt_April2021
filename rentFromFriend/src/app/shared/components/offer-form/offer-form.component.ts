@@ -65,16 +65,16 @@ export class OfferFormComponent implements OnInit {
           console.log(addr);
           this.currentUserAdress = { ...addr };
           this.reactiveForm.setValue({
-            title: [],
-            fistname: [this.currentUser?.firstName],
-            lastname: [this.currentUser?.lastName],
-            address: [this.currentUserAdress?.street],
-            city: [this.currentUserAdress?.city],
-            discrtict: [],
-            description: [],
-            price: [],
-            category: [],
-            dueDate: [],
+            title: null,
+            fistname: this.currentUser?.firstName,
+            lastname: this.currentUser?.lastName,
+            address: this.currentUserAdress?.street,
+            city: this.currentUserAdress?.city,
+            discrtict: null,
+            description: null,
+            price: null,
+            categorie: null,
+
           });
         });
     });

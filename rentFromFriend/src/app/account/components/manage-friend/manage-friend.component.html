@@ -10,9 +10,9 @@
     >
     <div class="info">
       <h3>
-        {{friend.firstName}} {{friend.lastName}}
+        {{friend?.firstName}} {{friend?.lastName}}
       </h3>
-      <p>{{friend.email}}</p>
+      <p>{{friend?.email}}</p>
       <button
         mat-icon-button
         (click)="sendMessage(friend)"
@@ -21,7 +21,7 @@
       </button>
       <button
         mat-icon-button
-        (click)="deleteFriend(friend.id)"
+        (click)="deleteFriend(friend?.id)"
       >
         <mat-icon>delete</mat-icon>
       </button>
