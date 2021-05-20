@@ -135,7 +135,6 @@ export class FirebaseService {
     return this.firebaseAuth
       .sendPasswordResetEmail(email)
       .then((value) => {
-        console.log(value);
         // Email for password reset sent.
         this.notifier.showBasicAndNavigateToLogin(
           'Wir haben Ihnen ein E-Mail mit dem Link für das neue Passwort an: ' +

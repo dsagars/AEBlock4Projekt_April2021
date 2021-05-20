@@ -70,20 +70,9 @@ export class FriendService {
 
   getFriendsById(friends: { friendId: string }[]) {
     friends.forEach(friend => {
-      // console.log(friend);
       this.getUserInformationById(friend.friendId);
     });
   }
-
-  // getUserInformationById(id: string): void {
-  //   this.db.collection<User>('users').doc(id).valueChanges().pipe(take(1)).subscribe(user => {
-  //     console.log(user);
-  //     this.friends = [
-  //       ...this.friends,
-  //       user
-  //     ];
-  //   });
-  // }
 
   getUserInformationById(id: string): void {
     // if the id is not in the tempList
@@ -110,7 +99,6 @@ export class FriendService {
 
   deleteFriend(friendId: string) {
     const fId = this.friendsId.find(friend => friend.friendId === friendId);
-    console.log(fId);
     this.db.collection<User>('users').doc(this.userService.getCurrrentUserUID())
       .collection<{ friendId: string }>('friends').doc(fId.id).delete().then(() => {
         this.friends = this.friends.filter(friend => friend.id !== friendId);

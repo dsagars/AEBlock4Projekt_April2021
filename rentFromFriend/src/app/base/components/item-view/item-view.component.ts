@@ -21,6 +21,7 @@ export class ItemViewComponent implements OnInit, OnDestroy {
   user$: Observable<User>;
   userAddress: Observable<UserAddress>;
   destroyed$ = new Subject();
+  currentUserId: string;
   constructor(
     private itemOfferService: ItemOfferService,
     private router: Router,
@@ -31,8 +32,8 @@ export class ItemViewComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.currentUserId = this.userSerive.getCurrrentUserUID();
     this.item = this.navigation?.state?.data;
-    console.log(this.item);
     if (!this.item) {
       return;
     }
@@ -47,7 +48,6 @@ export class ItemViewComponent implements OnInit, OnDestroy {
   }
 
   sendMessage(user: User) {
-    console.log(user)
     this.messageService.createContact(user).then(() => this.router.navigate(['/base/account/message']));
   }
 

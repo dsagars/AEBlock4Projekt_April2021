@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
-  AngularFirestoreDocument,
 } from '@angular/fire/firestore';
 import { Item } from '../models/item.model';
 import { UserService } from './user.service';
@@ -63,16 +62,9 @@ export class ItemOfferService {
     return this.itemRef.doc(id).update(data);
   }
 
-  getItemByQueries(params: { searchText: string, category: string, zip: string }): Observable<Item[]> {
-    return this.db.collection<Item>('/itemsOffer', ref => ref
-      .where('title', '==', params.searchText)
-      .where('category', '==', params.category)
-      .where('city', '==', params.zip))
+  getItemByQueries(): Observable<Item[]> {
+    return this.db.collection<Item>('/itemsOffer')
       .valueChanges();
-  }
-
-  getItemById(itemId: string) {
-    return this.db.collection<Item>('/itemsOffer').doc(itemId).valueChanges();
   }
 
   delete(id: string): Promise<void> {

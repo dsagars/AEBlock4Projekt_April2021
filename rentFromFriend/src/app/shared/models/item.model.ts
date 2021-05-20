@@ -9,5 +9,6 @@ export interface Item {
   friendsOnly?: boolean;
   picture: any;
   timeStamp: Date;
+  zip?: number;
   id?: string;
 }

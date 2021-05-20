@@ -62,7 +62,6 @@ export class OfferFormComponent implements OnInit {
       this.userService
         .getCurrentUserAddress(usr.addressId)
         .subscribe((addr) => {
-          console.log(addr);
           this.currentUserAdress = { ...addr };
           this.reactiveForm.setValue({
             title: null,
@@ -73,8 +72,8 @@ export class OfferFormComponent implements OnInit {
             discrtict: null,
             description: null,
             price: null,
-            categorie: null,
-
+            category: null,
+            dueDate: null
           });
         });
     });
@@ -103,7 +102,6 @@ export class OfferFormComponent implements OnInit {
     const blobUrl = URL.createObjectURL(file);
     this.imgUrl = this.sanitizer.bypassSecurityTrustUrl(blobUrl);
     this.offerService.file = file;
-    console.log('imagePre', this.offerService.file);
   }
 
   close() {
