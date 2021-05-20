@@ -1,17 +1,11 @@
-<mat-toolbar>
-  <span
-    class="logo"
-    [routerLink]="'/base'"
-  ></span>
+<mat-toolbar class="wrapper">
+  <span class="logo" [routerLink]="'/base'"></span>
   <div class="search-group">
     <mat-form-field class="search-input">
       <mat-label>Suche ...</mat-label>
-      <input
-        matInput
-        #searchinput
-      >
+      <input matInput #searchinput />
     </mat-form-field>
-    <mat-form-field class="search-dropdown">
+    <mat-form-field class="search-dropdown hide">
       <mat-label>Kategorie</mat-label>
       <mat-select
         (selectionChange)="CategorySelectionChanged($event)"
@@ -26,23 +20,21 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <div class="location-group">
+  <div class="location-group hide">
     <mat-form-field class="location-input">
       <mat-label>PLZ oder Ort ...</mat-label>
-      <input
-        matInput
-        #locationinput
-      >
+      <input matInput #locationinput />
     </mat-form-field>
+    <button
+      mat-raised-button
+      aria-label="Suche starten"
+      class="btn_search"
+      (click)="search(searchinput.value, locationinput.value)"
+    >
+      <mat-icon>search</mat-icon>
+    </button>
   </div>
-  <button
-    mat-raised-button
-    aria-label="Suche starten"
-    class="btn_search"
-    (click)="search(searchinput.value, locationinput.value )"
-  >
-    <mat-icon>search</mat-icon>
-  </button>
+
   <button
     mat-raised-button
     aria-label="Anzeige aufgeben"
@@ -50,19 +42,12 @@
     [matMenuTriggerFor]="menu"
   >
     <mat-icon>add</mat-icon>
-    Hinzufügen
   </button>
   <mat-menu #menu="matMenu">
-    <button
-      mat-menu-item
-      (click)="modalService.toggleShowModalOffer()"
-    >
+    <button mat-menu-item (click)="modalService.toggleShowModalOffer()">
       Neues Angebot erstellen
     </button>
-    <button
-      mat-menu-item
-      (click)="modalService.toggleShowModalSearch()"
-    >
+    <button mat-menu-item (click)="modalService.toggleShowModalSearch()">
       Neue Suche aufgeben
     </button>
   </mat-menu>
@@ -75,46 +60,21 @@
     >
       <mat-icon class="account_btn">perm_identity</mat-icon>
     </button>
-    <mat-menu
-      #belowMenu="matMenu"
-      yPosition="below"
-    >
-      <button
-        mat-menu-item
-        [routerLink]="'account/profile'"
-      >
-        Profile
-      </button>
-      <button
-        mat-menu-item
-        [routerLink]="'account/message'"
-      >
+    <mat-menu #belowMenu="matMenu" yPosition="below">
+      <button mat-menu-item [routerLink]="'account/profile'">Profile</button>
+      <button mat-menu-item [routerLink]="'account/message'">
         Meine Nachrichten
       </button>
-      <button
-        mat-menu-item
-        [routerLink]="'account/offer-search'"
-      >
+      <button mat-menu-item [routerLink]="'account/offer-search'">
         Angebote und Suche Verwalten
       </button>
-      <button
-        mat-menu-item
-        [routerLink]="'account/manage-friend'"
-      >
+      <button mat-menu-item [routerLink]="'account/manage-friend'">
         Freunde Verwalten
       </button>
-      <button
-        mat-menu-item
-        [routerLink]="'account/setting'"
-      >
+      <button mat-menu-item [routerLink]="'account/setting'">
         Einstellungen
       </button>
-      <button
-        mat-menu-item
-        (click)="logout()"
-      >
-        Ausloggen
-      </button>
+      <button mat-menu-item (click)="logout()">Ausloggen</button>
     </mat-menu>
   </div>
 </mat-toolbar>
