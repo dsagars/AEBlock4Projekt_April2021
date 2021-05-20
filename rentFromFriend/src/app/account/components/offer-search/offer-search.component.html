@@ -1,1 +1,29 @@
-<p>offer-search works!</p>
+<div class="container">
+  <mat-expansion-panel class="space">
+    <mat-expansion-panel-header>
+      <mat-panel-title> Eigene Angebote </mat-panel-title>
+      <mat-panel-description>
+        Übersicht über deine Angebote
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="itemContainer">
+      <ng-container *ngFor="let item of this.offerItems$ | async">
+        <app-offer-search-card [item]="item"></app-offer-search-card>
+      </ng-container>
+    </div>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Eigene Suchen </mat-panel-title>
+      <mat-panel-description>
+        Übersicht über deine Suchen
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="itemContainer">
+      <ng-container *ngFor="let item of this.searchItems$ | async">
+        <app-offer-search-card [item]="item"></app-offer-search-card>
+      </ng-container>
+    </div>
+  </mat-expansion-panel>
+</div>
