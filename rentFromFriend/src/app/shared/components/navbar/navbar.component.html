@@ -1,4 +1,32 @@
 <mat-toolbar>
+  <button 
+  mat-icon-button 
+  class="burger-icon" 
+  aria-label="Example icon-button with menu icon"
+  [matMenuTriggerFor]="menu"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button
+    mat-raised-button
+    aria-label="Suche starten"
+    class="burger_btn_search"
+    (click)="search(searchinput.value, locationinput.value )"
+  >
+    <mat-icon>search</mat-icon>
+  </button>
+  <button
+    mat-raised-button
+    aria-label="Anzeige aufgeben"
+    class="burger_btn_add"
+    [matMenuTriggerFor]="menu"
+  >
+    <mat-icon>add</mat-icon>
+    Hinzufügen
+  </button>
+  </mat-menu>
+  
   <span
     class="logo"
     [routerLink]="'/base'"
