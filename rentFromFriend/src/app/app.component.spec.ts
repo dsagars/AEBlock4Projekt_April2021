@@ -14,12 +14,14 @@ describe('AppComponent', () => {
     }).compileComponents();
   });
 
+  // Unit test Jasmin
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
+  // Unit test is title rentFromFriend?
   it(`should have as title 'rentFromFriend'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
