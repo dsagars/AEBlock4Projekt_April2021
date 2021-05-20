@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
+  AngularFirestoreDocument,
 } from '@angular/fire/firestore';
 import { Item } from '../models/item.model';
 import { UserService } from './user.service';
@@ -11,7 +12,8 @@ import {
   AngularFireUploadTask,
 } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +26,9 @@ export class ItemOfferService {
   task: AngularFireUploadTask;
   file: File;
   uid;
+  itemId: string;
+  currentUserOfferIds: string[];
+  currentUserItems: Item[];
 
   constructor(
     private db: AngularFirestore,
@@ -39,9 +44,18 @@ export class ItemOfferService {
     return this.itemRef;
   }
 
-  // use this function to create a new offer and add the id to the current user
-  create(item: Item) {
-    this.uploadImage(item);
+  getAllOfferFromCurrentUser(): Observable<Item[]> {
+    return this.db
+      .collection<Item>('itemsOffer', (ref) => ref.where('uid', '==', this.uid))
+      .valueChanges();
+  }
+
+  getAllSearchFromCurrentUser(): Observable<Item[]> {
+    return this.db
+      .collection<Item>('itemsSearch', (ref) =>
+        ref.where('uid', '==', this.uid)
+      )
+      .valueChanges();
   }
 
   update(id: string, data: any): Promise<void> {
@@ -52,7 +66,7 @@ export class ItemOfferService {
     return this.itemRef.doc(id).delete();
   }
 
-  uploadImage(item: Item) {
+  uploadOffer(item: Item) {
     const randomId = Math.random().toString(36).substring(2);
     this.ref = this.dbStorage.ref('offerImages/' + this.uid + randomId);
     if (!this.file) console.error('File not set');
@@ -66,7 +80,11 @@ export class ItemOfferService {
             this.itemRef
               .add({ ...item, picture: this.itemImageUrl })
               .then((res) => {
-                this.userService.updateOfferItemsInUser(item?.uid, res.id);
+                this.itemRef.doc(res.id).update({ itemId: res.id });
+                this.itemId = res.id;
+              })
+              .then(() => {
+                this.userService.updateOfferItemsInUser(item?.uid, this.itemId);
               })
               .catch((e) => console.error(e));
           });

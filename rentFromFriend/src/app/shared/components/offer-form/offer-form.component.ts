@@ -87,12 +87,12 @@ export class OfferFormComponent implements OnInit {
       timeStamp: new Date().toISOString(),
     };
     if (!this.reactiveForm.valid) {
-      console.error("invalid form")
+      console.error('invalid form');
       return;
     }
 
     if (this.type === 'offer') {
-      this.offerService.create(this.item);
+      this.offerService.uploadOffer(this.item);
     } else {
       this.searchService.create(this.item);
     }

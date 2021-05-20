@@ -1,15 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Item } from 'src/app/shared/models/item.model';
+import { ItemOfferService } from 'src/app/shared/services/offer.service';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-offer-search',
   templateUrl: './offer-search.component.html',
-  styleUrls: ['./offer-search.component.scss']
+  styleUrls: ['./offer-search.component.scss'],
 })
 export class OfferSearchComponent implements OnInit {
+  offerItems$: Observable<Item[]>;
+  searchItems$: Observable<Item[]>;
 
-  constructor() { }
+  constructor(private offerService: ItemOfferService) {}
 
   ngOnInit(): void {
+    this.offerItems$ = this.offerService.getAllOfferFromCurrentUser();
+    this.searchItems$ = this.offerService.getAllSearchFromCurrentUser();
   }
-
 }
