@@ -32,7 +32,6 @@ export class ManageFriendComponent implements OnInit, OnDestroy {
   }
 
   sendMessage(reciever: User): void {
-    console.log(reciever);
     this.messageService.createContact(reciever).then(value => {
       this.router.navigate(['base/account/message']);
     });

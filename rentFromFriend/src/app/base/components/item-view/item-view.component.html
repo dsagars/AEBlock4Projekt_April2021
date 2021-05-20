@@ -15,6 +15,7 @@
         color="primary"
         class="btn"
         (click)="sendMessage(user)"
+        *ngIf="user.id !== currentUserId"
       >
         Eine Nachricht schicken!
       </button>
@@ -23,6 +24,7 @@
         color="primary"
         class="btn"
         (click)="addToFriend(user)"
+        *ngIf="user.id !== currentUserId"
       >
         Als Freund hinzufügen
       </button>

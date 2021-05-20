@@ -79,7 +79,6 @@ export class UserAuthManagementComponent implements OnInit, OnDestroy {
                 })
                 .catch((e) => {
                   // Invalid or expired action code.
-                  console.log(e);
                   this.notifier.showBasic(
                     'Der Link ist nicht mehr gültig! Bitte versuchen sie es erneut.',
                     'Ok'
@@ -105,7 +104,6 @@ export class UserAuthManagementComponent implements OnInit, OnDestroy {
             }
             break;
           default: {
-            console.log('query parameters are missing');
             this.notifier.showBasicAndNavigateToLogin(
               'Der Link ist nicht mehr gültig! Bitte versuchen sie es erneut.',
               'Ok'
@@ -139,7 +137,6 @@ export class UserAuthManagementComponent implements OnInit, OnDestroy {
       .catch((e) => {
         // Error occurred during confirmation. The code might have
         // expired or the password is too weak.
-        console.log(e);
         this.notifier.showBasicAndNavigateToLogin(
           'Es hat nicht funktioniert! Passwort link ist abgelaufen',
           'Ok'

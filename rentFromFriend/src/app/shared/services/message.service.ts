@@ -120,8 +120,6 @@ export class MessageService {
   }
 
   createContact(reciever: User): Promise<any> {
-    console.log(reciever);
-    console.log(this.contacts);
     if (this.contacts.find(contact => contact.id === reciever.id)) {
       this.setSelectedContact(reciever);
       return of(true).toPromise();

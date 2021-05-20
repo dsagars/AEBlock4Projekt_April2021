@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { Categories } from '../../models/categories.model';
 import { FirebaseService } from '../../services/firebase.service';
 import { ModalService } from '../../services/modal.service';
 
@@ -10,6 +11,12 @@ import { ModalService } from '../../services/modal.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
+  categories = Object.keys(Categories);
+  categoryToSearch: string;
+  @Output() categorySelectionChanged: EventEmitter<string> = new EventEmitter();
+  selectedCategory: string;
+
+
   constructor(
     public modalService: ModalService,
     private firebaseService: FirebaseService,
@@ -22,6 +29,13 @@ export class NavbarComponent implements OnInit {
   }
 
   search(searchText: string, zip: string) {
-    this.router.navigate(['base/search'], { queryParams: { searchText: searchText, category: 'elektro', zip: zip } });
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() =>
+      this.router.navigate(['base/search'], { queryParams: { searchText: searchText, category: this.selectedCategory, zip: zip } }));
   }
+
+  CategorySelectionChanged($event) {
+    this.selectedCategory = $event.value;
+  }
+
+
 }

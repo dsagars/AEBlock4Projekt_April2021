@@ -65,7 +65,6 @@ export class OfferFormComponent implements OnInit {
       this.userService
         .getCurrentUserAddress(usr.addressId)
         .subscribe((addr) => {
-          console.log(addr);
           this.currentUserAdress = { ...addr };
           this.reactiveForm.setValue({
             title: null,
