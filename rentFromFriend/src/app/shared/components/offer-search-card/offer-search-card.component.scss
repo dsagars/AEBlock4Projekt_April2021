@@ -14,7 +14,6 @@ a {
 
 mat-card {
     display: flex; 
-    background-color: #286474;
     height: 350px;
     min-height: 200px;
     max-width: 300px;
@@ -26,6 +25,7 @@ mat-card {
     border-radius: 10px;
     flex-direction: column;
     align-items: center;
+    border: 1px solid #dedede;
 
     .image-container {
         width: 100%;
@@ -39,7 +39,7 @@ mat-card {
         justify-content: flex-start;
         width: 100%;
         h3, p {
-            color: #fff;
+            color: #296474;
         }
     }
     &:hover {

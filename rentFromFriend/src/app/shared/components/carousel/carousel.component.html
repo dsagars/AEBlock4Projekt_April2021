@@ -2,7 +2,6 @@
 <mat-carousel
   timings="250ms ease-in"
   [autoplay]="false"
-  [interval]="5000"
   maxWidth="auto"
   [loop]="false"
   color="primary"
@@ -14,8 +13,7 @@
   <mat-carousel-slide
     #matCarouselSlide
     *ngFor="let slide of slides; index as i"
-    overlayColor="#272f33"
-    [hideOverlay]="false"
+    [hideOverlay]="true"
   >
     <app-offer-search-card
       *ngFor="let product of slide.products"

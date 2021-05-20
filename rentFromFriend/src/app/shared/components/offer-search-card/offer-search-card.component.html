@@ -1,14 +1,14 @@
 <a [routerLink]="'/base'">
-<mat-card class="example-card">
-  <img
-    mat-card-image
-    [src]="item.picture"
-    alt="Photo of a Shiba Inu"
-    class="image-container"
-  >
-  <mat-card-content>
-    <h3>{{item.title}}</h3>
-    <p>{{item.price | currency: 'EUR'}}</p>
-  </mat-card-content>
-</mat-card>
+  <mat-card class="example-card">
+    <img
+      mat-card-image
+      [src]="item.picture ? item.picture : '../../../../assets/img/img-placeholder.png'"
+      alt="Photo of a Shiba Inu"
+      class="image-container"
+    >
+    <mat-card-content>
+      <h3>{{item.title}}</h3>
+      <p>{{item.price | currency: 'EUR'}}</p>
+    </mat-card-content>
+  </mat-card>
 </a>
