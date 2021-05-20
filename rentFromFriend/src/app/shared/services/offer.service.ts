@@ -80,7 +80,7 @@ export class ItemOfferService {
             this.itemRef
               .add({ ...item, picture: this.itemImageUrl })
               .then((res) => {
-                this.itemRef.doc(res.id).update({ itemId: res.id });
+                this.itemRef.doc(res.id).update({ id: res.id });
                 this.itemId = res.id;
               })
               .then(() => {
