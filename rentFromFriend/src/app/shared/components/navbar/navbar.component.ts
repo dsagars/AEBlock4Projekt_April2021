@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { ItemCategoryEnum } from '../../models/category.enum';
 import { FirebaseService } from '../../services/firebase.service';
 import { ModalService } from '../../services/modal.service';
 
@@ -10,13 +11,23 @@ import { ModalService } from '../../services/modal.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
+  @Input() categories: ItemCategoryEnum;
+  @Output() categorySelectionChanged:EventEmitter<string> = new EventEmitter();
+  selectedCategory: string;
+
   constructor(
     public modalService: ModalService,
-    private firebaseService: FirebaseService) { }
+    private firebaseService: FirebaseService,
+    ) {     
+    }
 
   ngOnInit(): void { }
 
   logout(): void {
     this.firebaseService.logout();
+  }
+
+  CategorySelectionChanged($event){
+      this.categorySelectionChanged.emit($event.value);     
   }
 }

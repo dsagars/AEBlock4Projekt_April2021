@@ -1,2 +1,5 @@
-<app-navbar></app-navbar>
-<router-outlet></router-outlet>
+<app-navbar [categories]="enumKeys" (CategorySelectionChanged)="OnCategorySelectionChanged($event.value)"></app-navbar>
+<h2>Welcome to base</h2>
+<div class="carousel-container">
+<app-carousel [slides]="slides"></app-carousel>
+</div>
