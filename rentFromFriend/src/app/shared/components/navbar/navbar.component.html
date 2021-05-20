@@ -35,6 +35,7 @@
     mat-raised-button
     aria-label="Suche starten"
     class="btn_search"
+    (click)="search(searchinput.value, locationinput.value )"
   >
     <mat-icon>search</mat-icon>
   </button>

@@ -15,12 +15,12 @@ export interface Slide {
 })
 
 export class CarouselComponent implements OnInit {
- 
+
   @Input() slides: Slide[];
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit() {       
+  ngOnInit() {
   }
 
 }

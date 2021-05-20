@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/shared/models/user.model';
 import { FriendService } from 'src/app/shared/services/friend.service';
@@ -18,7 +18,6 @@ export class ManageFriendComponent implements OnInit {
     private router: Router,
     private friendService: FriendService
   ) {
-
   }
 
   ngOnInit(): void {
@@ -27,11 +26,12 @@ export class ManageFriendComponent implements OnInit {
 
   sendMessage(reciever: User): void {
     this.messageService.createContact(reciever).then(value => {
-      this.router.navigate(['account/message']);
+      this.router.navigate(['base/account/message']);
     });
   }
 
   deleteFriend(friendId: string) {
     this.friendService.deleteFriend(friendId);
+    window.location.reload();
   }
 }

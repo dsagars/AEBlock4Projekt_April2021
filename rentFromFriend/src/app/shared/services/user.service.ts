@@ -104,10 +104,18 @@ export class UserService {
   }
 
   updateUserData(userData: User, addressData: UserAddress) {
-    this.userRef.doc(userData.id).update(userData)
-      .then(res => console.log(res)).catch(err => console.log(err));
-    this.db.collection<UserAddress>('addresses').doc(userData.addressId).update(addressData)
-      .then(res => console.log(res)).catch(err => console.log(err));
+    if (userData.addressId) {
+      this.userRef.doc(userData.id).update(userData)
+        .then(res => console.log(res)).catch(err => console.log(err));
+      this.db.collection<UserAddress>('addresses').doc(userData.addressId).update(addressData)
+        .then(res => console.log(res)).catch(err => console.log(err));
+    }
+    else {
+      this.db.collection<UserAddress>('addresses').add(addressData).then(value => {
+        this.userRef.doc(userData.id).update(({ ...userData, addressId: value.id }))
+          .then(res => console.log(res)).catch(err => console.log(err));
+      }).catch(error => console.log(error));
+    }
   }
 
   getCurrentUser(): any {
