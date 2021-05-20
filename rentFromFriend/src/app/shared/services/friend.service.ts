@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { take, tap } from 'rxjs/operators';
 import { User } from '../models/user.model';
 import { UserService } from './user.service';
@@ -27,11 +27,13 @@ export class FriendService {
   set friends(friends: User[]) {
     this.friendsSubject$.next(friends);
   }
+
+  tempList = [];
+
   constructor(
     private db: AngularFirestore,
     private userService: UserService
   ) {
-    this.getFriends().subscribe();
   }
 
   getFriends(): Observable<{ id: string, friendId: string }[]> {
@@ -42,6 +44,30 @@ export class FriendService {
       }));
   }
 
+  createFriend(friendId: string) {
+    if (this.friends.find(friend => friend.id === friendId)) {
+      return of(true).toPromise();
+    }
+    return Promise.all([
+      this.db.collection<User>('users').doc(this.userService.getCurrrentUserUID()).collection<{ id: string, friendId: string }>('friends').add({
+        friendId,
+        id: ''
+      }),
+      this.db.collection<User>('users').doc(friendId).collection<{ id: string, friendId: string }>('friends').add(
+        {
+          friendId: this.userService.getCurrrentUserUID(),
+          id: ''
+        })
+    ]).then(value => {
+      this.db.collection<User>('users').doc(this.userService.getCurrrentUserUID()).collection<{ id: string }>('friends').doc(value[0].id).update({
+        id: value[0].id,
+      })
+      this.db.collection<User>('users').doc(friendId).collection<{ id: string }>('friends').doc(value[1].id).update({
+        id: value[1].id,
+      })
+    })
+  }
+
   getFriendsById(friends: { friendId: string }[]) {
     friends.forEach(friend => {
       // console.log(friend);
@@ -49,19 +75,46 @@ export class FriendService {
     });
   }
 
+  // getUserInformationById(id: string): void {
+  //   this.db.collection<User>('users').doc(id).valueChanges().pipe(take(1)).subscribe(user => {
+  //     console.log(user);
+  //     this.friends = [
+  //       ...this.friends,
+  //       user
+  //     ];
+  //   });
+  // }
+
   getUserInformationById(id: string): void {
-    this.db.collection<User>('users').doc(id).valueChanges().pipe(take(1)).subscribe(user => {
-      console.log(user);
-      this.friends = [
-        ...this.friends,
-        user
-      ];
-    });
+    // if the id is not in the tempList
+    if (!this.tempList.includes(id)) {
+      // add the id to the list
+      this.tempList.push(id);
+
+      // if any changes happend we replace the new user with the old one and the other users stay untouched
+      this.db.collection<User>('users').doc(id).valueChanges().pipe(tap((user: User) => {
+        // if user have no id should return
+        if (!user.id) {
+          return;
+        }
+        this.friends = this.friends.map(friend => friend.id === user.id ? user : friend);
+      })).subscribe();
+
+      // if the user doesn't exists in the contact array we push it to the array
+      this.db.collection<User>('users').doc(id).valueChanges().pipe(take(1), tap((user: User) =>
+        this.friends = [...this.friends, user]
+      )).subscribe();
+    }
+
   }
 
   deleteFriend(friendId: string) {
-    const findFriend = this.friendsId.find(friend => friend.friendId === friendId);
+    const fId = this.friendsId.find(friend => friend.friendId === friendId);
+    console.log(fId);
     this.db.collection<User>('users').doc(this.userService.getCurrrentUserUID())
-      .collection<{ friendId: string }>('friends').doc(findFriend.id).delete();
+      .collection<{ friendId: string }>('friends').doc(fId.id).delete().then(() => {
+        this.friends = this.friends.filter(friend => friend.id !== friendId);
+        this.tempList = this.tempList.filter(id => id !== friendId);
+      });
   }
 }

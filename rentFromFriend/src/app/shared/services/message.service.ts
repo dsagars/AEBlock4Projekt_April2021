@@ -59,7 +59,7 @@ export class MessageService {
   constructor(
     private db: AngularFirestore,
     private userService: UserService
-  ) {}
+  ) { }
   // this function will return an Observable<Message[]> with all messages of user
   getMessagesOfUser(): Observable<any> {
     return this.db.collection('users')
@@ -91,8 +91,11 @@ export class MessageService {
       })).subscribe();
 
       // if the user doesn't exists in the contact array we push it to the array
-      this.db.collection<User>('users').doc(id).valueChanges().pipe(take(1), tap((user: User) =>
-        this.contacts = [...this.contacts, user]
+      this.db.collection<User>('users').doc(id).valueChanges().pipe(take(1), tap((user: User) => {
+        if (user) {
+          this.contacts = [...this.contacts, user]
+        }
+      }
       )).subscribe();
     }
 
@@ -117,6 +120,8 @@ export class MessageService {
   }
 
   createContact(reciever: User): Promise<any> {
+    console.log(reciever);
+    console.log(this.contacts);
     if (this.contacts.find(contact => contact.id === reciever.id)) {
       this.setSelectedContact(reciever);
       return of(true).toPromise();

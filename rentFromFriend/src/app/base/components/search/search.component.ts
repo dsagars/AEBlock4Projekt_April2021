@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { Item } from 'src/app/shared/models/item.model';
 import { ItemOfferService } from 'src/app/shared/services/offer.service';
 
@@ -19,8 +20,8 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.items$ = this.itemOfferService
-      .getAll()
-      .valueChanges();
+      .getItemByQueries(this.params);
+
   }
 
 }

@@ -5,6 +5,7 @@ import { BaseComponent } from './base.component';
 import { RouteGuard } from '../shared/guards/route.guard';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SearchComponent } from './components/search/search.component';
+import { ItemViewComponent } from './components/item-view/item-view.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
         path: 'search',
         component: SearchComponent,
         data: { searchText: 'searchText', category: 'category', zip: 'zip' }
+      },
+      {
+        path: 'product-details/:id',
+        component: ItemViewComponent,
       },
       {
         path: 'account',
