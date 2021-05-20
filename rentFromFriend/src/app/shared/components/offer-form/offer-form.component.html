@@ -45,6 +45,11 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+
+    <mat-checkbox value="true" formControlName="friendsOnly"
+      >Nur für Freunde</mat-checkbox
+    >
+
     <ng-container *ngIf="containsImage">
       <div class="imgUpload">
         <ng-container *ngIf="!imgUrl">

@@ -54,6 +54,7 @@ export class OfferFormComponent implements OnInit {
       price: ['', Validators.required],
       category: ['', Validators.required],
       dueDate: ['', Validators.required],
+      friendsOnly: [''],
     });
 
     this.userService.getUserFromDB().subscribe((usr) => {
@@ -73,8 +74,9 @@ export class OfferFormComponent implements OnInit {
             discrtict: null,
             description: null,
             price: null,
-            categorie: null,
-
+            dueDate: null,
+            category: null,
+            friendsOnly: null,
           });
         });
     });
@@ -103,7 +105,6 @@ export class OfferFormComponent implements OnInit {
     const blobUrl = URL.createObjectURL(file);
     this.imgUrl = this.sanitizer.bypassSecurityTrustUrl(blobUrl);
     this.offerService.file = file;
-    console.log('imagePre', this.offerService.file);
   }
 
   close() {
