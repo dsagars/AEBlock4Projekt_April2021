@@ -10,6 +10,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from './material.module';
 import { MatCarouselModule } from '@ngbmodule/material-carousel';
+import { OfferSearchCardComponent } from './components/offer-search-card/offer-search-card.component';
 
 // verschiedenen Module die wir benutzen wollen, importerien wir hier herein, um sie danach überall verfügbar zu haben
 // Besonders für Module die wir überall brauchen
@@ -20,6 +21,7 @@ import { MatCarouselModule } from '@ngbmodule/material-carousel';
     ModalComponent,
     OfferFormComponent,
     CarouselComponent,
+    OfferSearchCardComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +40,8 @@ import { MatCarouselModule } from '@ngbmodule/material-carousel';
     RouterModule,
     FormsModule,
     MatCarouselModule,
-    MaterialModule
+    MaterialModule,
+    OfferSearchCardComponent
   ],
 })
 export class SharedModule {}

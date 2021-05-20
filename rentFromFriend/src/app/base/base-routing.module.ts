@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BaseComponent } from './base.component';
 import { RouteGuard } from '../shared/guards/route.guard';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { SearchComponent } from './components/search/search.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,11 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent
+      },
+      {
+        path: 'search',
+        component: SearchComponent,
+        data: { searchText: 'searchText', category: 'category', zip: 'zip' }
       },
       {
         path: 'account',
