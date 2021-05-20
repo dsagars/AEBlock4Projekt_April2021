@@ -1,0 +1,45 @@
+:host {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    ::ng-deep .mat-card-image:first-child {
+        margin-top: 0;
+        border-radius: inherit;
+    }
+}
+
+a {
+    text-decoration: none;
+}
+
+mat-card {
+    display: flex; 
+    background-color: #286474;
+    height: 350px;
+    min-height: 200px;
+    max-width: 300px;
+    min-width: 200px;
+    width: 300px;
+    justify-content: center;
+    background-size: cover;
+    margin: 10px;
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: center;
+
+    .image-container {
+        width: 100%;
+        height: 80%;
+        object-fit: fill;   
+    }
+
+    mat-card-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 100%;
+        h3, p {
+            color: #fff;
+        }
+    }
+}
