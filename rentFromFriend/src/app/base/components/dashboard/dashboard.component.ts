@@ -6,27 +6,49 @@ import { ItemOfferService } from 'src/app/shared/services/offer.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
   items: Item[];
   slides: Slide[] = [];
-  constructor(private itemOfferService: ItemOfferService) { }
+  fullScreen: boolean;
+
+  constructor(private itemOfferService: ItemOfferService) {}
+
 
   ngOnInit(): void {
-    this.itemOfferService
-      .getAll()
-      .valueChanges()//.pipe(map(items => this.getCategoryItems(items, 'Elektro'))) // output value from navbar select
-      .subscribe((items) => {
-        this.items = this.slideChunk(items, 4);
-        this.fillSlides(this.items);
-        console.log(this.items);
-      });
+    this.getView();
+
+    switch (this.fullScreen) {
+      case true: {
+        this.itemOfferService
+          .getAll()
+          .valueChanges()
+          .subscribe((items) => {
+            this.items = this.slideChunk(items, 4);
+            this.fillSlides(this.items);
+          });
+        break;
+      }
+      case false: {
+        this.itemOfferService
+          .getAll()
+          .valueChanges()
+          .subscribe((items) => {
+            this.items = items;
+          });
+        break;
+      }
+    }
   }
 
-  // getCategoryItems(array: Item[], category: string) {
-  //   return array.filter(item => item.categorie === category)
-  // }
+  getView() {
+    if (window.innerWidth > 1400) {
+      this.fullScreen = true;
+    } else {
+      this.fullScreen = false;
+    }
+  }
 
   /**
    * Returns array of array of items
