@@ -3,11 +3,11 @@ export interface Item {
   title: string;
   description: string;
   price: string;
-  categorie?: string;
+  category?: string;
   city: string;
   discrict: string;
   friendsOnly?: boolean;
   picture: any;
   timeStamp: Date;
-  id: string;
+  id?: string;
 }

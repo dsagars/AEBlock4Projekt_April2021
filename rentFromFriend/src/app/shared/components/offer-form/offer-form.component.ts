@@ -52,7 +52,7 @@ export class OfferFormComponent implements OnInit {
       discrtict: [],
       description: ['', Validators.required],
       price: ['', Validators.required],
-      categorie: ['', Validators.required],
+      category: ['', Validators.required],
       dueDate: ['', Validators.required],
     });
 
@@ -74,6 +74,7 @@ export class OfferFormComponent implements OnInit {
             description: null,
             price: null,
             categorie: null,
+
           });
         });
     });
