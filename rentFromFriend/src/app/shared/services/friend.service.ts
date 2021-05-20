@@ -44,7 +44,7 @@ export class FriendService {
       }));
   }
 
-  createFriend(friendId: string) {
+  createFriend(friendId: string): Promise<any> {
     if (this.friends.find(friend => friend.id === friendId)) {
       return of(true).toPromise();
     }

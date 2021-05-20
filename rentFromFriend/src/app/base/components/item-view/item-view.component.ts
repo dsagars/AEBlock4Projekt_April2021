@@ -7,6 +7,7 @@ import { UserAddress } from 'src/app/shared/models/user-address.model';
 import { User } from 'src/app/shared/models/user.model';
 import { FriendService } from 'src/app/shared/services/friend.service';
 import { MessageService } from 'src/app/shared/services/message.service';
+import { NotifierService } from 'src/app/shared/services/notifier.service';
 import { ItemOfferService } from 'src/app/shared/services/offer.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
@@ -26,6 +27,7 @@ export class ItemViewComponent implements OnInit, OnDestroy {
     private router: Router,
     private userSerive: UserService,
     private messageService: MessageService,
+    private notifier:  NotifierService,
     private friendService: FriendService) {
     this.navigation = this.router.getCurrentNavigation().extras;
   }
@@ -52,7 +54,8 @@ export class ItemViewComponent implements OnInit, OnDestroy {
   }
 
   addToFriend(user: User) {
-    this.friendService.createFriend(user.id)
+    this.friendService.createFriend(user.id).then(()=>{
+      this.notifier.showForFiveSeconds('Freund wurde erfolgreich hinzugefügt!', 'Ok');
+    }) 
   }
-
 }

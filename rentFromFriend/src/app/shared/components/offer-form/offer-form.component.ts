@@ -9,6 +9,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { User } from '../../models/user.model';
 import { UserAddress } from '../../models/user-address.model';
 import { Categories } from '../../models/categories.model';
+import { NotifierService } from '../../services/notifier.service';
 
 @Component({
   selector: 'app-offer-form',
@@ -22,7 +23,8 @@ export class OfferFormComponent implements OnInit {
     private userService: UserService,
     private searchService: ItemSearchService,
     private modalServeice: ModalService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private notifier: NotifierService
   ) {}
 
   item: Item;
@@ -90,6 +92,7 @@ export class OfferFormComponent implements OnInit {
     };
     if (!this.reactiveForm.valid) {
       console.error('invalid form');
+      this.notifier.showBasic('Bitte alle Felder ausfüllen', 'Ok');
       return;
     }
 
