@@ -42,4 +42,8 @@ mat-card {
             color: #fff;
         }
     }
+    &:hover {
+        box-shadow: 0px 0px 0px 6px #e78200;
+    }
+
 }
