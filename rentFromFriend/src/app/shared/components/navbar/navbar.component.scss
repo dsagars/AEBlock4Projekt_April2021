@@ -8,12 +8,16 @@ mat-toolbar {
     background-color: #E88000;
 }
 
+.burger-icon {
+    display: none;
+}
+
 .logo {
     background-image: url('../../../../assets/img/rff_logo.png');
     background-size: contain;
     background-repeat: no-repeat;
     height: 100%;
-    width: 200px;
+    width: 100px;
     margin: 10px;
     &:hover {
         cursor: pointer;
@@ -31,11 +35,14 @@ mat-toolbar {
 .btn_search {
     margin: 0 3rem;
 }
+.burger_btn_search {
+    display: none;
+}
 
 // add btn with cross
 .btn_add {
     position: absolute;
-    right: 10rem;
+    right: 8rem;
 }
 
 // vertical line on the left of account btn
@@ -56,3 +63,87 @@ mat-toolbar {
 .account_btn {
     font-size: 40px !important;
 }
+
+
+// breakpoints
+// largest devices
+@media (max-width: 1200px){
+    .search-group, .location-group  {
+        font-size: 13px;
+        margin-top: auto;
+        padding: 0 5px;
+    }
+
+    .btn_search {
+        margin: 0 1rem;
+        width: 10px;
+        min-width: unset !important;
+        
+        
+        & mat-icon{
+            font-size: 23px;
+        }
+    }
+
+    .btn_add {
+        width: 100px;
+        font-size: 12px;
+        min-width: unset !important;
+        padding: 0;
+
+        & mat-icon {
+            font-size: 23px;
+        }
+    }
+
+    .account_btn {
+        font-size: 35px !important;
+    }
+}
+
+// large devices
+@media (max-width: 992px){
+    .burger-icon {
+        display: inline-block;
+    }
+
+    .logo {
+        width: 65px;
+    }
+    .search-group, .location-group  {
+        font-size: 10px;
+        margin-top: auto;
+        padding: 0 2px;
+        width: auto;
+    }
+
+    .burger_btn_search {
+        display: inline;
+    }
+
+    .btn_search, .btn_add {
+        display: none;
+    }
+
+    .account_border {
+        right: 4rem;
+    }
+    .account_div {
+        right: 1rem;
+    }
+
+    .account_btn {
+        font-size: 30px !important;
+    }
+
+}
+
+// tablets etc
+@media (max-width: 768px) {
+    
+}
+
+// phones in landscape
+@media (min-width: 576px) { 
+
+ }
