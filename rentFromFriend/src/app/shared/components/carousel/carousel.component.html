@@ -5,11 +5,10 @@
   [interval]="5000"
   maxWidth="auto"
   [loop]="false"
+  color="primary"
   [hideArrows]="false"
   [hideIndicators]="true"
   [useKeyboard]="true"
-  [useMouseWheel]="true"
-  orientation="ltr"
   [maintainAspectRatio]="false"
 >
   <mat-carousel-slide
@@ -18,17 +17,9 @@
     overlayColor="#272f33"
     [hideOverlay]="false"
   >
-    <mat-card class="mat-card" *ngFor="let product of slide.products">
-      <div>
-        <img class="image-container" [src]="product.picture" [title]="product.description"/>
-        <mat-card-content class="mat-card-content">
-          <div class="text-container">
-            <span class="text-container" [title]="product.title">{{ product.title }}</span>
-            <span class="text-container" [title]="product.price">{{ product.price}} €</span>
-          </div>
-        </mat-card-content>
-      </div>
-    </mat-card>
+    <app-offer-search-card
+      *ngFor="let product of slide.products"
+      [item]="product"
+    ></app-offer-search-card>
   </mat-carousel-slide>
 </mat-carousel>
-<!-- </div> -->
