@@ -12,11 +12,16 @@ import { ModalService } from '../../services/modal.service';
 export class NavbarComponent implements OnInit {
   constructor(
     public modalService: ModalService,
-    private firebaseService: FirebaseService) { }
+    private firebaseService: FirebaseService,
+    private router: Router) { }
 
   ngOnInit(): void { }
 
   logout(): void {
     this.firebaseService.logout();
+  }
+
+  search(searchText: string, zip: string) {
+    this.router.navigate(['base/search'], { queryParams: { searchText: searchText, category: 'elektro', zip: zip } });
   }
 }
