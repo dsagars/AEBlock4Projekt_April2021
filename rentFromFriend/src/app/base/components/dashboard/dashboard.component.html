@@ -1,4 +1,18 @@
-<h2>Welcome to base</h2>
-<div class="carousel-container">
-<app-carousel [slides]="slides"></app-carousel>
-</div>
+<h1>Stöber Ecke</h1>
+
+<ng-container *ngIf="this.fullScreen == true; else simple">
+  <div class="carousel-container">
+    <app-carousel [slides]="slides"></app-carousel>
+  </div>
+</ng-container>
+
+<ng-template #simple>
+  <div class="items">
+    <ng-container *ngFor="let item of this.items">
+      <app-offer-search-card [item]="item"></app-offer-search-card>
+    </ng-container>
+  </div>
+</ng-template>
+
+<h1>Neuigkeiten für dich</h1>
+<p>comming soon ...</p>
