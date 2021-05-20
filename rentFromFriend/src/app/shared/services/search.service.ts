@@ -3,6 +3,7 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 import { Item } from '../models/item.model';
 import { UserService } from './user.service';
 
@@ -31,6 +32,11 @@ export class ItemSearchService {
       })
       .catch((e) => console.error(e));
   }
+
+  getItemByQueries(): Observable<Item[]> {
+    return this.db.collection<Item>('/itemsOffer')
+    .valueChanges();
+}
 
   update(id: string, data: any): Promise<void> {
     return this.itemRef.doc(id).update(data);

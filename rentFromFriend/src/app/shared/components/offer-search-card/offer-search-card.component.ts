@@ -16,7 +16,6 @@ export class OfferSearchCardComponent implements OnInit {
   }
 
   showItem(item: Item) {
-    console.log(item);
     this.router.navigate([`/base/product-details/${item.id}`], { state: { data: this.item } });
   }
 }

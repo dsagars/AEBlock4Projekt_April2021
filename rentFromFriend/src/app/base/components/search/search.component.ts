@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Item } from 'src/app/shared/models/item.model';
 import { ItemOfferService } from 'src/app/shared/services/offer.service';
 
@@ -20,8 +20,11 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.items$ = this.itemOfferService
-      .getItemByQueries(this.params);
-
+      .getItemByQueries().pipe(map(items => (!this.params.category && !this.params.searchText && !this.params.zip) ? items :
+        items.filter(item =>
+          item.category === this.params.category
+            (item.title === this.params.searchText || item.description === this.params.searchText) ||
+          (item.city === this.params.zip)
+        )));
   }
-
 }
