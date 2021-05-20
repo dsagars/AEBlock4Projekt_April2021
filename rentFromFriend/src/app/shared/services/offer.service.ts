@@ -30,7 +30,7 @@ export class ItemOfferService {
     private dbStorage: AngularFireStorage,
     private userService: UserService
   ) {
-    this.itemRef = db.collection('/itemsOffer');
+    this.itemRef = db.collection<Item>('/itemsOffer');
     this.userRef = db.collection('/users');
     this.uid = this.userService.getCurrrentUserUID();
   }
