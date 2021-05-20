@@ -13,6 +13,18 @@
         formControlName="price"
       />
     </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        placeholder="Gültigkeit"
+        formControlName="dueDate"
+        [min]="startDate"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
   </div>
 
   <mat-form-field class="example-full-width">
@@ -24,7 +36,7 @@
     ></textarea>
   </mat-form-field>
 
-  <div class="row space">
+  <div class="row space upload-container">
     <mat-form-field appearance="fill">
       <mat-label>Kategorie</mat-label>
       <mat-select formControlName="categorie">

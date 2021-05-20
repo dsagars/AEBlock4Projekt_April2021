@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalService } from '../../services/modal.service';
 import { Item } from '../../models/item.model';
 import { ItemOfferService } from '../../services/offer.service';
@@ -8,6 +8,7 @@ import { UserService } from '../../services/user.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { User } from '../../models/user.model';
 import { UserAddress } from '../../models/user-address.model';
+import { Categories } from '../../models/categories.model';
 
 @Component({
   selector: 'app-offer-form',
@@ -31,6 +32,8 @@ export class OfferFormComponent implements OnInit {
   currentUser: User;
   currentUserAdress: UserAddress;
   file: File;
+  categories: Array<string>;
+  startDate = new Date();
 
   @Input()
   containsImage: boolean;
@@ -38,16 +41,19 @@ export class OfferFormComponent implements OnInit {
   type: 'offer' | 'search';
 
   ngOnInit(): void {
+    this.categories = Object.keys(Categories).filter((key) => isNaN(+key));
+
     this.reactiveForm = this.formBuilder.group({
-      title: [],
-      fistname: [],
-      lastname: [],
-      address: [],
-      city: [],
+      title: ['', Validators.required],
+      fistname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      address: ['', Validators.required],
+      city: ['', Validators.required],
       discrtict: [],
-      description: [],
-      price: [],
-      categorie: [],
+      description: ['', Validators.required],
+      price: ['', Validators.required],
+      categorie: ['', Validators.required],
+      dueDate: ['', Validators.required],
     });
 
     this.userService.getUserFromDB().subscribe((usr) => {
@@ -56,6 +62,7 @@ export class OfferFormComponent implements OnInit {
       this.userService
         .getCurrentUserAddress(usr.addressId)
         .subscribe((addr) => {
+          console.log(addr);
           this.currentUserAdress = { ...addr };
           this.reactiveForm.setValue({
             title: [],
@@ -67,8 +74,8 @@ export class OfferFormComponent implements OnInit {
             description: [],
             price: [],
             categorie: [],
+            dueDate: [],
           });
-          console.log('rdy');
         });
     });
   }
@@ -77,7 +84,12 @@ export class OfferFormComponent implements OnInit {
     this.item = {
       ...this.reactiveForm.value,
       uid: this.userService.getCurrrentUserUID(),
+      timeStamp: new Date().toISOString(),
     };
+    if (!this.reactiveForm.valid) {
+      console.error("invalid form")
+      return;
+    }
 
     if (this.type === 'offer') {
       this.offerService.create(this.item);
@@ -101,15 +113,4 @@ export class OfferFormComponent implements OnInit {
   clearImg() {
     this.imgUrl = undefined;
   }
-
-  categories = [
-    'Garten',
-    'Haushalt',
-    'Elektonik',
-    'Spiele',
-    'Freizeit',
-    'Auto',
-    'Fahrrad',
-    'Sport',
-  ];
 }

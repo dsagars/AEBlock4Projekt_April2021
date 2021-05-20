@@ -8,4 +8,5 @@ export interface Item {
   discrict: string;
   friendsOnly?: boolean;
   picture: any;
+  timeStamp: Date;
 }
