@@ -27,3 +27,15 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+.mat-button{
+    border: 1px solid #d68512;
+    background-color: #d68512;
+    color: white;
+}
+
+.mat-button:hover {
+    border: 1px solid #296474;
+    background-color: #296474;
+    color: white;
+}
