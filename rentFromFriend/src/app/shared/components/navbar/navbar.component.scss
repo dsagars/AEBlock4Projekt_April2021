@@ -1,11 +1,20 @@
 mat-toolbar {
   height: 75px;
   padding: 10px;
+  background-color: #d68512;
 }
 
-.mat-raised-button {
-  color: #fff;
-  background-color: #e88000;
+.mat-button {
+  color: white;
+  background-color: transparent;
+  margin-left: 10px;
+  border: 1px solid white;
+}
+
+.mat-button:hover {
+  color: white;
+  background-color: #296474;
+  border-color: #296474;
 }
 
 .logo {
@@ -25,11 +34,32 @@ mat-toolbar {
 .location-group {
   font-size: 15px;
   margin-top: auto;
-  padding: 0 15px;
+  color: #fff;
 }
+
 .wrapper {
   display: flex;
   justify-content: space-between;
+}
+
+.mat-form-field{
+  margin-left: 5px;
+}
+
+.account_btn {
+  display: flex;
+  color: #fff;
+  border: 1px solid white;
+  font-size: 35px;
+  min-height: 35px;
+  min-width: 35px;
+  padding-top: 10px;
+}
+
+.account_btn:hover {
+  color: #fff;
+  background-color: #296474;
+  border-color: #296474;
 }
 
 .hide {
