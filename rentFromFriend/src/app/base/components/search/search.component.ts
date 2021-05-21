@@ -22,8 +22,9 @@ export class SearchComponent implements OnInit {
     this.items$ = this.itemOfferService
       .getItemByQueries().pipe(map(items => (!this.params.category && !this.params.searchText && !this.params.zip) ? items :
         items.filter(item =>
-          item.category === this.params.category
-            (item.title === this.params.searchText || item.description === this.params.searchText) ||
+          item.category === this.params.category ||
+          (item.title.toLowerCase().includes(this.params.searchText.toLowerCase()) ||
+            item.description.toLowerCase().includes(this.params.searchText.toLowerCase())) ||
           (item.city === this.params.zip)
         )));
   }
