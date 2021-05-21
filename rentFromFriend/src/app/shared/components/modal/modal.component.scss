@@ -5,6 +5,7 @@
   height: 100%;
   width: 100%;
   background-color: rgba(#000000, 0.3);
+  z-index: 150;
 }
 
 .wrapper {
@@ -16,6 +17,7 @@
   margin: 10vh 10vw;
   top: 0;
   padding: 20px;
+  z-index: 200;
   @media screen and (max-width: 500px) {
     display: flex;
     flex-direction: column;
