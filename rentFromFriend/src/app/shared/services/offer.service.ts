@@ -36,9 +36,9 @@ export class ItemOfferService {
     this.itemRef = db.collection<Item>('/itemsOffer');
     this.userRef = db.collection('/users');
     this.uid = this.userService.getCurrrentUserUID();
-
-
   }
+
+  //functionality as named
 
   getAll(): AngularFirestoreCollection<Item> {
     return this.itemRef;
@@ -63,14 +63,14 @@ export class ItemOfferService {
   }
 
   getItemByQueries(): Observable<Item[]> {
-    return this.db.collection<Item>('/itemsOffer')
-      .valueChanges();
+    return this.db.collection<Item>('/itemsOffer').valueChanges();
   }
 
   delete(id: string): Promise<void> {
     return this.itemRef.doc(id).delete();
   }
 
+  //adds an offer to DB and updates the users offer list
   uploadOffer(item: Item) {
     const randomId = Math.random().toString(36).substring(2);
     this.ref = this.dbStorage.ref('offerImages/' + this.uid + randomId);

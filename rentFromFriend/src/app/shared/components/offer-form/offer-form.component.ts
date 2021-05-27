@@ -37,14 +37,17 @@ export class OfferFormComponent implements OnInit {
   categories: Array<string>;
   startDate = new Date();
 
+  //props make this component reusable for "search" and "offer"
   @Input()
   containsImage: boolean;
   @Input()
   type: 'offer' | 'search';
 
   ngOnInit(): void {
+    //create array from enum
     this.categories = Object.keys(Categories).filter((key) => isNaN(+key));
 
+    //init of Form. some are required
     this.reactiveForm = this.formBuilder.group({
       title: ['', Validators.required],
       fistname: ['', Validators.required],
@@ -59,6 +62,7 @@ export class OfferFormComponent implements OnInit {
       friendsOnly: [''],
     });
 
+    //get User from DB to prefill his Userinformation
     this.userService.getUserFromDB().subscribe((usr) => {
       this.currentUser = { ...usr };
       if (!usr.addressId) return;
@@ -83,6 +87,7 @@ export class OfferFormComponent implements OnInit {
     });
   }
 
+  //handle Submit of form
   handleSubmit() {
     this.item = {
       ...this.reactiveForm.value,
@@ -91,10 +96,12 @@ export class OfferFormComponent implements OnInit {
     };
     if (!this.reactiveForm.valid) {
       console.error('invalid form');
+      //notification handler
       this.notifier.showBasic('Bitte alle Felder ausfüllen', 'Ok');
       return;
     }
 
+    //switch between handling of "offer" and "search"
     if (this.type === 'offer') {
       this.offerService.uploadOffer(this.item);
     } else {
@@ -102,7 +109,7 @@ export class OfferFormComponent implements OnInit {
     }
     this.close();
   }
-
+  // displaying the img before it gets uploaded to out server
   imagePre(file) {
     const blobUrl = URL.createObjectURL(file);
     this.imgUrl = this.sanitizer.bypassSecurityTrustUrl(blobUrl);

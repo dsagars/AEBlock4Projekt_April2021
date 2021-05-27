@@ -11,6 +11,8 @@ export class ModalService {
     showModalSearch: false,
   };
 
+  //functionality as named
+
   public toggleShowModalOffer() {
     this.activeModal.showModalOffer = !this.activeModal.showModalOffer;
   }

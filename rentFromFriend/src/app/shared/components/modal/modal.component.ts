@@ -7,8 +7,10 @@ import { ModalService } from '../../services/modal.service';
   styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent implements OnInit {
+  //modalService is used to handle if the modal should be displayed or not
   constructor(public modalService: ModalService) {}
 
+  //Prop for displaying a induviduel Titel in different usecases
   @Input()
   titel: string;
 
