@@ -7,10 +7,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./email-not-verified.component.scss'],
 })
 export class EmailNotVerifiedComponent implements OnInit {
+  
+  // import Router to be able to redirect user to another page
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
+  // On Button click send user back to login
   sendUserToLogin() {
     this.router.navigate(['/login']);
   }

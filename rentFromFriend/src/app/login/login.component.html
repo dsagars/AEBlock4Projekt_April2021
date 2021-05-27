@@ -1,12 +1,8 @@
 <div class="center-content">
+  <!--We use Angular material card with 2 tabs ( One for login and one for sign up)-->
   <mat-card class="example-card">
     <mat-card-header>
-      <div
-        mat-card-avatar
-        class="example-header-image"
-      ></div>
-      <!-- <mat-card-title>Rent From Friend</mat-card-title>
-    <mat-card-subtitle>Sharing is Caring</mat-card-subtitle> -->
+      <div mat-card-avatar class="example-header-image"></div>
     </mat-card-header>
     <mat-card-content>
       <mat-tab-group mat-stretch-tabs>
@@ -21,7 +17,7 @@
                 placeholder="Email"
                 #email
                 formControlName="loginEmailControl"
-              >
+              />
               <mat-icon matSuffix>email</mat-icon>
               <mat-error>
                 Bitte geben Sie eine korrekte E-Mail-Adresse ein
@@ -35,7 +31,7 @@
                 placeholder="Password"
                 #password
                 formControlName="loginPasswordControl"
-              >
+              />
               <mat-icon matSuffix>vpn_key</mat-icon>
               <mat-error>
                 Falsches Passwort! (Bitte verwenden Sie: A, a, 0-9, Minimum 6,
@@ -44,7 +40,9 @@
             </mat-form-field>
           </form>
 
-          <button mat-flat-button  (click)="onPasswordReset()">Passwort vergessen?</button>
+          <button mat-flat-button (click)="onPasswordReset()">
+            Passwort vergessen?
+          </button>
           <button
             (click)="onSignin(email.value, password.value)"
             mat-button
@@ -75,7 +73,7 @@
                 required
                 #emailSignUp
                 formControlName="signupEmailControl"
-              >
+              />
               <mat-icon matSuffix>email</mat-icon>
               <mat-error>
                 Bitte geben Sie eine korrekte E-Mail-Adresse ein
@@ -90,7 +88,7 @@
                 required
                 #passwordSignUp
                 formControlName="signupPasswordControl"
-              >
+              />
               <mat-icon matSuffix>vpn_key</mat-icon>
               <mat-error>
                 Falsches Passwort! (Bitte verwenden Sie: A, a, 0-9, Minimum 6,
@@ -106,7 +104,7 @@
                 required
                 #confirm_passwordSignUp
                 formControlName="signupPasswordAgainControl"
-              >
+              />
               <mat-icon matSuffix>vpn_key</mat-icon>
               <mat-error>Ihre Passwörter stimmen nicht überein!</mat-error>
             </mat-form-field>
@@ -120,7 +118,7 @@
                 required
                 #firstNameSignUp
                 formControlName="signupFirstNameControl"
-              >
+              />
               <mat-icon matSuffix>person</mat-icon>
               <mat-error>
                 Bitte geben Sie einen korrekten Vornamen ein
@@ -136,7 +134,7 @@
                 required
                 #lastNameSignUp
                 formControlName="signupLastNameControl"
-              >
+              />
               <mat-icon matSuffix>person</mat-icon>
               <mat-error>
                 Bitte geben Sie einen korrekten Nachnamen ein
@@ -155,7 +153,7 @@
                 required
                 #phoneSignUp
                 formControlName="signupPhoneControl"
-              >
+              />
               <mat-icon matSuffix>phone</mat-icon>
               <mat-error>
                 Bitte geben Sie eine korrekte Telefonnummer ein (Format:
