@@ -1,10 +1,7 @@
 <div class="center-content">
   <mat-card class="example-card">
     <mat-card-header>
-      <div
-        mat-card-avatar
-        class="example-header-image"
-      ></div>
+      <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>Fast geschafft...</mat-card-title>
       <mat-card-subtitle>
         Bitte fügen Sie Ihre ersten Profilinformationen hinzu
@@ -22,11 +19,9 @@
             required
             #firstNameSignUp
             formControlName="userAddonFirstNameControl"
-          >
+          />
           <mat-icon matSuffix>person</mat-icon>
-          <mat-error>
-            Bitte geben Sie einen korrekten Vornamen ein
-          </mat-error>
+          <mat-error> Bitte geben Sie einen korrekten Vornamen ein </mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width">
           <mat-label>Nachname</mat-label>
@@ -37,11 +32,9 @@
             required
             #lastNameSignUp
             formControlName="signupLastNameControl"
-          >
+          />
           <mat-icon matSuffix>person</mat-icon>
-          <mat-error>
-            Bitte geben Sie einen korrekten Nachnamen ein
-          </mat-error>
+          <mat-error> Bitte geben Sie einen korrekten Nachnamen ein </mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width">
           <mat-label>Telefon #</mat-label>
@@ -55,10 +48,11 @@
             required
             #phoneSignUp
             formControlName="signupPhoneControl"
-          >
+          />
           <mat-icon matSuffix>phone</mat-icon>
           <mat-error>
-            Bitte geben Sie eine korrekte Telefonnummer ein (Format:  017611111111)
+            Bitte geben Sie eine korrekte Telefonnummer ein (Format:
+            017611111111)
           </mat-error>
         </mat-form-field>
       </form>
