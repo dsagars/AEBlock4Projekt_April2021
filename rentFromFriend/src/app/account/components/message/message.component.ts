@@ -28,11 +28,13 @@ export class MessageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    // setting the variable names
     this.userId = this.userService.getCurrrentUserUID();
     this.selectedContact$ = this.messageService.selectedContact$;
     this.messages$ = this.messageService.messages$;
     this.contacts$ = this.messageService.contacts$;
 
+    // filter the messages
     this.filteredMessages$ = combineLatest([
       this.messages$,
       this.selectedContact$
@@ -44,11 +46,13 @@ export class MessageComponent implements OnInit, OnDestroy {
       ));
   }
 
+  // complete the subject on destroy
   ngOnDestroy(): void {
     this.destroyed$.next(true);
     this.destroyed$.complete();
   }
 
+  // send message
   send(recieverId: string): void {
     if (!this.text) {
       return;
@@ -56,7 +60,7 @@ export class MessageComponent implements OnInit, OnDestroy {
     this.messageService.sendMessage(this.text, this.userId, recieverId);
     this.text = '';
   }
-
+  // setting selected contact
   setSelectedContact(contact: User): void {
     this.messageService.setSelectedContact(contact);
   }

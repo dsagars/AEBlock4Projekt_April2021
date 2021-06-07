@@ -15,10 +15,11 @@ export class SearchComponent implements OnInit {
   items$: Observable<Item[]>;
 
   constructor(private activatedRoute: ActivatedRoute, private itemOfferService: ItemOfferService) {
-    this.params = this.activatedRoute.snapshot.queryParams;
+    this.params = this.activatedRoute.snapshot.queryParams; // getting the url params
   }
 
   ngOnInit(): void {
+    // filter the items for the search
     this.items$ = this.itemOfferService
       .getItemByQueries().pipe(map(items => (!this.params.category && !this.params.searchText && !this.params.zip) ? items :
         items.filter(item =>

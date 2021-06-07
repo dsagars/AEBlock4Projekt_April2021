@@ -4,10 +4,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from './components/profile/profile.component';
 import { MessageComponent } from './components/message/message.component';
 import { ManageFriendComponent } from './components/manage-friend/manage-friend.component';
-import { SettingComponent } from './components/setting/setting.component';
 import { AccountComponent } from './account.component';
 import { OfferSearchComponent } from './components/offer-search/offer-search.component';
 
+// the routing between the components in the account module
 
 const routes: Routes = [
   {
@@ -30,10 +30,6 @@ const routes: Routes = [
       {
         path: 'manage-friend',
         component: ManageFriendComponent
-      },
-      {
-        path: 'setting',
-        component: SettingComponent
       },
       {
         path: 'offer-search',

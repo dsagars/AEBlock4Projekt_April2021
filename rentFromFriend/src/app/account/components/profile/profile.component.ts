@@ -17,14 +17,17 @@ export class ProfileComponent implements OnInit, OnDestroy {
   userAddress: UserAddress;
   userInfoForm: FormGroup;
   userAddressForm: FormGroup;
+
   constructor(
     public userService: UserService,
     private formBuilder: FormBuilder
   ) {
+    // getting the user from our DB and unsubscribe after destroy
     this.userService.getUserFromDB().pipe(takeUntil(this.destroyed$)).subscribe();
   }
-
+  // on component starts
   ngOnInit(): void {
+    // getting the user again from DB and after getting the user create the forms and fill the user info
     this.userService.userFromDB$.pipe(takeUntil(this.destroyed$)).subscribe(user => {
       this.user = user;
       this.initUserInfoForm();
@@ -39,11 +42,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.userService.getUserImage();
   }
 
+  // on component destroy complete the subject
   ngOnDestroy(): void {
     this.destroyed$.next(true);
     this.destroyed$.complete();
   }
 
+  // initialize user form and create formControls
   initUserInfoForm(): void {
     this.userInfoForm = this.formBuilder.group({
       id: [this.user?.id],
@@ -55,6 +60,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     });
   }
 
+  // initialize user userAddressForm and create formControls
   inituserAddressForm(): void {
     this.userAddressForm = this.formBuilder.group({
       street: [this.userAddress?.street],
@@ -64,10 +70,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
     });
   }
 
+  // preview files
   preview(files): void {
     this.userService.preview(files);
   }
 
+  // save the data
   saveUserData(): void {
     this.userService.updateUserData(this.userInfoForm.value, this.userAddressForm.value);
   }

@@ -1,4 +1,4 @@
-<!-- <app-navbar></app-navbar> -->
+<!-- Sidenavbar between the the account module components; The side nav is always there only the content will be routed -->
 <mat-drawer-container class="example-container" autosize>
   <mat-drawer
     #drawer
@@ -23,6 +23,7 @@
   </mat-drawer>
 
   <div class="example-sidenav-content">
+    <!-- Hier is the content of the components are rendern depend on the routing -->
     <router-outlet></router-outlet>
   </div>
 </mat-drawer-container>
