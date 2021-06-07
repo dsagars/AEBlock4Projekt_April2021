@@ -15,6 +15,7 @@ export class OfferSearchCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // navigate to product-details and give data through the url
   showItem(item: Item) {
     this.router.navigate([`/base/product-details/${item.id}`], { state: { data: this.item } });
   }

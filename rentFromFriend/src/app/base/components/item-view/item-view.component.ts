@@ -24,7 +24,6 @@ export class ItemViewComponent implements OnInit, OnDestroy {
   destroyed$ = new Subject();
   currentUserId: string;
   constructor(
-    private itemOfferService: ItemOfferService,
     private router: Router,
     private userSerive: UserService,
     private messageService: MessageService,
@@ -34,6 +33,7 @@ export class ItemViewComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    // get user data to show in the template
     this.currentUserId = this.userSerive.getCurrrentUserUID();
     this.item = this.navigation?.state?.data;
     if (!this.item) {
@@ -44,15 +44,18 @@ export class ItemViewComponent implements OnInit, OnDestroy {
       .subscribe(address$ => this.userAddress = address$);
   }
 
+  // copmlete the subject on destroy
   ngOnDestroy(): void {
     this.destroyed$.next(true);
     this.destroyed$.complete();
   }
 
+  // send user a message
   sendMessage(user: User) {
     this.messageService.createContact(user).then(() => this.router.navigate(['/base/account/message']));
   }
 
+  // add user to friend list
   addToFriend(user: User) {
     this.friendService.createFriend(user.id).then(()=>{
       this.notifier.showForFiveSeconds('Freund wurde erfolgreich hinzugefügt!', 'Ok');

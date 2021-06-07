@@ -53,6 +53,7 @@ export class UserService {
     this.defaultImage = this.afStorage.ref('avatar.png');
   }
 
+  // get user Image
   getUserImage() {
     const ref = this.afStorage.ref('useresImages/' + this.getCurrrentUserUID());
     ref.getDownloadURL().subscribe(
@@ -67,6 +68,7 @@ export class UserService {
     );
   }
 
+  // preview Image functionality
   preview(files) {
     if (files.length === 0) {
       return;
@@ -85,6 +87,8 @@ export class UserService {
     };
   }
 
+  // functionality as Named
+  
   uploadImage() {
     const id = this.getCurrrentUserUID();
     this.ref = this.afStorage.ref('useresImages/' + id);

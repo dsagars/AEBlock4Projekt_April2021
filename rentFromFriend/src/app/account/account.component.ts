@@ -15,6 +15,5 @@ export class AccountComponent implements OnInit {
     if (window.innerWidth <= this.breakpoint) {
       this.showSidebar = false;
     }
-    // if(window.innerWidth <= '500px')
   }
 }

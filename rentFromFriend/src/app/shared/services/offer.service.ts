@@ -58,19 +58,21 @@ export class ItemOfferService {
       .valueChanges();
   }
 
+  // update ItemOffer
   update(id: string, data: any): Promise<void> {
     return this.itemRef.doc(id).update(data);
   }
 
-  getItemByQueries(): Observable<Item[]> {
+  getItemOffer(): Observable<Item[]> {
     return this.db.collection<Item>('/itemsOffer').valueChanges();
   }
 
+  // delete ItemOffer
   delete(id: string): Promise<void> {
     return this.itemRef.doc(id).delete();
   }
 
-  //adds an offer to DB and updates the users offer list
+  // adds an offer to DB and updates the users offer list
   uploadOffer(item: Item) {
     const randomId = Math.random().toString(36).substring(2);
     this.ref = this.dbStorage.ref('offerImages/' + this.uid + randomId);
@@ -98,6 +100,7 @@ export class ItemOfferService {
       .subscribe();
   }
 
+  // getting the url of an offer
   getItemImageUrl() {
     return this.itemImageUrl;
   }

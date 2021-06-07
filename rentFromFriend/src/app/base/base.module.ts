@@ -7,6 +7,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SearchComponent } from './components/search/search.component';
 import { ItemViewComponent } from './components/item-view/item-view.component';
 
+// base module to declare and import relative components and libraries for this module
 @NgModule({
   declarations: [
     BaseComponent,

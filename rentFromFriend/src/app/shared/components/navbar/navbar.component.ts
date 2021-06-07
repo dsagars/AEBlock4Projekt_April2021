@@ -24,15 +24,18 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  // logout
   logout(): void {
     this.firebaseService.logout();
   }
 
+  // search input functionality and giving the searchText and zip through queryParams
   search(searchText: string, zip: string) {
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() =>
       this.router.navigate(['base/search'], { queryParams: { searchText: searchText, category: this.selectedCategory, zip: zip } }));
   }
 
+  // getting the category
   CategorySelectionChanged($event) {
     this.selectedCategory = $event.value;
   }

@@ -15,6 +15,7 @@ export class OfferSearchComponent implements OnInit {
 
   constructor(private offerService: ItemOfferService) {}
 
+  // getting the offer and search of the current user
   ngOnInit(): void {
     this.offerItems$ = this.offerService.getAllOfferFromCurrentUser();
     this.searchItems$ = this.offerService.getAllSearchFromCurrentUser();

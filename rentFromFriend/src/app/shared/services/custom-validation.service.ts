@@ -7,6 +7,7 @@ import { FormGroup } from '@angular/forms';
 export class CustomValidationService {
   constructor() {}
 
+  // this is the logic of passwordMatchValidator 
   passwordMatchValidator(password: string, confirmPassword: string) {
     return (formGroup: FormGroup) => {
       const passwordControl = formGroup.controls[password];

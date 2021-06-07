@@ -7,6 +7,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SearchComponent } from './components/search/search.component';
 import { ItemViewComponent } from './components/item-view/item-view.component';
 
+// the routing between the components in the base module
+
 const routes: Routes = [
   {
     path: '',
@@ -32,7 +34,7 @@ const routes: Routes = [
       },
       {
         path: 'account',
-        loadChildren: () => import('../account/account.module').then(m => m.AccountModule),
+        loadChildren: () => import('../account/account.module').then(m => m.AccountModule), // lazyLoad account module 
         canActivateChild: [RouteGuard]
       },
     ]

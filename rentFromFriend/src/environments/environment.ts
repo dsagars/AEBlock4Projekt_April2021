@@ -4,15 +4,16 @@
 
 export const environment = {
   production: false,
+  // firebase needed properties
   firebase: {
-    apiKey: "AIzaSyBg0DTBEOupSTyeR9p42QpaGi8jsnpma4U",
-    authDomain: "rentfromfriend-68713.firebaseapp.com",
-    projectId: "rentfromfriend-68713",
-    storageBucket: "rentfromfriend-68713.appspot.com",
-    messagingSenderId: "397623730913",
-    appId: "1:397623730913:web:2253eb48d3ca7fc4b94da0"
+    apiKey: 'AIzaSyBg0DTBEOupSTyeR9p42QpaGi8jsnpma4U',
+    authDomain: 'rentfromfriend-68713.firebaseapp.com',
+    projectId: 'rentfromfriend-68713',
+    storageBucket: 'rentfromfriend-68713.appspot.com',
+    messagingSenderId: '397623730913',
+    appId: '1:397623730913:web:2253eb48d3ca7fc4b94da0'
   }
-};   
+};
 
 /*
  * For easier debugging in development mode, you can import the following file
