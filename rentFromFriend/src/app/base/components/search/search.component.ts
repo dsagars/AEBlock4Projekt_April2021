@@ -21,7 +21,7 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
     // filter the items for the search
     this.items$ = this.itemOfferService
-      .getItemByQueries().pipe(map(items => (!this.params.category && !this.params.searchText && !this.params.zip) ? items :
+      .getItemOffer().pipe(map(items => (!this.params.category && !this.params.searchText && !this.params.zip) ? items :
         items.filter(item =>
           item.category === this.params.category ||
           (item.title.toLowerCase().includes(this.params.searchText.toLowerCase()) ||

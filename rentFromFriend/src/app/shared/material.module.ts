@@ -41,6 +41,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 
+// Imported all MaterialModules to not import them separatly in sharedModule; To make our work quickly
 const MaterialComponents = [
     A11yModule,
     CdkStepperModule,

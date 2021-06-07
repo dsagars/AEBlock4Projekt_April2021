@@ -119,6 +119,7 @@ export class MessageService {
     this.selectedContact = contact;
   }
 
+  // Create Contact for bott Users
   createContact(reciever: User): Promise<any> {
     if (this.contacts.find(contact => contact.id === reciever.id)) {
       this.setSelectedContact(reciever);

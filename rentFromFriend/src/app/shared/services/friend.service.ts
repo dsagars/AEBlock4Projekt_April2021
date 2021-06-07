@@ -35,7 +35,7 @@ export class FriendService {
     private userService: UserService
   ) {
   }
-
+  // getFriends from DB
   getFriends(): Observable<{ id: string, friendId: string }[]> {
     return this.db.collection<User>('users').doc(this.userService.getCurrrentUserUID())
       .collection<{ id: string, friendId: string }>('friends').valueChanges().pipe(take(1), tap(friends => {
@@ -44,6 +44,7 @@ export class FriendService {
       }));
   }
 
+  // Create Friend to both User
   createFriend(friendId: string): Promise<any> {
     if (this.friends.find(friend => friend.id === friendId)) {
       return of(true).toPromise();
@@ -97,6 +98,7 @@ export class FriendService {
 
   }
 
+  // deleteFriend from DB
   deleteFriend(friendId: string) {
     const fId = this.friendsId.find(friend => friend.friendId === friendId);
     this.db.collection<User>('users').doc(this.userService.getCurrrentUserUID())

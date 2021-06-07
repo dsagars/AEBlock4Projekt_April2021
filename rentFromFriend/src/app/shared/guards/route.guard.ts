@@ -18,6 +18,7 @@ export class RouteGuard implements CanActivate, CanActivateChild {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
+    // allow navigation only when loggedIn
     if (this.firebaseService.isLoggedIn()) {
       return true;
     }
