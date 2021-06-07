@@ -2,11 +2,11 @@
 
 ## Development information:
 
-- [Projects repositroy](https://github.com/dsagars/AEBlock4Projekt_April2021/tree/main/rentFromFriend)
-- Frontend: SPA with: [Angular](https://angular.io/)
-- Component Libary: [material.angular.io](https://material.angular.io/)
-- NoSQL Backend: [Firebase/firestore](https://firebase.google.com/docs/firestore/)
-- npm needs to be installed: [NPM](https://www.npmjs.com/)
+[Projects repositroy](https://github.com/dsagars/AEBlock4Projekt_April2021/tree/main/rentFromFriend)
+Frontend: SPA with: [Angular](https://angular.io/)
+Component Libary: [material.angular.io](https://material.angular.io/)
+NoSQL Backend: [Firebase/firestore](https://firebase.google.com/docs/firestore/)
+npm needs to be installed: [NPM](https://www.npmjs.com/)
 
 ## Starting Steps:
 

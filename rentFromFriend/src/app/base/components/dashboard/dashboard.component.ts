@@ -15,7 +15,6 @@ export class DashboardComponent implements OnInit {
 
   constructor(private itemOfferService: ItemOfferService) {}
 
-
   ngOnInit(): void {
     this.getView();
 
