@@ -15,7 +15,8 @@ export interface Slide {
 })
 
 export class CarouselComponent implements OnInit {
-
+  
+  // Shares data between this child component and parent component(dashboard)
   @Input() slides: Slide[];
 
   constructor() { }
